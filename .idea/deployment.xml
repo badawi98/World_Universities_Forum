@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PublishConfigData" serverName="WebProject">
+    <serverData>
+      <paths name="WebProject">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/phpstorm_projects/World_Universities_Forum" />
+          </mappings>
+        </serverdata>
+      </paths>
+    </serverData>
+  </component>
+</project>
