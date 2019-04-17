@@ -2311,7 +2311,7 @@ h6 {
   line-height: 40px;
   border: none;
   outline: none;
-  background: #f9f9ff;
+  background: #ffffff;
   padding: 0 20px; }
 
 .single-input:focus {
@@ -2379,7 +2379,7 @@ h6 {
   line-height: 40px;
   border: 1px solid transparent;
   outline: none;
-  background: #f9f9ff;
+  background: #ffffff;
   padding: 0 20px; }
 
 .single-input-secondary:focus {
@@ -2838,7 +2838,7 @@ h6 {
   border: none;
   border-radius: 0px;
   height: 40px;
-  background: #f9f9ff !important;
+  background: #ffffff !important;
   padding-left: 45px;
   padding-right: 40px;
   width: 100%; }

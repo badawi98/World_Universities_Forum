@@ -8,7 +8,7 @@
             name="viewport"
             content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
-    <link rel="icon" href="img/icon.png" type="image/png" />
+    <link rel="icon" href="img/1321027.png" type="image/png" />
     <title>World Universities Forum</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.css" />
@@ -18,7 +18,12 @@
     <link rel="stylesheet" href="vendors/nice-select/css/nice-select.css" />
     <!-- main css -->
     <link rel="stylesheet" href="css/style.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+    <link rel="canonical" href="https://mdbootstrap.com/snippets/jquery/temp/590679/">
+
 </head>
+
 
 <body>
 <!--================ Start Header Menu Area =================-->
@@ -48,7 +53,7 @@
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <a class="navbar-brand logo_h" href="index.html">
                     <img width="32" hieght="32" src="img/1321027.png" style=" display: inline-block; bottom: 3px; position:relative;" alt="">
-                    <h2 style=" margin-left:5px; display: inline-block; position: relative; top:5px;" class="mb-3">   World Universities Forum</h2>
+                    <h3 style=" margin-left:5px; display: inline-block; position: relative; top:5px;" class="mb-3">   World Universities Forum</h3>
                 </a>
                 <button
                         class="navbar-toggler"
@@ -88,6 +93,7 @@
                                 <i class="ti-search"></i>
                             </a>
                         </li>
+
                     </ul>
                 </div>
             </div>
@@ -109,6 +115,7 @@
                         <div>
                             <a href="#" class="primary-btn ml-sm-3 ml-0">Get Started</a>
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -294,58 +301,188 @@
 <!--================ End Popular Courses Area =================-->
 
 <!--================ Start Registration Area =================-->
-<div class="section_gap registration_area">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-lg-7">
-                <div class="row clock_sec clockdiv" id="clockdiv">
-                    <div class="col-lg-12">
-                        <h1 class="mb-3">Register Now</h1>
-                        <p>
-                            There is a moment in the life of any aspiring astronomer that
-                            it is time to buy that first telescope. It’s exciting to think
-                            about setting up your own viewing station.
-                        </p>
+<div   class="section_gap registration_area">
+    <div class="container" style="
+    margin-left: 50px;
+    margin-right: 50px;
+    padding-right: 0px;
+    padding-left: 0px;
+">
+        <div  class="row align-items-center">
+            <!--    <div class="col-lg-3">
+                    <div class="row clock_sec clockdiv" id="clockdiv">
+                        <div class="col-lg-12">
+                            <h1 class="mb-3">Register Now</h1>
+                            <p>
+                                There is a moment in the life of any aspiring astronomer that
+                                it is time to buy that first telescope. It’s exciting to think
+                                about setting up your own viewing station.
+                            </p>
+                        </div>
+
+
+
+
                     </div>
+                </div>-->
+
+            <div class="col-lg-4 offset-lg-1" style="
+    margin-left: 0px;
+">
+                <div class="register_form" style="
+    padding-top: 30px;
+">
+                    <h3 style="
+    border-bottom-width: 5px;
+    margin-bottom: 20px;
+">Welcome</h3>
 
 
-
-
-                </div>
-            </div>
-            <div class="col-lg-4 offset-lg-1">
-                <div class="register_form">
-                    <h3>Join Us</h3>
-                    <form
-                            class="form_area"
-                            id="myForm"
-                            action="mail.html"
-                            method="post"
-                    >
+                    <form class="form_area" id="myForm" action="mail.html" method="post">
                         <div class="row">
                             <div class="col-lg-12 form_group">
-                                <input
-                                        name="name"
-                                        placeholder="Your Name"
-                                        required=""
-                                        type="text"
-                                />
-                                <input
-                                        name="name"
-                                        placeholder="Your Phone Number"
-                                        required=""
-                                        type="tel"
-                                />
-                                <input
-                                        name="email"
-                                        placeholder="Your Email Address"
-                                        pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$"
-                                        required=""
-                                        type="email"
-                                />
+                                <input class="glyphicon glyphicon-user" name="name" placeholder="Username or ID" required="" type="text">
+                                <input name="name" placeholder="Password" required="" type="password">
+
                             </div>
                             <div class="col-lg-12 text-center">
-                                <button class="primary-btn">Submit</button>
+                                <button class="primary-btn" style="
+    margin-bottom: 30px;
+">log in</button>
+                            </div>
+                          </div>
+                    </form>
+                    <h6>Not a member ? </h6>
+                    <a href="javascript:void(0)"  id="showjoinus" style="
+
+                     margin-top: 0px;
+                     padding-top: 0px;
+                     ">Register now</a>
+                </div>
+            </div>
+            <script>
+                $(document).ready(function(){
+                    $("#showjoinus").click(function(){
+                        $(".collapse").collapse('show');
+                    });
+                });
+            </script>
+            <div class="col-lg-8 offset-lg-1" style=" margin-left: 0px;">
+
+                <div style="padding-top:40px; padding-bottom: 40px " id="join_us" class="main-container collapse register_form">
+                    <h3>Join Us</h3>
+                    <p>It is high time for learning</p>
+
+                    <form class="form_area md-form" id="myForm" action="mail.html" method="post">
+                        <div class="row">
+
+
+                            <div class="col-lg-6 form_group mt-10">
+                                <input type="text" name="first_name" placeholder="First Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'First Name'" required="" class="single-input">
+                            </div>
+                            <div class="mt-10 col-lg-6 form_group">
+                                <input type="text" name="second_name" placeholder="Second Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Second Name'" required="" class="single-input">
+                            </div>
+                            <div class="mt-10 col-lg-6 form_group">
+                                <input type="text" name="third_name" placeholder="Third Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Third Name'" required="" class="single-input">
+                            </div>
+                            <div class="mt-10 col-lg-6 form_group">
+                                <input type="text" name="last_name" placeholder="Last Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Last Name'" required="" class="single-input">
+                            </div>
+                            <div class="mt-10 col-lg-12 form_group">
+                                <input type="email" name="EMAIL" placeholder="Email address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email address'" required="" class="single-input">
+                                <i class=" input-icon js-btn-calendar"></i>
+                            </div>
+
+                            <div class="mt-10 col-lg-12 form_group">
+                                <input placeholder="Birth Date" class="single-input-secondary" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" id="date">
+
+                            </div>
+
+                            <div class="input-group-icon mt-10 col-lg-6 form_group">
+                                <div class="form-select" id="default-select2">
+                                    <select style="display: none;">
+                                        <option value="1">Gender</option>
+                                        <option value="1">Male</option>
+                                        <option value="1">Female</option>
+                                    </select><div class="nice-select" tabindex="0" style="
+    padding-left: 12px;
+    padding-right: 0px;
+"><span class="current">Gender</span><ul class="list"><li data-value="1" class="option selected focus">Gender</li><li data-value="1" class="option">Male</li><li data-value="1" class="option">Female</li></ul></div>
+
+                                </div>
+                            </div>
+                            <div class="input-group-icon mt-10 mb-15 col-lg-6 form_group" style="
+    padding-left: 15px;
+    padding-right: 15px;
+">
+                                <div class="form-select" id="default-select2">
+                                    <select style="display: none;">
+                                        <option value="1">Register as</option>
+                                        <option value="1">Student</option>
+                                        <option value="1">Instructor</option>
+                                    </select><div class="nice-select" tabindex="0" style="
+    padding-left: 12px;
+    padding-right: 0px;
+"><span class="current">Register as</span><ul class="list"><li data-value="1" class="option selected focus">Register as</li><li data-value="1" class="option">Student</li><li data-value="1" class="option">Instructor</li></ul></div>
+
+                                </div>
+                            </div>
+                            <div class="input-group-icon mt-10 mb-15 col-lg-12 form_group">
+                                <div class="form-select" id="default-select2">
+                                    <select style="display: none;">
+                                        <option value="1">University</option>
+                                        <option value="1">An-Najah National University</option>
+                                        <option value="1"></option>
+                                        <option value="1"></option>
+                                        <option value="1"></option>
+                                    </select><div class="nice-select" tabindex="0" style="
+    padding-left: 12px;
+"><span class="current">An-Najah National University</span><ul class="list"><li data-value="1" class="option">University</li><li data-value="1" class="option focus selected">An-Najah National University</li><li data-value="1" class="option"></li><li data-value="1" class="option"></li><li data-value="1" class="option"></li></ul></div>
+
+                                </div>
+                            </div>
+
+
+
+
+
+
+
+
+
+
+                            <div style="background-color:#ffffff;text-align: left;margin-bottom: 0px;" class="form_group mb-15 col-lg-12 ">
+                                <label style="width: auto;position: relative;bottom:0px;color:#7b838a;background-color: #ffffff;font-size: 16px;padding-left:12px;text-align: left;margin-bottom: 0px;padding-bottom: 5px;padding-top: 5px;padding-right: 5px;" for="file">university membership card:</label>
+
+                            </div>
+
+                        <!--    <div style="background-color: #ffffff;text-align: left;padding-bottom: 5px;margin-bottom: 0px;" class="form_group mb-15 col-lg-12 ">
+                                <input style="top:0px;color: #7b838a;background-color: #ffffff;display: inline-block;position: relative;width: 100%;text-align: left;padding-top: 0px;padding-bottom: 0px;" type="file" name="file" id="file">
+
+
+                            </div>-->
+
+                            <form class="md-form">
+                                <div class="file-field">
+                                    <div class="btn btn-primary btn-sm float-left">
+                                        <span>Choose file</span>
+                                        <input type="file">
+                                    </div>
+                                    <div class="file-path-wrapper">
+                                        <input class="file-path validate" type="text" placeholder="Upload your file">
+                                    </div>
+                                </div>
+                            </form>
+
+
+
+
+
+
+
+                            <div class="col-lg-12 text-center">
+                                <button class="primary-btn">sign up</button>
                             </div>
                         </div>
                     </form>
@@ -353,8 +490,7 @@
             </div>
         </div>
     </div>
-</div>
-<!--================ End Registration Area =================-->
+</div><!--================ End Registration Area =================-->
 
 <!--================ Start Trainers Area =================-->
 <section class="trainer_area section_gap_top">
