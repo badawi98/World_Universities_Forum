@@ -363,7 +363,7 @@
             <script>
                 $(document).ready(function(){
                     $("#showjoinus").click(function(){
-                        $(".collapse").collapse('show');
+                        $("#join_us.collapse").collapse('show');
                     });
                 });
             </script>
@@ -444,48 +444,18 @@
                             </div>
 
 
-
-
-
-
-
-
-
-
-                            <div style="background-color:#ffffff;text-align: left;margin-bottom: 0px;" class="form_group mb-15 col-lg-12 ">
-                                <label style="width: auto;position: relative;bottom:0px;color:#7b838a;background-color: #ffffff;font-size: 16px;padding-left:12px;text-align: left;margin-bottom: 0px;padding-bottom: 5px;padding-top: 5px;padding-right: 5px;" for="file">university membership card:</label>
-
+                            <p>Upload a file verifying your university's membership: </p>
+                            <div class="custom-file mb-3">
+                                <input type="file" class="custom-file-input" id="customFile" name="filename">
+                                <label class="custom-file-label" for="customFile">Choose file</label>
                             </div>
-
-                           <div style="background-color: #ffffff;text-align: left;padding-bottom: 5px;margin-bottom: 0px;" class="form_group mb-15 col-lg-12 ">
-                                <input style="top:0px;color: #7b838a;background-color: #ffffff;display: inline-block;position: relative;width: 100%;text-align: left;padding-top: 0px;padding-bottom: 0px;" type="file" name="file" id="file">
-
-
-                            </div>
-
-                     <form class="md-form">
-                                <div class="file-field">
-                                    <div class="btn btn-primary btn-sm float-left">
-                                        <span>Choose file</span>
-                                        <input type="file">
-                                    </div>
-                                    <div class="file-path-wrapper">
-                                        <input class="file-path validate" type="text" placeholder="Upload your file">
-                                    </div>
-                                </div>
-                         <div class="custom-file" id="customFile" lang="es">
-                             <input type="file" class="custom-file-input" id="exampleInputFile" aria-describedby="fileHelp">
-                             <label class="custom-file-label" for="exampleInputFile">
-                                 Select file...
-                             </label>
-                         </div>
-                         <div class="custom-file" id="customFile" lang="es">
-                             <input type="file" class="custom-file-input" id="exampleInputFile" aria-describedby="fileHelp">
-                             <label class="custom-file-label" for="exampleInputFile">
-                                 Select file...
-                             </label>
-                         </div>
-                            </form>
+                            <script>
+                                // Add the following code if you want the name of the file appear on select
+                                $(".custom-file-input").on("change", function() {
+                                    var fileName = $(this).val().split("\\").pop();
+                                    $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+                                });
+                            </script>
 
 
 
