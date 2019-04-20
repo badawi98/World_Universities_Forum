@@ -63,11 +63,6 @@
                         <li class="nav-item">
                             <a class="nav-link" href="contact.html">Contact</a>
                         </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link search" id="search">
-                                <i class="ti-search"></i>
-                            </a>
-                        </li>
 
                     </ul>
                 </div>
@@ -463,17 +458,33 @@
 ">Welcome</h3>
 
 
-                    <form class="form_area" id="LogIn" action="mail.html" method="post">
+                    <form class="form_area" id="LogIn" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
                         <div class="row">
                             <div class="col-lg-12 form_group">
-                                <input class="glyphicon glyphicon-user" name="name" placeholder="Username or ID" required="" type="text">
-                                <input name="name" placeholder="Password" required="" type="password">
+                                <input  id="login_username" class="glyphicon glyphicon-user" name="username"  placeholder="Username or ID" type="text">
+                                <input id="login_password" name="Password" placeholder="Password"  type="password">
 
                             </div>
                             <div class="col-lg-12 text-center">
-                                <button class="primary-btn" style="
-    margin-bottom: 30px;
-">log in</button>
+                                <button class="primary-btn" style=" margin-bottom: 30px;"
+                                           <?php
+                                            echo "
+                                            onclick=\"t()\" 
+                                                         ";
+                                            echo " 
+                                            onclick= \"fx()\"
+                                            ";
+                                            ?>
+                                        >log in</button>
+                                <script>
+                                    function fx(){
+                                        document.getElementById('login_username').required = true;
+                                    }
+                                    function t () {
+                                        document.getElementById('login_username').required = true;
+                                    }
+
+                                </script>
                             </div>
                         </div>
                     </form>
@@ -492,41 +503,103 @@
                     });
                 });
             </script>
+            <?php
+                $username = $Password = "";
+                if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                    if (empty($_POST["username"])) {
+                        echo "
+                        <script>
+                        document.getElementById('login_username').border.;
+                        </script>";
+                    } else {
+                        $username = test_input($_POST["username"]);
+                    }
+                    if (empty($_POST["Password"])) {
+                        echo "
+                        <script>
+                        document.getElementById('login_password').required = true;
+                        </script>";
+                    } else {
+                        $Password = test_input($_POST["Password"]);
+                    }
+                    $servername = "localhost";
+                    $user = "root";
+                    $pass = "";
+                    $dbname = "web_project";
+                    $conn = new mysqli($servername , $user , $pass , $dbname);
+                    if($conn->connect_error) {
+                        die("Connection Failed: " . $conn->connect_error);
+                    }
+                    $sql = "SELECT User_Name , Password FROM  passwords";
+                    $result = $conn->query($sql);
+                    if($result->num_rows > 0) {
+                        while($rwo = $result->fetch_assoc()) {
+                            if($rwo["User_Name"] == $username && $rwo["Password"] == sha1($Password))
+                                echo "
+                                <script> 
+                                alert( 'Hello :)')
+                                </script>";
+                            else"
+                               <script> 
+                                alert( 'UserName / Password Wrong :)')
+                                </script>";
+                        }
+
+                    }
+                    else {
+                        echo "sorry!";
+                    }
+                    $conn->close();
+                }
+            function test_input($data) {
+                $data = trim($data);
+                $data = stripslashes($data);
+                $data = htmlspecialchars($data);
+                return $data;
+            }
+            ?>
             <div class="col-lg-8" style=" margin-left: 0px;">
 
                 <div style="padding-top: 40px; padding-bottom: 40px;" id="join_us" class="main-container register_form collapse">
                     <h3>Join Us</h3>
                     <p>It is high time for learning</p>
 
-                    <form class="form_area md-form" id="SignUp" action="mail.html" method="post">
+                    <form class="form_area md-form" id="SignUp" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
                         <div class="row">
 
 
                             <div class="col-lg-6 form_group mt-10">
-                                <input type="text" name="first_name" placeholder="First Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'First Name'" required="" class="single-input">
+                                <input type="text" name="first_name" placeholder="First Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'First Name'" required class="single-input">
                             </div>
                             <div class="mt-10 col-lg-6 form_group">
-                                <input type="text" name="second_name" placeholder="Second Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Second Name'" required="" class="single-input">
+                                <input type="text" name="second_name" placeholder="Second Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Second Name'" required class="single-input">
                             </div>
                             <div class="mt-10 col-lg-6 form_group">
-                                <input type="text" name="third_name" placeholder="Third Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Third Name'" required="" class="single-input">
+                                <input type="text" name="third_name" placeholder="Third Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Third Name'" required class="single-input">
                             </div>
                             <div class="mt-10 col-lg-6 form_group">
-                                <input type="text" name="last_name" placeholder="Last Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Last Name'" required="" class="single-input">
+                                <input type="text" name="last_name" placeholder="Last Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Last Name'" required class="single-input">
                             </div>
                             <div class="mt-10 col-lg-12 form_group">
-                                <input type="email" name="EMAIL" placeholder="Email address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email address'" required="" class="single-input">
+                                <input type="email" name="EMAIL" placeholder="Email address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email address'" required class="single-input">
                                 <i class=" input-icon js-btn-calendar"></i>
                             </div>
-
                             <div class="mt-10 col-lg-12 form_group">
-                                <input placeholder="Birth Date" class="single-input-secondary" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" id="date">
+                                <input type="text" name="Signup_username" placeholder="User Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'User Name'" required class="single-input">
+                                <i class=" input-icon js-btn-calendar"></i>
+                            </div>
+                            <div class="mt-10 col-lg-12 form_group">
+                                <input type="password" name="Signup_Password" placeholder="Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'" required class="single-input">
+                                <i class=" input-icon js-btn-calendar"></i>
+                            </div>
+                            <div class="mt-10 col-lg-12 form_group">
+                                <input name="Date" placeholder="Birth Date" class="single-input-secondary" required type="text" onfocus="(this.type='date')" onblur="(this.type='text')" id="date">
 
                             </div>
 
                             <div class="input-group-icon mt-10 col-lg-6 form_group">
                                 <div class="form-select" id="default-select3">
-                                    <select style="display: none;">
+                                    <select style="display: none;" required>
                                         <option value="1">Gender</option>
                                         <option value="1">Male</option>
                                         <option value="1">Female</option>
@@ -571,7 +644,7 @@
 
                             <p>Upload a file verifying your university's membership: </p>
                             <div class="custom-file mb-3">
-                                <input type="file" class="custom-file-input" id="customFile" name="filename">
+                                <input type="file" class="custom-file-input" id="customFile" required name="filename">
                                 <label class="custom-file-label selected" for="customFile"></label>
                             </div>
                             <script>
@@ -581,13 +654,6 @@
                                     $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
                                 });
                             </script>
-
-
-
-
-
-
-
                             <div class="col-lg-12 text-center">
                                 <button class="primary-btn">sign up</button>
                             </div>
@@ -598,7 +664,75 @@
         </div>
     </div>
 </div><!--================ End Registration Area =================-->
+<?php
+$first_name  = $second_name = $third_name = $last_name  = $EMAIL = $Signup_username = $Signup_Password  = $Date = $filename = "";
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (empty($_POST["$first_name"])) {
+        echo "";
+    } else {
+        $first_name = test_input($_POST["$first_name"]);
+        if (!preg_match("/^[a-zA-Z ]*$/", $first_name)) {
+            echo "";
+        }
+    }
+    if (empty($_POST["$second_name"])) {
+        echo "";
+    } else {
+        $second_name = test_input($_POST["$second_name"]);
+        if (!preg_match("/^[a-zA-Z ]*$/", $second_name)) {
+            echo "";
+        }
+    }
+    if (empty($_POST["$third_name"])) {
+        echo "";
+    } else {
+        $third_name = test_input($_POST["$third_name"]);
+        if (!preg_match("/^[a-zA-Z ]*$/", $third_name)) {
+            echo "";
+        }
+    }
+    if (empty($_POST["$last_name"])) {
+        echo "";
+    } else {
+        $last_name = test_input($_POST["$last_name"]);
+        if (!preg_match("/^[a-zA-Z ]*$/", $last_name)) {
+            echo "";
+        }
+    }
+    if (empty($_POST["$EMAIL"])) {
+        echo "";
+    } else {
+        $EMAIL = test_input($_POST["$EMAIL"]);
+        if (!filter_var($EMAIL, FILTER_VALIDATE_EMAIL)) {
+            echo "";
+        }
+    }
+    if (empty($_POST["$Signup_Password"])) {
+        echo "";
+    } else {
+        $Signup_Password = test_input($_POST["$Signup_Password"]);
+        if (!preg_match("(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}", $Signup_Password)) {
+            echo "";
+        }
+    }
+    if (empty($_POST["$Signup_username"])) {
+        echo "";
+    } else {
+        $Signup_username = test_input($_POST["$Signup_username"]);
+    }
+    if (empty($_POST["$Date"])) {
+        echo "";
+    } else {
+        $Date = test_input($_POST["$Date"]);
+    }
+    if (empty($_POST["$filename"])) {
+        echo "";
+    } else {
+        $filename = test_input($_POST["$filename"]);
+    }
 
+}
+?>
 <!--================ Start Trainers Area =================-->
 <section class="trainer_area section_gap_top">
     <div class="container">
@@ -749,7 +883,5 @@
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
 <script src="js/gmaps.min.js"></script>
 <script src="js/theme.js"></script>
-
-
 
 </body></html>
