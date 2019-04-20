@@ -5,7 +5,7 @@
       <paths name="WebProject">
         <serverdata>
           <mappings>
-            <mapping local="$PROJECT_DIR$" web="/phpstorm_projects/World_Universities_Forum" />
+            <mapping local="$PROJECT_DIR$" web="/Final_Web_Project" />
           </mappings>
         </serverdata>
       </paths>
