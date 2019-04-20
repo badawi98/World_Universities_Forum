@@ -2,7 +2,7 @@
 <project version="4">
   <component name="WebServers">
     <option name="servers">
-      <webServer id="87d65e09-0a73-4c95-a958-bdf7d65cb3db" name="Badawi" url="http://localhost">
+      <webServer id="9cf2be19-8521-431a-992f-8505a6479864" name="WebProject" url="http://localhost">
         <fileTransfer port="0" accessType="LOCAL" />
       </webServer>
     </option>
