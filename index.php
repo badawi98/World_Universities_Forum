@@ -535,11 +535,11 @@
                             if($rwo["User_Name"] == $username && $rwo["Password"] == sha1($Password))
                                 echo "
                                 <script> 
-                                alert( 'Hello ' + '$username');
+                                alert( 'Success Log In);
                                 </script>";
                             else echo"
                                <script> 
-                                alert( 'UserName / Password Wrong :)')
+                                alert( 'UserName or Password are Wrong :)')
                                 </script>";
                         }
 
