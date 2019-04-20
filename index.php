@@ -468,23 +468,21 @@
                             <div class="col-lg-12 text-center">
                                 <button class="primary-btn" style=" margin-bottom: 30px;"
                                            <?php
-                                            echo "
-                                            onclick=\"t()\" 
+                                            echo " onclick='make_rqd()'
+               
                                                          ";
-                                            echo " 
-                                            onclick= \"fx()\"
-                                            ";
                                             ?>
                                         >log in</button>
+                                <?php
+                                echo "
                                 <script>
-                                    function fx(){
+                                    function make_rqd(){
                                         document.getElementById('login_username').required = true;
-                                    }
-                                    function t () {
-                                        document.getElementById('login_username').required = true;
+                                        document.getElementById('login_password').required = true;
                                     }
 
-                                </script>
+                                </script>";
+                                ?>
                             </div>
                         </div>
                     </form>
@@ -539,7 +537,7 @@
                                 <script> 
                                 alert( 'Hello :)')
                                 </script>";
-                            else"
+                            else echo"
                                <script> 
                                 alert( 'UserName / Password Wrong :)')
                                 </script>";
