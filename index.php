@@ -49,19 +49,19 @@
                 <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
                     <ul class="nav navbar-nav menu_nav ml-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="about-us.html">About</a>
+                            <a class="nav-link" href="about-us.php">About</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="University.html">Universities</a>
+                            <a class="nav-link" href="University.php">Universities</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="courses.html">Courses</a>
+                            <a class="nav-link" href="courses.php">Courses</a>
                         </li>
                         <li class="nav-item submenu dropdown">
                             <a class="nav-link" href="Scholarship.html">Scholarship</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="contact.html">Contact</a>
+                            <a class="nav-link" href="contact.php">Contact</a>
                         </li>
 
                     </ul>
@@ -178,7 +178,7 @@
                                         <span class="price">$25</span>
                                         <span class="tag mb-4 d-inline-block">design</span>
                                         <h4 class="mb-3">
-                                            <a href="course-details.html">Custom Product Design</a>
+                                            <a href="course-details.php">Custom Product Design</a>
                                         </h4>
                                         <p>
                                             One make creepeth man bearing their one firmament won't fowl
@@ -205,7 +205,7 @@
                                         <span class="price">$25</span>
                                         <span class="tag mb-4 d-inline-block">design</span>
                                         <h4 class="mb-3">
-                                            <a href="course-details.html">Social Media Network</a>
+                                            <a href="course-details.php">Social Media Network</a>
                                         </h4>
                                         <p>
                                             One make creepeth man bearing their one firmament won't fowl
@@ -232,7 +232,7 @@
                                         <span class="price">$25</span>
                                         <span class="tag mb-4 d-inline-block">design</span>
                                         <h4 class="mb-3">
-                                            <a href="course-details.html">Computer Engineering</a>
+                                            <a href="course-details.php">Computer Engineering</a>
                                         </h4>
                                         <p>
                                             One make creepeth man bearing their one firmament won't fowl
@@ -259,7 +259,7 @@
                                         <span class="price">$25</span>
                                         <span class="tag mb-4 d-inline-block">design</span>
                                         <h4 class="mb-3">
-                                            <a href="course-details.html">Custom Product Design</a>
+                                            <a href="course-details.php">Custom Product Design</a>
                                         </h4>
                                         <p>
                                             One make creepeth man bearing their one firmament won't fowl
@@ -286,7 +286,7 @@
                                         <span class="price">$25</span>
                                         <span class="tag mb-4 d-inline-block">design</span>
                                         <h4 class="mb-3">
-                                            <a href="course-details.html">Social Media Network</a>
+                                            <a href="course-details.php">Social Media Network</a>
                                         </h4>
                                         <p>
                                             One make creepeth man bearing their one firmament won't fowl
@@ -313,7 +313,7 @@
                                         <span class="price">$25</span>
                                         <span class="tag mb-4 d-inline-block">design</span>
                                         <h4 class="mb-3">
-                                            <a href="course-details.html">Computer Engineering</a>
+                                            <a href="course-details.php">Computer Engineering</a>
                                         </h4>
                                         <p>
                                             One make creepeth man bearing their one firmament won't fowl
@@ -340,7 +340,7 @@
                                         <span class="price">$25</span>
                                         <span class="tag mb-4 d-inline-block">design</span>
                                         <h4 class="mb-3">
-                                            <a href="course-details.html">Custom Product Design</a>
+                                            <a href="course-details.php">Custom Product Design</a>
                                         </h4>
                                         <p>
                                             One make creepeth man bearing their one firmament won't fowl
@@ -367,7 +367,7 @@
                                         <span class="price">$25</span>
                                         <span class="tag mb-4 d-inline-block">design</span>
                                         <h4 class="mb-3">
-                                            <a href="course-details.html">Social Media Network</a>
+                                            <a href="course-details.php">Social Media Network</a>
                                         </h4>
                                         <p>
                                             One make creepeth man bearing their one firmament won't fowl
@@ -394,7 +394,7 @@
                                         <span class="price">$25</span>
                                         <span class="tag mb-4 d-inline-block">design</span>
                                         <h4 class="mb-3">
-                                            <a href="course-details.html">Computer Engineering</a>
+                                            <a href="course-details.php">Computer Engineering</a>
                                         </h4>
                                         <p>
                                             One make creepeth man bearing their one firmament won't fowl
@@ -839,21 +839,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <h4>Top Products</h4>
                 <ul>
                     <li><a href="index.html">Home Page</a></li>
-                    <li><a href="about-us.html">About us</a></li>
-                    <li><a href="contact.html">Contact us</a></li>
+                    <li><a href="about-us.php">About us</a></li>
+                    <li><a href="contact.php">Contact us</a></li>
                 </ul>
             </div>
             <div class="col-lg-2 col-md-6 single-footer-widget">
                 <h4>Quick Links</h4>
                 <ul>
                     <li><a href="Scholarship.html">Scholarship</a></li>
-                    <li><a href="courses.html">courses</a></li>
+                    <li><a href="courses.php">courses</a></li>
                 </ul>
             </div>
             <div class="col-lg-2 col-md-6 single-footer-widget">
                 <h4>Features</h4>
                 <ul>
-                    <li><a href="courses.html">Courses</a></li>
+                    <li><a href="courses.php">Courses</a></li>
                     <li><a href="Scholarship.html">Scholarship</a></li>
                     <li><a href="#">Chat</a></li>
                 </ul>
@@ -861,7 +861,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="col-lg-2 col-md-6 single-footer-widget">
                 <h4>Resources</h4>
                 <ul>
-                    <li><a href="about-us.html">About</a></li>
+                    <li><a href="about-us.php">About</a></li>
                     <li><a href="https://colorlib.com/wp/template/edustage/" target="_blank">ColorLib</a></li>
                 </ul>
             </div>
