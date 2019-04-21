@@ -140,22 +140,19 @@
                             if ($result->num_rows > 0) {
                                 for ($i = 0; $i < $result->num_rows; $i++) {
                                     $row = $result->fetch_assoc();
-                                    $univname = $rwo["Univ_Name"];
-                                    $univdec = $rwo["Description"];
-                                    $univlink = $rwo["Link"];
+                                    $univname = $row['Univ_Name'];
+                                    $univdec = $row['Description'];
+                                    $univlink = $row['Link'];
                                     echo "
                         <div class=\"col-md-9\">
                             <div class=\"blog_post\">
                                 <img  width=\"100%\" src=\"img/blog/main-blog/m-blog-1.jpg\" alt=\"\">
                                 <div class=\"blog_details\">
                                     <a href=\"single-blog.html\" >
-                                        <h2>'$univname'</h2>
+                                        <h2>$univname</h2>
                                     </a>
-                                    <p  name=\"1000\">An Najah National University , Palestine - Nablus <br>
-                                        You should study computer engineering or computer science or anything equal
-                                        Also your GPA is  3.5 of 4.0 or higher, you should eventually get the
-                                        certificate from a recognized university.</p>
-                                    <a href=\"https://www.najah.edu/en/\" class=\"blog_btn\" target=\"_blank\">View More</a>
+                                    <p>$univdec</p>
+                                    <a href=$univlink class=\"blog_btn\" target=\"_blank\">View More</a>
                                 </div>
                             </div>
                         </div>
