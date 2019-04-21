@@ -466,7 +466,7 @@
 
                             </div>
                             <div class="col-lg-12 text-center">
-                                <button class="primary-btn" style=" margin-bottom: 30px;"
+                                <button  name="login" value="login" class="primary-btn" style=" margin-bottom: 30px;"
                                            <?php
                                             echo " onclick='make_rqd()'
                
@@ -501,8 +501,16 @@
                     });
                 });
             </script>
+            <?php echo"
+            <script>
+                if ( window.history.replaceState ) {
+                    window.history.replaceState( null, null, window.location.href );
+                }
+            </script>";
+            ?>
+
             <?php
-                $username = $Password = "";
+                $username = $Password = $login = "";
                 if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     if (empty($_POST["username"])) {
                         echo "
@@ -520,34 +528,56 @@
                     } else {
                         $Password = test_input($_POST["Password"]);
                     }
-                    $servername = "localhost";
-                    $user = "root";
-                    $pass = "";
-                    $dbname = "web_project";
-                    $conn = new mysqli($servername , $user , $pass , $dbname);
-                    if($conn->connect_error) {
-                        die("Connection Failed: " . $conn->connect_error);
-                    }
-                    $sql = "SELECT User_Name , Password FROM  passwords";
-                    $result = $conn->query($sql);
-                    if($result->num_rows > 0) {
-                        while($rwo = $result->fetch_assoc()) {
-                            if($rwo["User_Name"] == $username && $rwo["Password"] == sha1($Password))
-                                echo "
-                                <script> 
-                                alert( 'Success Log In);
-                                </script>";
-                            else echo"
-                               <script> 
-                                alert( 'UserName or Password are Wrong :)')
-                                </script>";
-                        }
+                    if (empty($_POST["login"])) {
 
+                    } else {
+                        $login = $_POST["login"];
                     }
-                    else {
-                        echo "sorry!";
-                    }
-                    $conn->close();
+                  if(isset($login)) {
+                      $servername = "localhost";
+                      $user = "root";
+                      $pass = "";
+                      $dbname = "web_project";
+                      $i = 0;
+                      $conn = new mysqli($servername, $user, $pass, $dbname);
+                      if ($conn->connect_error) {
+                          die("Connection Failed: " . $conn->connect_error);
+                      } else {
+                          if (isset($login)) {
+                              $sql = "select * from `Passwords`";
+                              $result = $conn->query($sql);
+                              if ($result->num_rows > 0) {
+                                  for ($i = 0; $i < $result->num_rows; $i++) {
+                                      $row = $result->fetch_assoc();
+                                      if ($row["User_Name"] == $username && $row["Password"] == sha1($Password)) {
+                                          break;
+                                      }
+
+                                  }
+                                  if ($i < $result->num_rows) {
+                                      echo "
+                                    <script> 
+                                        alert ('Welcome  $username');
+                                </script>";
+
+                                      #  session_start();
+                                      # if (isset($_SESSION['counter'])) {
+                                      #    $_SESSION['counter'] = "visited";
+
+                                      #}
+                                  } else {
+                                      echo "
+                                    <script> 
+                                        alert ('Invalid username or password');
+                                </script>";
+                                  }
+                              } else {
+                              }
+                              $result->free();
+                          }
+                      }
+                      $conn->close();
+                  }
                 }
             function test_input($data) {
                 $data = trim($data);
@@ -653,7 +683,7 @@
                                 });
                             </script>
                             <div class="col-lg-12 text-center">
-                                <button class="primary-btn">sign up</button>
+                                <button name="signup" value="signup" class="primary-btn">sign up</button>
                             </div>
                         </div>
                     </form>
@@ -668,65 +698,70 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($_POST["$first_name"])) {
         echo "";
     } else {
-        $first_name = test_input($_POST["$first_name"]);
-        if (!preg_match("/^[a-zA-Z ]*$/", $first_name)) {
+        $first_name = test_input($_POST["first_name"]);
+        if (!preg_match("/^[a-zA-Z ]*$/", first_name)) {
             echo "";
         }
     }
-    if (empty($_POST["$second_name"])) {
+    if (empty($_POST["second_name"])) {
         echo "";
     } else {
-        $second_name = test_input($_POST["$second_name"]);
-        if (!preg_match("/^[a-zA-Z ]*$/", $second_name)) {
+        $second_name = test_input($_POST["second_name"]);
+        if (!preg_match("/^[a-zA-Z ]*$/", second_name)) {
             echo "";
         }
     }
-    if (empty($_POST["$third_name"])) {
+    if (empty($_POST["third_name"])) {
         echo "";
     } else {
-        $third_name = test_input($_POST["$third_name"]);
-        if (!preg_match("/^[a-zA-Z ]*$/", $third_name)) {
+        $third_name = test_input($_POST["third_name"]);
+        if (!preg_match("/^[a-zA-Z ]*$/", third_name)) {
             echo "";
         }
     }
-    if (empty($_POST["$last_name"])) {
+    if (empty($_POST["last_name"])) {
         echo "";
     } else {
-        $last_name = test_input($_POST["$last_name"]);
-        if (!preg_match("/^[a-zA-Z ]*$/", $last_name)) {
+        $last_name = test_input($_POST["last_name"]);
+        if (!preg_match("/^[a-zA-Z ]*$/", last_name)) {
             echo "";
         }
     }
     if (empty($_POST["$EMAIL"])) {
         echo "";
     } else {
-        $EMAIL = test_input($_POST["$EMAIL"]);
-        if (!filter_var($EMAIL, FILTER_VALIDATE_EMAIL)) {
+        $EMAIL = test_input($_POST["EMAIL"]);
+        if (!filter_var(EMAIL, FILTER_VALIDATE_EMAIL)) {
             echo "";
         }
     }
-    if (empty($_POST["$Signup_Password"])) {
+    if (empty($_POST["Signup_Password"])) {
         echo "";
     } else {
-        $Signup_Password = test_input($_POST["$Signup_Password"]);
-        if (!preg_match("(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}", $Signup_Password)) {
+        $Signup_Password = test_input($_POST["Signup_Password"]);
+        if (!preg_match("(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}", Signup_Password)) {
             echo "";
         }
     }
-    if (empty($_POST["$Signup_username"])) {
+    if (empty($_POST["Signup_username"])) {
         echo "";
     } else {
-        $Signup_username = test_input($_POST["$Signup_username"]);
+        $Signup_username = test_input($_POST["ignup_username"]);
     }
-    if (empty($_POST["$Date"])) {
+    if (empty($_POST["Date"])) {
         echo "";
     } else {
-        $Date = test_input($_POST["$Date"]);
+        $Date = test_input($_POST["Date"]);
     }
-    if (empty($_POST["$filename"])) {
+    if (empty($_POST["filename"])) {
         echo "";
     } else {
-        $filename = test_input($_POST["$filename"]);
+        $filename = test_input($_POST["filename"]);
+    }
+    if (empty($_POST["signup"])) {
+        echo "";
+    } else {
+        $signup = test_input($_POST["signup"]);
     }
 
 }
