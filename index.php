@@ -513,18 +513,12 @@
                 $username = $Password = $login = "";
                 if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     if (empty($_POST["username"])) {
-                        echo "
-                        <script>
-                        document.getElementById('login_username').border.;
-                        </script>";
+                        echo "";
                     } else {
                         $username = test_input($_POST["username"]);
                     }
                     if (empty($_POST["Password"])) {
-                        echo "
-                        <script>
-                        document.getElementById('login_password').required = true;
-                        </script>";
+
                     } else {
                         $Password = test_input($_POST["Password"]);
                     }
@@ -533,10 +527,13 @@
                     } else {
                         $login = $_POST["login"];
                     }
-                  if(isset($login)) {
-                      $servername = "localhost";
-                      $user = "root";
-                      $pass = "";
+
+                  if(!empty($login)) {
+
+
+                      $servername = "192.168.1.23";
+                      $user = "tamer";
+                      $pass = "tamer";
                       $dbname = "web_project";
                       $i = 0;
                       $conn = new mysqli($servername, $user, $pass, $dbname);
