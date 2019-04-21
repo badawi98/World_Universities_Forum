@@ -143,10 +143,11 @@
                                     $univname = $row['Univ_Name'];
                                     $univdec = $row['Description'];
                                     $univlink = $row['Link'];
+                                    $univPic = $row['picture'];
                                     echo "
                         <div class=\"col-md-9\">
                             <div class=\"blog_post\">
-                                <img  width=\"100%\" src=\"img/blog/main-blog/m-blog-1.jpg\" alt=\"\">
+                                <img  width=\"100%\" src=$univPic alt=\"\">
                                 <div class=\"blog_details\">
                                     <a href=\"single-blog.html\" >
                                         <h2>$univname</h2>
