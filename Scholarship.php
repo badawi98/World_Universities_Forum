@@ -8,7 +8,7 @@
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
     <link rel="icon" href="img/icon.png" type="image/png" />
-    <title>About Us</title>
+    <title>Scholarships</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.css" />
     <link rel="stylesheet" href="css/flaticon.css" />
@@ -21,7 +21,7 @@
 
   <body>
     <!--================ Start Header Menu Area =================-->
-    <header class="header_area white-header">
+    <header class="header_area">
       <div class="main_menu">
         <div class="search_input" id="search_input_box">
           <div class="container">
@@ -45,10 +45,10 @@
         <nav class="navbar navbar-expand-lg navbar-light">
           <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
-            <a class="navbar-brand logo_h" href="index.php">
-              <img width="32" hieght="32" src="img/1321027.png" style=" display: inline-block; bottom: 3px; position:relative;" alt="">
-              <h2 style=" margin-left:5px; color:white; display: inline-block; position: relative; top:5px;" class="mb-3">   World Universities Forum</h2>
-            </a>
+              <a class="navbar-brand logo_h" href="index.php">
+                  <img width="32" hieght="32" src="img/1321027.png" style=" display: inline-block; bottom: 3px; position:relative;" alt="">
+                  <h2 style=" margin-left:5px; display: inline-block; position: relative; top:5px;" class="mb-3">   World Universities Forum</h2>
+              </a>
             <button
               class="navbar-toggler"
               type="button"
@@ -71,22 +71,17 @@
                   <a class="nav-link" href="index.php">Home</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="University.php">Universities</a>
+                  <a class="nav-link" href="about-us.php">About</a>
                 </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="University.php">Universities</a>
+                  </li>
                   <li class="nav-item">
                       <a class="nav-link" href="courses.php">Courses</a>
                   </li>
-                <li class="nav-item submenu dropdown">
-                  <a class="nav-link" href="Scholarship.php">Scholarship</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="contact.php">Contact</a>
-                </li>
-                <li class="nav-item">
-                  <a href="#" class="nav-link search" id="search">
-                    <i class="ti-search"></i>
-                  </a>
-                </li>
+                  <li class="nav-item">
+                      <a class="nav-link" href="contact.php">Contact</a>
+                  </li>
               </ul>
             </div>
           </div>
@@ -95,18 +90,17 @@
     </header>
     <!--================ End Header Menu Area =================-->
 
-    <!--================Home Banner Area =================-->
-    <section class="banner_area">
-      <div class="banner_inner d-flex align-items-center">
-        <div class="overlay"></div>
+    <!--================ Start Home Banner Area =================-->
+    <section class="home_banner_area">
+      <div class="banner_inner">
         <div class="container">
-          <div class="row justify-content-center">
-            <div class="col-lg-6">
+          <div class="row">
+            <div class="col-lg-12">
               <div class="banner_content text-center">
-                <h2>About Us</h2>
-                <div class="page_link">
-                  <a href="index.php">Home</a>
-                  <a href="about-us.php">About Us</a>
+                <h2 class="text-uppercase mt-4 mb-5" style="font-size: 36px">
+                    World is full  of opportunities <br>take your's and apply to scholarships
+                </h2>
+                <div>
                 </div>
               </div>
             </div>
@@ -114,97 +108,100 @@
         </div>
       </div>
     </section>
-    <!--================End Home Banner Area =================-->
+    <!--================ End Home Banner Area =================-->
 
-    <!--================ Start About Area =================-->
-    <section class="about_area section_gap">
-      <div class="container">
-        <div class="row h_blog_item">
-          <div class="col-lg-6">
-            <div class="h_blog_img">
-              <img class="img-fluid" src="img/about.png" alt="" />
+    <!--================Blog Area =================-->
+    <section class="blog_area section_gap">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="blog_left_sidebar">
+
+                        <?php
+                        $servername = "localhost";
+                        $user = "root";
+                        $pass = "";
+                        $dbname = "web_project";
+                        $i = 0;
+                        $conn = new mysqli($servername, $user, $pass, $dbname);
+                        if ($conn->connect_error) {
+                            die("Connection Failed: " . $conn->connect_error);
+                        }
+                        else {
+                            $sql = "select * from `scholarship`";
+                            $result = $conn->query($sql);
+                            if ($result->num_rows > 0) {
+                                for ($i = 0; $i < $result->num_rows; $i++) {
+                                    $row = $result->fetch_assoc();
+                                    $ScTitle = $row['Title'];
+                                    $Scdec = $row['Desciption'];
+                                    $Sclink = $row['Link'];
+                                    $ScPic = $row['picture'];
+                                    $ScDate = $row['start_Date'];
+                                    $ScLevel = $row['Level'];
+                                    $ScDep = $row['Department'];
+                                    echo "
+                        <article class=\"row blog_item\">
+    <div class=\"col-md-3\">
+        <div class=\"blog_info text-right\">
+            <div class=\"post_tag\">
+                <a href=$Sclink target=\"_blank\">$ScDep</a>
             </div>
-          </div>
-          <div class="col-lg-6">
-            <div class="h_blog_text">
-              <div class="h_blog_text_inner left right">
-                <h4>Welcome to our World's Universities Forum</h4>
-                <p>
-                  Our website is a community which gathers  students  and  their  instructors  from  all over the world.
-                  We aim to present a good environment for students all around  the  world  allowing  them  to  be  up  to  date  with
-                  news  ,courses  and scholarships about all other member universities.  Students will be able to find, search and register
-                  in many shared educational-purpose fields. We prepared a chat messenger allowing instructors and their students to be in contact 24 hours
-                  about their courses. <br>
-                  And more...
-                </p>
-              </div>
-            </div>
-          </div>
+            <ul class=\"blog_meta list\">
+                <li><a href=$Sclink target=\"_blank\">$ScLevel<i class=\"ti-user\"></i></a></li>
+                <li><a href=$Sclink target=\"_blank\">$ScDate<i class=\"ti-calendar\"></i></a></li>
+            </ul>
         </div>
-      </div>
+    </div>
+    <div class=\"col-md-9\">
+        <div class=\"blog_post\">
+            <img  width=\"100%\" src=$ScPic alt=\"\">
+            <div class=\"blog_details\">
+                <a href=\"single-blog.html\">
+                    <h2>$ScTitle</h2>
+                </a>
+                <p>$Scdec</p>
+                <a href=$Sclink class=\"blog_btn\" target=\"_blank\">View More</a>
+            </div>
+        </div>
+    </div>
+</article>";
+                                }
+                            }
+                        }
+                        $conn->close();
+                        ?>
+                        <nav class="blog-pagination justify-content-center d-flex">
+                            <ul class="pagination">
+                                <li class="page-item">
+                                    <a href="#" class="page-link" aria-label="Previous">
+                                        <span aria-hidden="true">
+                                            <i class="ti-angle-left"></i>
+                                        </span>
+                                    </a>
+                                </li>
+                                <li class="page-item"><a href="#" class="page-link">01</a></li>
+                                <li class="page-item active"><a href="#" class="page-link">02</a></li>
+                                <li class="page-item"><a href="#" class="page-link">03</a></li>
+                                <li class="page-item"><a href="#" class="page-link">04</a></li>
+                                <li class="page-item"><a href="#" class="page-link">09</a></li>
+                                <li class="page-item">
+                                    <a href="#" class="page-link" aria-label="Next">
+                                        <span aria-hidden="true">
+                                            <i class="ti-angle-right"></i>
+                                        </span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
-    <!--================ End About Area =================-->
+    <!--================Blog Area =================-->
 
-    <!--================ Start Feature Area =================-->
-    <section class="feature_area section_gap_top title-bg">
-      <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-lg-5">
-            <div class="main_title">
-              <h2 class="mb-3 text-white">Awesome Feature</h2>
-              <p>
-                Replenish man have thing gathering lights yielding shall you
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-lg-4 col-md-6">
-            <div class="single_feature">
-              <div class="icon"><span class="flaticon-student"></span></div>
-              <div class="desc">
-                <h4 class="mt-3 mb-2">Scholarship Facility</h4>
-                <p>
-                  Search for Scholarship on universities around the world.
-
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6">
-            <div class="single_feature">
-              <div class="icon"><span class="flaticon-book"></span></div>
-              <div class="desc">
-                <h4 class="mt-3 mb-2">Search Online Course</h4>
-                <p>
-                  now you can see your course online and you can add items to it.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6">
-            <div class="single_feature">
-              <div class="icon"><span class="flaticon-earth"></span></div>
-              <div class="desc">
-                <h4 class="mt-3 mb-2">Chatting Course</h4>
-                <p>
-                  Chat with your instructor and the student in the course.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!--================ End Feature Area =================-->
-
-    <!--================ Start Testimonial Area =================-->
-
-    <!--================ End Testimonial Area =================-->
-
-    <!--================ Start footer Area  =================-->
+     <!--================ Start footer Area  =================-->
     <footer class="footer-area section_gap">
         <div class="container">
             <div class="row">
@@ -220,13 +217,13 @@
                     <h4>Quick Links</h4>
                     <ul>
                         <li><a href="Scholarship.php">Scholarship</a></li>
-                        <li><a href="courses.php">courses</a></li>
+                        <li><a href="courses.html">courses</a></li>
                     </ul>
                 </div>
                 <div class="col-lg-2 col-md-6 single-footer-widget">
                     <h4>Features</h4>
                     <ul>
-                        <li><a href="courses.php">Courses</a></li>
+                        <li><a href="courses.html">Courses</a></li>
                         <li><a href="Scholarship.php">Scholarship</a></li>
                         <li><a href="#">Chat</a></li>
                     </ul>
@@ -270,21 +267,21 @@
             </div>
         </div>
     </footer>
-    <!--================ End footer Area  =================-->
-
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="js/jquery-3.2.1.min.js"></script>
-    <script src="js/popper.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="vendors/nice-select/js/jquery.nice-select.min.js"></script>
-    <script src="vendors/owl-carousel/owl.carousel.min.js"></script>
-    <script src="js/owl-carousel-thumb.min.js"></script>
-    <script src="js/jquery.ajaxchimp.min.js"></script>
-    <script src="js/mail-script.js"></script>
-    <!--gmaps Js-->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
-    <script src="js/gmaps.min.js"></script>
-    <script src="js/theme.js"></script>
-  </body>
-</html>
+          <!--================ End footer Area  =================-->
+      
+          <!-- Optional JavaScript -->
+          <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+          <script src="js/jquery-3.2.1.min.js"></script>
+          <script src="js/popper.js"></script>
+          <script src="js/bootstrap.min.js"></script>
+          <script src="vendors/nice-select/js/jquery.nice-select.min.js"></script>
+          <script src="vendors/owl-carousel/owl.carousel.min.js"></script>
+          <script src="js/owl-carousel-thumb.min.js"></script>
+          <script src="js/jquery.ajaxchimp.min.js"></script>
+          <script src="js/mail-script.js"></script>
+          <!--gmaps Js-->
+          <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
+          <script src="js/gmaps.min.js"></script>
+          <script src="js/theme.js"></script>
+        </body>
+      </html>

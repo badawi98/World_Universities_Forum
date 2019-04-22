@@ -74,7 +74,7 @@
                             <a class="nav-link" href="about-us.php">About</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="Scholarship.html">Scholarship</a>
+                            <a class="nav-link" href="Scholarship.php">Scholarships</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="courses.php">Courses</a>
@@ -147,9 +147,9 @@
                                     echo "
                         <div class=\"col-md-9\">
                             <div class=\"blog_post\">
-                                <img  width=\"100%\" src=$univPic alt=\"\">
+                                <a target='_blank' href='$univlink'><img  width=\"100%\" src=$univPic alt=\"\"></a>
                                 <div class=\"blog_details\">
-                                    <a href=\"single-blog.html\" >
+                                    <a target='_blank' href=$univlink >
                                         <h2>$univname</h2>
                                     </a>
                                     <p>$univdec</p>
@@ -218,7 +218,7 @@
             <div class="col-lg-2 col-md-6 single-footer-widget">
                 <h4>Quick Links</h4>
                 <ul>
-                    <li><a href="Scholarship.html">Scholarship</a></li>
+                    <li><a href="Scholarship.php">Scholarship</a></li>
                     <li><a href="courses.php">courses</a></li>
                 </ul>
             </div>
@@ -226,7 +226,7 @@
                 <h4>Features</h4>
                 <ul>
                     <li><a href="courses.php">Courses</a></li>
-                    <li><a href="Scholarship.html">Scholarship</a></li>
+                    <li><a href="Scholarship.php">Scholarship</a></li>
                     <li><a href="#">Chat</a></li>
                 </ul>
             </div>

@@ -79,7 +79,7 @@
                   <a class="nav-link" href="University.php">Universities</a>
                 </li>
                 <li class="nav-item submenu dropdown">
-                  <a class="nav-link" href="Scholarship.html"> Scholarships</a
+                  <a class="nav-link" href="Scholarship.php"> Scholarships</a
                   >
                 </li>
                 <li class="nav-item">
@@ -121,123 +121,86 @@
 
     <!--================ Start Popular Courses Area =================-->
     <div class="popular_courses section_gap_top">
-      <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-lg-5">
-            <div class="main_title">
-              <h2 class="mb-3">Our Popular Courses</h2>
-              <p>
-                Replenish man have thing gathering lights yielding shall you
-              </p>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-5">
+                    <div class="main_title">
+                        <h2 class="mb-3">Our Popular Courses</h2>
+                        <p>
+                            Replenish man have thing gathering lights yielding shall you
+                        </p>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-        <div class="row">
-          <!-- single course -->
-          <div class="col-lg-12">
-            <div class="owl-carousel active_course">
-              <div class="single_course">
-                <div class="course_head">
-                  <img class="img-fluid" src="img/courses/c1.jpg" alt="" />
-                </div>
-                <div class="course_content">
-                  <span class="price">$25</span>
-                  <span class="tag mb-4 d-inline-block">design</span>
-                  <h4 class="mb-3">
-                    <a href="course-details.php">Custom Product Design</a>
-                  </h4>
-                  <p>
-                    One make creepeth man bearing their one firmament won't fowl
-                    meat over sea
-                  </p>
-                  <div
-                    class="course_meta d-flex justify-content-lg-between align-items-lg-center flex-lg-row flex-column mt-4"
-                  >
-                    <div class="authr_meta">
-                      <img src="img/courses/author1.png" alt="" />
-                      <span class="d-inline-block ml-2">Cameron</span>
-                    </div>
-                    <div class="mt-lg-0 mt-3">
-                      <span class="meta_info mr-4">
-                        <a href="#"> <i class="ti-user mr-2"></i>25 </a>
-                      </span>
-                      <span class="meta_info"
-                        ><a href="#"> <i class="ti-heart mr-2"></i>35 </a></span
-                      >
-                    </div>
-                  </div>
-                </div>
-              </div>
+            <div class="row">
+    <?php
+    $servername = "localhost";
+    $user = "root";
+    $pass = "";
+    $dbname = "web_project";
+    $i = 0;
+    $conn = new mysqli($servername, $user, $pass, $dbname);
+    if ($conn->connect_error) {
+        die("Connection Failed: " . $conn->connect_error);
+    }
+    else {
+        $sql = "select * from `course`";
+        $result = $conn->query($sql);
+        if ($result->num_rows > 0) {
+            for ($i = 0; $i < $result->num_rows; $i++) {
+                $row1 = $result->fetch_assoc();
+                $CourseName = $row1['Course_Name'];
+                $CourseID = $row1['CourseID'];
+                $CoursePic = $row1['picture'];
+                $sql2 ="select * from `instructors_courses` where $CourseID  =  CourseID";
+                $result2 = $conn->query($sql2);
+                $row2 = $result2->fetch_assoc();
+                $instructorID = $row2['InstructorID'];
+                $CourseDescription = $row2['Decription'];
+                $sql3 ="select * from `users` where $instructorID = UserID ";
+                $result3 = $conn->query($sql3);
+                $row3 = $result3->fetch_assoc();
+                $UnivID = $row3['UnivID'];
+                $Inst_User = $row3['User_Name'];
+                $sql4 ="select `Univ_Name` from `university` where $UnivID = UnivID ";
+                $result4 = $conn->query($sql4);
+                $row4 = $result4->fetch_assoc();
+                $UnivName = $row4['Univ_Name'];
 
-              <div class="single_course">
-                <div class="course_head">
-                  <img class="img-fluid" src="img/courses/c2.jpg" alt="" />
-                </div>
-                <div class="course_content">
-                  <span class="price">$25</span>
-                  <span class="tag mb-4 d-inline-block">design</span>
-                  <h4 class="mb-3">
-                    <a href="course-details.php">Social Media Network</a>
-                  </h4>
-                  <p>
-                    One make creepeth man bearing their one firmament won't fowl
-                    meat over sea
-                  </p>
-                  <div
-                    class="course_meta d-flex justify-content-lg-between align-items-lg-center flex-lg-row flex-column mt-4"
-                  >
-                    <div class="authr_meta">
-                      <img src="img/courses/author2.png" alt="" />
-                      <span class="d-inline-block ml-2">Cameron</span>
+                echo "
+                <div class=\"col-lg-12\">
+                <div class=\" \">
+                    <div class=\"single_course\">
+                        <div class=\"course_head\">
+                            <img width='100%' class=\"img-fluid\" src=$CoursePic alt=\"\" />
+                        </div>
+                        <div class=\"course_content\">
+                            <span class=\"tag mb-4 d-inline-block\">$UnivName</span>
+                            <h4 class=\"mb-3\">
+                                <a href=\"course-details.php\">$CourseName</a>
+                            </h4>
+                            <p>$CourseDescription</p>
+                            <div
+                                    class=\"course_meta d-flex justify-content-lg-between align-items-lg-center flex-lg-row flex-column mt-4\"
+                            >
+                                <div class=\"authr_meta\">
+                                    <img src=\"img/courses/author1.png\" alt=\"\" />
+                                    <span class=\"d-inline-block ml-2\">$Inst_User</span>
+                                </div>
+                               
+                            </div>
+                        </div>
                     </div>
-                    <div class="mt-lg-0 mt-3">
-                      <span class="meta_info mr-4">
-                        <a href="#"> <i class="ti-user mr-2"></i>25 </a>
-                      </span>
-                      <span class="meta_info"
-                        ><a href="#"> <i class="ti-heart mr-2"></i>35 </a></span
-                      >
-                    </div>
-                  </div>
-                </div>
-              </div>
 
-              <div class="single_course">
-                <div class="course_head">
-                  <img class="img-fluid" src="img/courses/c3.jpg" alt="" />
                 </div>
-                <div class="course_content">
-                  <span class="price">$25</span>
-                  <span class="tag mb-4 d-inline-block">design</span>
-                  <h4 class="mb-3">
-                    <a href="course-details.php">Computer Engineering</a>
-                  </h4>
-                  <p>
-                    One make creepeth man bearing their one firmament won't fowl
-                    meat over sea
-                  </p>
-                  <div
-                    class="course_meta d-flex justify-content-lg-between align-items-lg-center flex-lg-row flex-column mt-4"
-                  >
-                    <div class="authr_meta">
-                      <img src="img/courses/author3.png" alt="" />
-                      <span class="d-inline-block ml-2">Cameron</span>
-                    </div>
-                    <div class="mt-lg-0 mt-3">
-                      <span class="meta_info mr-4">
-                        <a href="#"> <i class="ti-user mr-2"></i>25 </a>
-                      </span>
-                      <span class="meta_info"
-                        ><a href="#"> <i class="ti-heart mr-2"></i>35 </a></span
-                      >
-                    </div>
-                  </div>
-                </div>
-              </div>
             </div>
-          </div>
+                    ";
+            }
+        }
+    }
+    ?>
+            </div>
         </div>
-      </div>
     </div>
     <!--================ End Popular Courses Area =================-->
 
@@ -485,7 +448,7 @@
                 <div class="col-lg-2 col-md-6 single-footer-widget">
                     <h4>Quick Links</h4>
                     <ul>
-                        <li><a href="Scholarship.html">Scholarship</a></li>
+                        <li><a href="Scholarship.php">Scholarship</a></li>
                         <li><a href="courses.html">courses</a></li>
                     </ul>
                 </div>
@@ -493,7 +456,7 @@
                     <h4>Features</h4>
                     <ul>
                         <li><a href="courses.html">Courses</a></li>
-                        <li><a href="Scholarship.html">Scholarship</a></li>
+                        <li><a href="Scholarship.php">Scholarship</a></li>
                         <li><a href="#">Chat</a></li>
                     </ul>
                 </div>

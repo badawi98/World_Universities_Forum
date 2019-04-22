@@ -108,7 +108,7 @@
                   >
                   <ul class="dropdown-menu">
                     <li class="nav-item">
-                      <a class="nav-link" href="Scholarship.html">Blog</a>
+                      <a class="nav-link" href="Scholarship.php">Blog</a>
                     </li>
                     <li class="nav-item">
                       <a class="nav-link" href="single-blog.html"
@@ -428,7 +428,7 @@
                 <div class="col-lg-2 col-md-6 single-footer-widget">
                     <h4>Quick Links</h4>
                     <ul>
-                        <li><a href="Scholarship.html">Scholarship</a></li>
+                        <li><a href="Scholarship.php">Scholarship</a></li>
                         <li><a href="courses.html">courses</a></li>
                     </ul>
                 </div>
@@ -436,7 +436,7 @@
                     <h4>Features</h4>
                     <ul>
                         <li><a href="courses.html">Courses</a></li>
-                        <li><a href="Scholarship.html">Scholarship</a></li>
+                        <li><a href="Scholarship.php">Scholarship</a></li>
                         <li><a href="#">Chat</a></li>
                     </ul>
                 </div>

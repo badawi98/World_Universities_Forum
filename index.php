@@ -58,7 +58,7 @@
                             <a class="nav-link" href="courses.php">Courses</a>
                         </li>
                         <li class="nav-item submenu dropdown">
-                            <a class="nav-link" href="Scholarship.html">Scholarship</a>
+                            <a class="nav-link" href="Scholarship.php">Scholarship</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="contact.php">Contact</a>
@@ -531,9 +531,9 @@
                   if(!empty($login)) {
 
 
-                      $servername = "192.168.1.23";
-                      $user = "tamer";
-                      $pass = "tamer";
+                      $servername = "localhost";
+                      $user = "root";
+                      $pass = "";
                       $dbname = "web_project";
                       $i = 0;
                       $conn = new mysqli($servername, $user, $pass, $dbname);
@@ -846,7 +846,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="col-lg-2 col-md-6 single-footer-widget">
                 <h4>Quick Links</h4>
                 <ul>
-                    <li><a href="Scholarship.html">Scholarship</a></li>
+                    <li><a href="Scholarship.php">Scholarship</a></li>
                     <li><a href="courses.php">courses</a></li>
                 </ul>
             </div>
@@ -854,7 +854,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <h4>Features</h4>
                 <ul>
                     <li><a href="courses.php">Courses</a></li>
-                    <li><a href="Scholarship.html">Scholarship</a></li>
+                    <li><a href="Scholarship.php">Scholarship</a></li>
                     <li><a href="#">Chat</a></li>
                 </ul>
             </div>
