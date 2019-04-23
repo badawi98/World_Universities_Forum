@@ -37,7 +37,7 @@
         <nav  class="navbar navbar-expand-lg navbar-light">
             <div class="container">
                 <!-- Brand and toggle get grouped for better mobile display -->
-                <a class="" href="index.html" style="
+                <a class="" href="index.php" style="
     margin-right: 0px;
 ">
                     <img width="32" hieght="32" src="img/1321027.png" style=" display: inline-block; bottom: 3px; position:relative;" alt="">
@@ -60,7 +60,7 @@
                             <a class="nav-link" href="courses.php">Courses</a>
                         </li>
                         <li class="nav-item submenu dropdown">
-                            <a class="nav-link" href="Scholarship.html">Scholarship</a>
+                            <a class="nav-link" href="Scholarship.php">Scholarship</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="contact.php">Contact</a>
@@ -106,10 +106,10 @@
                         <!-- Login / register -->
                         <a id="loginfisrt" href="#regst" class="primary-btn ml-sm-3 ml-0" style="margin-bottom: 5px; margin-top:2px; padding-left: 20px;padding-right: 20px;"
                         onclick="$('#navbarSupportedContent').collapse('hide')
-                        myFunction3()">Log In</a>
+                        focus()">Log In</a>
                         <script type="text/javascript">
-                            function myFunction3() {
-                                document.getElementById("focus").focus();
+                            function focus() {
+                                document.getElementById("login_username").focus();
                             }
                         </script>
                     </ul>
