@@ -172,7 +172,7 @@
                         <div class=\"course_content\">
                             <span class=\"tag mb-4 d-inline-block\">$UnivName</span>
                             <h4 class=\"mb-3\">
-                                <a href=\"course-details.php\">$CourseName</a>
+                                <a href=\"course-details.php?coursename=$CourseName\">$CourseName</a>
                             </h4>
                             <p>$CourseDescription</p>
                             <div

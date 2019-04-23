@@ -495,15 +495,12 @@
             </div>-->
 
         <div class="col-lg-4" style="
-    margin-left: 0px;
-">
+    margin-left: 0px;">
             <div class="register_form" style="
-    padding-top: 30px;
-">
+    padding-top: 30px;">
                 <h3 style="
     border-bottom-width: 5px;
-    margin-bottom: 20px;
-">Welcome</h3>
+    margin-bottom: 20px;">Welcome</h3>
 
 
                 <form class="form_area" id="LogIn" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
@@ -551,16 +548,8 @@
         </script>
         <?php
 
-                $username = $Password = $login = "";
-                if (isset($_POST["login"])&&$_SERVER["REQUEST_METHOD"] == "POST") {
-                    if (empty($_POST["username"])) {
-                        echo "";
-                    } else {
-                        $username = test_input($_POST["username"]);
-                    }
-                    if (empty($_POST["Password"])) {
         $username = $Password = $login = "";
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        if (isset($_POST["login"])&&$_SERVER["REQUEST_METHOD"] == "POST") {
             if (empty($_POST["username"])) {
                 echo "";
             } else {
@@ -568,113 +557,73 @@
             }
             if (empty($_POST["Password"])) {
 
-                    } else {
-                        $Password = test_input($_POST["Password"]);
-                    }
-                    if (empty($_POST["login"])) {
+            } else {
+                $Password = test_input($_POST["Password"]);
+            }
+            if (empty($_POST["login"])) {
 
             } else {
                 $login = $_POST["login"];
             }
 
-                      $servername = "192.168.1.23";
-                      $user = "tamer";
-                      $pass = "tamer";
-                      $dbname = "web_project";
-                      $i = 0;
-                      $conn = new mysqli($servername, $user, $pass, $dbname);
-                      if ($conn->connect_error) {
-                          die("Connection Failed: " . $conn->connect_error);
-                      } else {
-                          if (isset($login)) {
-                              $sql = "select * from `Passwords`";
-                              $result = $conn->query($sql);
-                              if ($result->num_rows > 0) {
-                                  for ($i = 0; $i < $result->num_rows; $i++) {
-                                      $row = $result->fetch_assoc();
-                                      if ($row["User_Name"] == $username && $row["Password"] == sha1($Password)) {
-                                          break;
-                                      }
-            if(isset($login)) {
-
-
-                $servername = "192.168.1.23";
-                $user = "tamer";
-                $pass = "tamer";
-                $dbname = "web_project";
-                $i = 0;
-                $conn = new mysqli($servername, $user, $pass, $dbname);
-                if ($conn->connect_error) {
-                    die("Connection Failed: " . $conn->connect_error);
-                } else {
-                    if (isset($login)) {
-                        $sql = "select * from `Passwords`";
-                        $result = $conn->query($sql);
-                        if ($result->num_rows > 0) {
-                            for ($i = 0; $i < $result->num_rows; $i++) {
-                                $row = $result->fetch_assoc();
-                                if ($row["User_Name"] == $username && $row["Password"] == sha1($Password)) {
-                                    break;
-                                }
-
+            $servername = "localhost";
+            $user = "root";
+            $pass = "";
+            $dbname = "web_project";
+            $i = 0;
+            $conn = new mysqli($servername, $user, $pass, $dbname);
+            if ($conn->connect_error) {
+                die("Connection Failed: " . $conn->connect_error);
+            } else {
+                if (isset($login)) {
+                    $sql = "select * from `Passwords`";
+                    $result = $conn->query($sql);
+                    if ($result->num_rows > 0) {
+                        for ($i = 0; $i < $result->num_rows; $i++) {
+                            $row = $result->fetch_assoc();
+                            if ($row["User_Name"] == $username && $row["Password"] == sha1($Password)) {
+                                break;
                             }
-                            if ($i < $result->num_rows) {
 
-                                $_SESSION["username"]=$username;
-                                if(isset($_SESSION['firstTime'])) {$_SESSION['firstTime']=false;
-                                    echo "
-                                          <script>alert ('good job');</script>";}
-                                else $_SESSION['firstTime']=true;
-                                if($_SESSION['firstTime']==true){
-                                    echo "
-                                          <script>alert ('Welcome  $username');</script>";
-                                }
+                        }
+                        if ($i < $result->num_rows) {
+
+                            $_SESSION["username"]=$username;
+                            if(isset($_SESSION['firstTime'])) {$_SESSION['firstTime']=false;
                                 echo "
+                                          <script>alert ('good job');</script>";}
+                            else $_SESSION['firstTime']=true;
+                            if($_SESSION['firstTime']==true){
+                                echo "
+                                          <script>alert ('Welcome  $username');</script>";
+                            }
+                            echo "
                                     <script> 
                                         document.getElementById('loginfisrt').style.display='none';
                                         document.getElementById('navbar-static-user').style.display='inline-block';
                                         document.getElementById('navbar-user').innerText='👤 $username';
                                 </script>";
 
-                                #  session_start();
-                                # if (isset($_SESSION['counter'])) {
-                                #    $_SESSION['counter'] = "visited";
+                            #  session_start();
+                            # if (isset($_SESSION['counter'])) {
+                            #    $_SESSION['counter'] = "visited";
 
-                                #}
-                            } elseif(!isset($logout)) {
-                                echo "
+                            #}
+                        } elseif(!isset($logout)) {
+                            echo "
                                     <script> 
                                         alert ('Invalid username or password');
                                 </script>";
-                                      unset($logout);
-                                  }
-                              } else {
-                              }
-                              $result->free();
-                          }
-                      }
-                      $conn->close();
-                      unset($login);
-
-                }
-            function test_input($data) {
-                $data = trim($data);
-                $data = stripslashes($data);
-                $data = htmlspecialchars($data);
-                return $data;
-            }
-            ?>
-            <div class="col-lg-8 " style=" margin-left: 0px;">
-                                unset($logout);
-                            }
-                        } else {
+                            unset($logout);
                         }
-                        $result->free();
+                    } else {
                     }
+                    $result->free();
                 }
-                $conn->close();
-                unset($login);
             }
+            $conn->close();
+            unset($login);
+
         }
         function test_input($data) {
             $data = trim($data);
@@ -754,22 +703,43 @@
                         <div class="input-group-icon mt-10 mb-15 col-lg-12 form_group">
                             <div class="form-select" id="default-select5">
                                 <select style="display: none;">
-                                    <option value="1">hdbfhsdbfhsdbfhsdbfhsbf</option>
+                                    <option value="1">University</option>
+                                    <option value="1">An-Najah National University</option>
+                                    <option value="1"></option>
                                     <option value="1"></option>
                                     <option value="1"></option>
                                 </select><div class="nice-select" tabindex="0" style="
     padding-left: 12px;">
-                                    <span class="current">An-Najah National University</span>
-                                    <ul class="list">
-                                        <li data-value="1" class="option">University</li>
-                                        <li data-value="1" class="option focus selected">An-Najah National University</li>
-                                        <li data-value="1" class="option"></li><li data-value="1" class="option"></li>
-                                        <li data-value="1" class="option"></li>
-                                    </ul></div>
+                                    <span class="current">University</span>
+                                     <ul class="list">
+                                        <?php
+                                            $server_name = "localhost";
+                                            $user_name = "root";
+                                            $password = "";
+                                            $database = "web_project";
+                                            $mycon = new mysqli($server_name , $user_name , $password , $database);
+                                            if ($mycon->connect_error) {
+                                                die("Connection Failed: " . $mycon->connect_error);
+                                            }
+                                            else {
+                                                $sql_sel = "select * from `university`";
+                                                $myresult = $mycon->query($sql_sel);
+                                                if ($myresult->num_rows > 0) {
+                                                    for ($i = 0; $i < $myresult->num_rows; $i++) {
+                                                        $rows = $myresult->fetch_assoc();
+                                                        $univ_name = $rows['Univ_Name'];
+                                                        echo " 
+                                        <li data-value=\"1\" class=\"option focus selected\">$univ_name</li>
+                                                        ";
+                                                    }
+
+                                                }
+                                        }
+                                        ?>
+                                        </ul></div>
 
                             </div>
                         </div>
-
 
                         <p>Upload a file verifying your university's membership: </p>
                         <div class="custom-file mb-3">
@@ -910,6 +880,27 @@ if (isset($_POST["signup"])&&$_SERVER["REQUEST_METHOD"] == "POST") {
                     </div>
                     <div class="align-items-center justify-content-center d-flex">
                         <a target="_blank" href="https://www.facebook.com/badawi.wawi"><i class="ti-facebook"></i></a>
+                        <a href="#"><i class="ti-twitter"></i></a>
+                        <a href="#"><i class="ti-linkedin"></i></a>
+                        <a href="#"><i class="ti-pinterest"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12 single-trainer">
+                <div class="thumb d-flex justify-content-sm-center">
+                    <img class="img-fluid" src="img/trainer/t2.jpg" alt="">
+                </div>
+                <div class="meta-text text-sm-center">
+                    <h4>Mohammed Ghazal</h4>
+                    <p class="designation">Student</p>
+                    <div class="mb-4">
+                        <p>
+                            If you are looking at blank cassettes on the web, you may be
+                            very confused at the.
+                        </p>
+                    </div>
+                    <div class="align-items-center justify-content-center d-flex">
+                        <a target="_blank" href="https://www.facebook.com/profile.php?id=100003034376295"><i class="ti-facebook"></i></a>
                         <a href="#"><i class="ti-twitter"></i></a>
                         <a href="#"><i class="ti-linkedin"></i></a>
                         <a href="#"><i class="ti-pinterest"></i></a>
