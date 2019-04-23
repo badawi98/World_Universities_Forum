@@ -678,14 +678,14 @@
 
                             <div class="input-group-icon mt-10 col-lg-6 form_group">
                                 <div class="form-select" id="default-select3">
-                                    <select style="display: none;" required>
-                                        <option value="1">Gender</option>
-                                        <option value="1">Male</option>
-                                        <option value="1">Female</option>
+                                    <select name="gender" style="display: none;" required>
+                                        <option value="Gender">Gender</option>
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
                                     </select><div class="nice-select" tabindex="0" style="
     padding-left: 12px;
     padding-right: 0px;
-"><span class="current">Gender</span><ul class="list"><li data-value="1" class="option selected focus">Gender</li><li data-value="1" class="option">Male</li><li data-value="1" class="option">Female</li></ul></div>
+"><span class="current">Gender</span><ul class="list"><li data-value="Gender" class="option selected focus">Gender</li><li data-value="Male" class="option">Male</li><li data-value="Female" class="option">Female</li></ul></div>
 
                                 </div>
                             </div>
@@ -694,36 +694,54 @@
     padding-right: 15px;
 ">
                                 <div class="form-select" id="default-select4">
-                                    <select style="display: none;">
-                                        <option value="1">Register as</option>
-                                        <option value="1">Student</option>
-                                        <option value="1">Instructor</option>
+                                    <select name="regester_as" style="display: none;">
+                                        <option value="Register As">Register as</option>
+                                        <option value="Student">Student</option>
+                                        <option value="Instructor">Instructor</option>
                                     </select><div class="nice-select" tabindex="0" style="
     padding-left: 12px;
     padding-right: 0px;
-"><span class="current">Register as</span><ul class="list"><li data-value="1" class="option selected focus">Register as</li><li data-value="1" class="option">Student</li><li data-value="1" class="option">Instructor</li></ul></div>
+"><span class="current">Register as</span><ul class="list">
+                                            <li data-value="Register As" class="option selected focus">Register as</li>
+                                            <li data-value="Student" class="option">Student</li><li data-value="Instructor" class="option">Instructor</li>
+                                        </ul></div>
 
                                 </div>
                             </div>
                             <div class="input-group-icon mt-10 mb-15 col-lg-12 form_group">
                                 <div class="form-select" id="default-select5">
-                                    <select id="" name="universelect" style="display:none ;">
-                                        <option value="University">University</option>
-                                        <option value="An-Najah National University">An-Najah National University</option>
-                                        <option value=""></option>
-                                        <option value=""></option>
-                                        <option value=""></option>
+                                    <select name="Univ_Name" style="display: none;" >
+
+                                        <?php
+                                        $server_name = "192.168.1.23";
+                                        $user_name = "tamer";
+                                        $password = "tamer";
+                                        $database = "web_project";
+                                        $mycon = new mysqli($server_name , $user_name , $password , $database);
+                                        if ($mycon->connect_error) {
+                                            die("Connection Failed: " . $mycon->connect_error);
+                                        }
+                                        else {
+                                            echo " 
+                                       <option value=\"University\">University</option>
+                                                        ";
+                                            $sql_sel = "select `Univ_Name` from `university`";
+                                            $myresult = $mycon->query($sql_sel);
+                                            if ($myresult->num_rows > 0) {
+                                                for ($i = 0; $i < $myresult->num_rows; $i++) {
+                                                    $rows = $myresult->fetch_assoc();
+                                                    $univ_name = $rows['Univ_Name'];
+                                                    echo " 
+                                        <option value='$univ_name'>$univ_name</option>
+                                                        ";
+                                                }
+
+                                            }
+                                        }
+                                        ?>
                                     </select><div class="nice-select" tabindex="0" style="padding-left: 12px;">
-                                        <span name="" id="selectspan" class="user-location current">University</span>
-                                        <ul  name="" class="list">
-                                            <script>
-                                                $('.user-location').on('DOMSubtreeModified',function(){
-                                                   // alert('changed');
-                                                    document.getElementById("universelect").selectedIndex=1;
-                                                  //  alert(document.getElementById("univselect"));
-                                                })
-                                            </script>
-                                            <!--document.getElementById('univselect').value=this.innerText;-->
+                                        <span class="current">University</span>
+                                        <ul  class="list">
                                             <?php
                                             $server_name = "192.168.1.23";
                                             $user_name = "tamer";
@@ -734,14 +752,17 @@
                                                 die("Connection Failed: " . $mycon->connect_error);
                                             }
                                             else {
-                                                $sql_sel = "select * from `university`";
+                                                echo " 
+                                        <li data-value=\"University\" class=\"option focus selected\">University</li>
+                                                        ";
+                                                $sql_sel = "select `Univ_Name` from `university`";
                                                 $myresult = $mycon->query($sql_sel);
                                                 if ($myresult->num_rows > 0) {
                                                     for ($i = 0; $i < $myresult->num_rows; $i++) {
                                                         $rows = $myresult->fetch_assoc();
                                                         $univ_name = $rows['Univ_Name'];
                                                         echo " 
-                                        <li data-value=\"$univ_name\" class=\"option focus selected\">$univ_name</li>
+                                        <li data-value='$univ_name' class=\"option\">$univ_name</li>
                                                         ";
                                                     }
 
@@ -751,12 +772,6 @@
                                         </ul></div>
                                 </div>
                             </div>
-
-                            <script>
-                                alert( document.getElementsByName("university").)
-                               ;
-                            </script>
-
 
 
                             <p>Upload a file verifying your university's membership: </p>
@@ -796,9 +811,9 @@ if(isset($_SESSION['username'])) {
 }
 ?>
 <?php
-$first_name  = $second_name = $third_name = $last_name  = $EMAIL = $Signup_username = $Signup_Password  = $Date = $filename =$Univ_Name= "";
+$first_name  = $second_name = $third_name = $last_name  = $EMAIL = $Signup_username = $Signup_Password  = $Date = $filename =$Univ_Name=$gender=$regester_as="";
 if (isset($_POST["signup"])&&$_SERVER["REQUEST_METHOD"] == "POST") {
-    if (empty($_POST["$first_name"])) {
+    if (empty($_POST["first_name"])) {
         echo "";
     } else {
         $first_name = test_input($_POST["first_name"]);
@@ -830,11 +845,11 @@ if (isset($_POST["signup"])&&$_SERVER["REQUEST_METHOD"] == "POST") {
             echo "";
         }
     }
-    if (empty($_POST["$EMAIL"])) {
+    if (empty($_POST["EMAIL"])) {
         echo "";
     } else {
         $EMAIL = test_input($_POST["EMAIL"]);
-        if (!filter_var(EMAIL, FILTER_VALIDATE_EMAIL)) {
+        if (!filter_var('EMAIL', FILTER_VALIDATE_EMAIL)) {
             echo "";
         }
     }
@@ -842,14 +857,14 @@ if (isset($_POST["signup"])&&$_SERVER["REQUEST_METHOD"] == "POST") {
         echo "";
     } else {
         $Signup_Password = test_input($_POST["Signup_Password"]);
-        if (!preg_match("(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}", 'Signup_Password')) {
+        if (!preg_match("(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}", $Signup_username)) {
             echo "";
         }
     }
     if (empty($_POST["Signup_username"])) {
         echo "";
     } else {
-        $Signup_username = test_input($_POST["signup_username"]);
+        $Signup_username = test_input($_POST["Signup_username"]);
     }
     if (empty($_POST["Date"])) {
         echo "";
@@ -866,12 +881,21 @@ if (isset($_POST["signup"])&&$_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         $signup = test_input($_POST["signup"]);
     }
-    if (empty($_POST["universelect"])) {
-        echo "";
-    } else {
-        $universelect = test_input($_POST["universelect"]);
-    }
+    if (empty($_POST['Univ_Name'])) {
 
+    } else {
+        $Univ_Name = test_input($_POST['Univ_Name']);
+    }
+    if (empty($_POST['gender'])) {
+
+    } else {
+        $gender = test_input($_POST['gender']);
+    }
+    if (empty($_POST['regester_as'])) {
+
+    } else {
+        $regester_as = test_input($_POST['regester_as']);
+    }
 
     $servername = "192.168.1.23";
     $user = "tamer";
@@ -881,16 +905,12 @@ if (isset($_POST["signup"])&&$_SERVER["REQUEST_METHOD"] == "POST") {
     $conn = new mysqli($servername, $user, $pass, $dbname);
     if ($conn->connect_error) {
        $die= die("Connection Failed: " . $conn->connect_error);
-        echo "
-                         <script>alert(`$die`);</script>
-                         ";
-    } else {
 
-        echo "
-        <script>
-        alert('$universelect');   
-</script>
-        ";
+    } else {
+    #   echo "<script>
+#alert('$first_name');
+#</script>";
+
         if (isset($signup)) {
             $sql = "select Univ_Name from `university`";
             $result = $conn->query($sql);
@@ -905,12 +925,17 @@ if (isset($_POST["signup"])&&$_SERVER["REQUEST_METHOD"] == "POST") {
             }
 
             $sql = "INSERT INTO users (UserID,User_Name,UnivID, First_Name, Second_Name,Third_Name,Family_Name,Date,Email,Gender,picture,Valid)
-                    VALUES ('John', '$username')";
+                    VALUES (1000100000000012, '$Signup_username',1000 ,'$first_name','$second_name','$third_name','$last_name','$Date','$EMAIL','$gender','$filename',false)";
 
             if ($conn->query($sql) === TRUE) {
-                echo "New record created successfully";
+                echo "<script>
+alert('New record created successfully');
+</script>";
+
             } else {
-                echo "Error: " . $sql . "<br>" . $conn->error;
+                echo "<script>
+alert('$sql.$conn->error');
+</script>";
             }
 
 
