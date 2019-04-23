@@ -572,9 +572,9 @@
                   if(isset($login)) {
 
 
-                      $servername = "localhost";
-                      $user = "root";
-                      $pass = "";
+                      $servername = "192.168.1.23";
+                      $user = "tamer";
+                      $pass = "tamer";
                       $dbname = "web_project";
                       $i = 0;
                       $conn = new mysqli($servername, $user, $pass, $dbname);
@@ -745,13 +745,18 @@
     </div>
 </div><!--================ End Registration Area =================-->
 <?php
-if(isset($_SESSION['username']))
+if(isset($_SESSION['username'])) {
+    $username = $_SESSION['username'];
     echo "
                                     <script> 
                               
                                         document.getElementById('regst').style.display='none';
+                                        document.getElementById('loginfisrt').style.display='none';
+                                        document.getElementById('navbar-static-user').style.display='inline-block';
+                                        document.getElementById('navbar-user').innerText='👤 $username';
                                        
                                 </script>";
+}
 ?>
 <?php
 $first_name  = $second_name = $third_name = $last_name  = $EMAIL = $Signup_username = $Signup_Password  = $Date = $filename = "";
