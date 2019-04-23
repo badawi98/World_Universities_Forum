@@ -71,41 +71,38 @@
 
                     <ul style="margin-left: 40px; margin-right: 40px;" class="nav navbar-nav nav-flex-icons">
 
-                        <!-- user -->
-                        <li style="display:none; padding-bottom: 5px; padding-top: 2px; " id="navbar-static-user" class="nav-item dropdown">
+                    <!-- user -->
+                    <li style="display:none; padding-bottom: 5px; padding-top: 2px; " id="navbar-static-user" class="nav-item dropdown">
 
-                            <button  class="btn btn-light btn-block dropdown-toggle" aria-haspopup="true" aria-expanded="false" type="button" id="navbar-user" data-toggle="dropdown">tamer
-                                <span class="caret"></span></button>
+                        <button  class="btn btn-light btn-block dropdown-toggle" aria-haspopup="true" aria-expanded="false" type="button" id="navbar-user" data-toggle="dropdown">tamer
+                            <span class="caret"></span></button>
 
-                            <div class="dropdown-menu dropdown-menu-right dropdown-info " aria-labelledby="navbar-tools">
-                                <a class="dropdown-item waves-effect waves-light" href="">Profile</a>
-                                <a class="dropdown-item waves-effect waves-light" href="">Courses</a>
-                                <form method="post" action="index.php">
-                                    <button onclick="alert('logged out')" value="logout" name="logout" id="logout" class="dropdown-item waves-effect waves-light" href="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">Log out</button>
-                                </form>
-
-
+                        <div class="dropdown-menu dropdown-menu-right dropdown-info " aria-labelledby="navbar-tools">
+                            <a class="dropdown-item waves-effect waves-light" href="">Profile</a>
+                            <a class="dropdown-item waves-effect waves-light" href="">Courses</a>
+                            <form method="post" action="index.php">
+                                <button onclick="alert('logged out')" value="logout" name="logout" id="logout" class="dropdown-item waves-effect waves-light" href="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">Log out</button>
+                            </form>
 
 
-                            </div>
-                        </li>
+
+
+                        </div>
+                    </li>
 
                         <?php
 
-                        if (isset($_POST['logout'])) {
-                            unset($_SESSION['username']);
-                            unset($_SESSION['firstTime']);
-                            $logout=$_POST['logout'];
-                            unset($_SESSION['logout']);
-                        }
-
-
+                            if (isset($_POST['logout'])) {
+                                unset($_SESSION['username']);
+                                unset($_SESSION['firstTime']);
+                                $logout=$_POST['logout'];
+                            }
 
                         ?>
 
                         <!-- Login / register -->
                         <a id="loginfisrt" href="#regst" class="primary-btn ml-sm-3 ml-0" style="margin-bottom: 5px; margin-top:2px; padding-left: 20px;padding-right: 20px;"
-                           onclick="$('#navbarSupportedContent').collapse('hide')
+                        onclick="$('#navbarSupportedContent').collapse('hide')
                         focus()">Log In</a>
                         <script type="text/javascript">
                             function focus() {
@@ -475,51 +472,54 @@
 
 <div  id="regst" class="section_gap registration_area">
     <div class="container"
-    ">
-    <div class="row align-items-center">
-        <!--    <div class="col-lg-3">
-                <div class="row clock_sec clockdiv" id="clockdiv">
-                    <div class="col-lg-12">
-                        <h1 class="mb-3">Register Now</h1>
-                        <p>
-                            There is a moment in the life of any aspiring astronomer that
-                            it is time to buy that first telescope. It’s exciting to think
-                            about setting up your own viewing station.
-                        </p>
-                    </div>
-
-
-
-
-                </div>
-            </div>-->
-
-        <div class="col-lg-4" style="
-    margin-left: 0px;">
-            <div class="register_form" style="
-    padding-top: 30px;">
-                <h3 style="
-    border-bottom-width: 5px;
-    margin-bottom: 20px;">Welcome</h3>
-
-
-                <form class="form_area" id="LogIn" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
-                    <div class="row">
-                        <div class="col-lg-12 form_group">
-                            <input  id="login_username"  name="username"  placeholder="Username or ID" type="text">
-                            <input id="login_password" name="Password" placeholder="Password"  type="password">
-
+">
+        <div class="row align-items-center">
+            <!--    <div class="col-lg-3">
+                    <div class="row clock_sec clockdiv" id="clockdiv">
+                        <div class="col-lg-12">
+                            <h1 class="mb-3">Register Now</h1>
+                            <p>
+                                There is a moment in the life of any aspiring astronomer that
+                                it is time to buy that first telescope. It’s exciting to think
+                                about setting up your own viewing station.
+                            </p>
                         </div>
-                        <div class="col-lg-12 text-center">
-                            <button  name="login" value="login" class="primary-btn" style=" margin-bottom: 30px;"
-                                <?php
-                                echo " onclick='make_rqd()'
+
+
+
+
+                    </div>
+                </div>-->
+
+            <div class="col-lg-4" style="
+    margin-left: 0px;
+">
+                <div class="register_form" style="
+    padding-top: 30px;
+">
+                    <h3 style="
+    border-bottom-width: 5px;
+    margin-bottom: 20px;
+">Welcome</h3>
+
+
+                    <form class="form_area" id="LogIn" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
+                        <div class="row">
+                            <div class="col-lg-12 form_group">
+                                <input  id="login_username"  name="username"  placeholder="Username or ID" type="text">
+                                <input id="login_password" name="Password" placeholder="Password"  type="password">
+
+                            </div>
+                            <div class="col-lg-12 text-center">
+                                <button  name="login" value="login" class="primary-btn" style=" margin-bottom: 30px;"
+                                           <?php
+                                            echo " onclick='make_rqd()'
                
                                                          ";
-                                ?>
-                            >log in</button>
-                            <?php
-                            echo "
+                                            ?>
+                                        >log in</button>
+                                <?php
+                                echo "
                                 <script>
                                     function make_rqd(){
                                         document.getElementById('login_username').required = true;
@@ -527,195 +527,207 @@
                                     }
 
                                 </script>";
-                            ?>
+                                ?>
+                            </div>
                         </div>
-                    </div>
-                </form>
-                <h6>Not a member ? </h6>
-                <a href="javascript:void(0)" id="showjoinus" style="
+                    </form>
+                    <h6>Not a member ? </h6>
+                    <a href="javascript:void(0)" id="showjoinus" style="
 
                      margin-top: 0px;
                      padding-top: 0px;
                      ">Register now</a>
+                </div>
             </div>
-        </div>
-        <script>
-            $(document).ready(function(){
-                $("#showjoinus").click(function(){
-                    $("#join_us.collapse").collapse('show');
+            <script>
+                $(document).ready(function(){
+                    $("#showjoinus").click(function(){
+                        $("#join_us.collapse").collapse('show');
+                    });
                 });
-            });
-        </script>
-        <?php
+            </script>
+            <?php
 
-        $username = $Password = $login = "";
-        if (isset($_POST["login"])&&$_SERVER["REQUEST_METHOD"] == "POST") {
-            if (empty($_POST["username"])) {
-                echo "";
-            } else {
-                $username = test_input($_POST["username"]);
-            }
-            if (empty($_POST["Password"])) {
+                $username = $Password = $login = "";
+                if (isset($_POST["login"])&&$_SERVER["REQUEST_METHOD"] == "POST") {
+                    if (empty($_POST["username"])) {
+                        echo "";
+                    } else {
+                        $username = test_input($_POST["username"]);
+                    }
+                    if (empty($_POST["Password"])) {
 
-            } else {
-                $Password = test_input($_POST["Password"]);
-            }
-            if (empty($_POST["login"])) {
+                    } else {
+                        $Password = test_input($_POST["Password"]);
+                    }
+                    if (empty($_POST["login"])) {
 
-            } else {
-                $login = $_POST["login"];
-            }
 
-            $servername = "localhost";
-            $user = "root";
-            $pass = "";
-            $dbname = "web_project";
-            $i = 0;
-            $conn = new mysqli($servername, $user, $pass, $dbname);
-            if ($conn->connect_error) {
-                die("Connection Failed: " . $conn->connect_error);
-            } else {
-                if (isset($login)) {
-                    $sql = "select * from `Passwords`";
-                    $result = $conn->query($sql);
-                    if ($result->num_rows > 0) {
-                        for ($i = 0; $i < $result->num_rows; $i++) {
-                            $row = $result->fetch_assoc();
-                            if ($row["User_Name"] == $username && $row["Password"] == sha1($Password)) {
-                                break;
-                            }
+                    } else {
+                        $login = $_POST["login"];
+                    }
 
-                        }
-                        if ($i < $result->num_rows) {
+                      $servername = "192.168.1.23";
+                      $user = "tamer";
+                      $pass = "tamer";
+                      $dbname = "web_project";
+                      $i = 0;
+                      $conn = new mysqli($servername, $user, $pass, $dbname);
+                      if ($conn->connect_error) {
+                         $die= die("Connection Failed: " . $conn->connect_error);
+                         echo "
+                         <script>alert('$die');</script>
+                         ";
+                      } else {
+                          if (isset($login)) {
+                              $sql = "select * from `Passwords`";
+                              $result = $conn->query($sql);
+                              if ($result->num_rows > 0) {
+                                  for ($i = 0; $i < $result->num_rows; $i++) {
+                                      $row = $result->fetch_assoc();
+                                      if ($row["User_Name"] == $username && $row["Password"] == sha1($Password)) {
+                                          break;
+                                      }
 
-                            $_SESSION["username"]=$username;
-                            if(isset($_SESSION['firstTime'])) {$_SESSION['firstTime']=false;
-                                echo "
+                                  }
+                                  if ($i < $result->num_rows) {
+
+                                      $_SESSION["username"]=$username;
+                                      if(isset($_SESSION['firstTime'])) {$_SESSION['firstTime']=false;
+                                          echo "
                                           <script>alert ('good job');</script>";}
-                            else $_SESSION['firstTime']=true;
-                            if($_SESSION['firstTime']==true){
-                                echo "
+                                      else $_SESSION['firstTime']=true;
+                                      if($_SESSION['firstTime']==true){
+
+                                          echo "
                                           <script>alert ('Welcome  $username');</script>";
-                            }
-                            echo "
+                                      }
+                                      echo "
                                     <script> 
                                         document.getElementById('loginfisrt').style.display='none';
                                         document.getElementById('navbar-static-user').style.display='inline-block';
                                         document.getElementById('navbar-user').innerText='👤 $username';
                                 </script>";
 
-                            #  session_start();
-                            # if (isset($_SESSION['counter'])) {
-                            #    $_SESSION['counter'] = "visited";
+                                      #  session_start();
+                                      # if (isset($_SESSION['counter'])) {
+                                      #    $_SESSION['counter'] = "visited";
 
-                            #}
-                        } elseif(!isset($logout)) {
-                            echo "
+                                      #}
+                                  } elseif(!isset($logout)) {
+                                      echo "
                                     <script> 
                                         alert ('Invalid username or password');
                                 </script>";
-                            unset($logout);
-                        }
-                    } else {
-                    }
-                    $result->free();
+                                      unset($logout);
+                                  }
+                              } else {
+                              }
+                              $result->free();
+                          }
+                      }
+                      $conn->close();
+                      unset($login);
+
                 }
+            function test_input($data) {
+                $data = trim($data);
+                $data = stripslashes($data);
+                $data = htmlspecialchars($data);
+                return $data;
             }
-            $conn->close();
-            unset($login);
+            ?>
+            <div class="col-lg-8 " style=" margin-left: 0px;">
 
-        }
-        function test_input($data) {
-            $data = trim($data);
-            $data = stripslashes($data);
-            $data = htmlspecialchars($data);
-            return $data;
-        }
-        ?>
-        <div class="col-lg-8 " style=" margin-left: 0px;">
+                <div style="padding-top: 40px; padding-bottom: 40px;" id="join_us" class="main-container register_form collapse">
+                    <h3>Join Us</h3>
+                    <p>It is high time for learning</p>
 
-            <div style="padding-top: 40px; padding-bottom: 40px;" id="join_us" class="main-container register_form collapse">
-                <h3>Join Us</h3>
-                <p>It is high time for learning</p>
-
-                <form class="form_area md-form" id="SignUp" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
-                    <div class="row">
+                    <form class="form_area md-form" id="SignUp" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
+                        <div class="row">
 
 
-                        <div class="col-lg-6 form_group mt-10">
-                            <input type="text" name="first_name" placeholder="First Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'First Name'" required class="single-input">
-                        </div>
-                        <div class="mt-10 col-lg-6 form_group">
-                            <input type="text" name="second_name" placeholder="Second Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Second Name'" required class="single-input">
-                        </div>
-                        <div class="mt-10 col-lg-6 form_group">
-                            <input type="text" name="third_name" placeholder="Third Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Third Name'" required class="single-input">
-                        </div>
-                        <div class="mt-10 col-lg-6 form_group">
-                            <input type="text" name="last_name" placeholder="Last Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Last Name'" required class="single-input">
-                        </div>
-                        <div class="mt-10 col-lg-12 form_group">
-                            <input type="email" name="EMAIL" placeholder="Email address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email address'" required class="single-input">
-                            <i class=" input-icon js-btn-calendar"></i>
-                        </div>
-                        <div class="mt-10 col-lg-12 form_group">
-                            <input type="text" name="Signup_username" placeholder="User Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'User Name'" required class="single-input">
-                            <i class=" input-icon js-btn-calendar"></i>
-                        </div>
-                        <div class="mt-10 col-lg-12 form_group">
-                            <input type="password" name="Signup_Password" placeholder="Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'" required class="single-input">
-                            <i class=" input-icon js-btn-calendar"></i>
-                        </div>
-                        <div class="mt-10 col-lg-12 form_group">
-                            <input name="Date" placeholder="Birth Date" class="single-input-secondary" required type="text" onfocus="(this.type='date')" onblur="(this.type='text')" id="date">
+                            <div class="col-lg-6 form_group mt-10">
+                                <input type="text" name="first_name" placeholder="First Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'First Name'" required class="single-input">
+                            </div>
+                            <div class="mt-10 col-lg-6 form_group">
+                                <input type="text" name="second_name" placeholder="Second Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Second Name'" required class="single-input">
+                            </div>
+                            <div class="mt-10 col-lg-6 form_group">
+                                <input type="text" name="third_name" placeholder="Third Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Third Name'" required class="single-input">
+                            </div>
+                            <div class="mt-10 col-lg-6 form_group">
+                                <input type="text" name="last_name" placeholder="Last Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Last Name'" required class="single-input">
+                            </div>
+                            <div class="mt-10 col-lg-12 form_group">
+                                <input type="email" name="EMAIL" placeholder="Email address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email address'" required class="single-input">
+                                <i class=" input-icon js-btn-calendar"></i>
+                            </div>
+                            <div class="mt-10 col-lg-12 form_group">
+                                <input type="text" name="Signup_username" placeholder="User Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'User Name'" required class="single-input">
+                                <i class=" input-icon js-btn-calendar"></i>
+                            </div>
+                            <div class="mt-10 col-lg-12 form_group">
+                                <input type="password" name="Signup_Password" placeholder="Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'" required class="single-input">
+                                <i class=" input-icon js-btn-calendar"></i>
+                            </div>
+                            <div class="mt-10 col-lg-12 form_group">
+                                <input name="Date" placeholder="Birth Date" class="single-input-secondary" required type="text" onfocus="(this.type='date')" onblur="(this.type='text')" id="date">
 
-                        </div>
+                            </div>
 
-                        <div class="input-group-icon mt-10 col-lg-6 form_group">
-                            <div class="form-select" id="default-select3">
-                                <select style="display: none;" required>
-                                    <option value="1">Gender</option>
-                                    <option value="1">Male</option>
-                                    <option value="1">Female</option>
-                                </select><div class="nice-select" tabindex="0" style="
+                            <div class="input-group-icon mt-10 col-lg-6 form_group">
+                                <div class="form-select" id="default-select3">
+                                    <select style="display: none;" required>
+                                        <option value="1">Gender</option>
+                                        <option value="1">Male</option>
+                                        <option value="1">Female</option>
+                                    </select><div class="nice-select" tabindex="0" style="
     padding-left: 12px;
     padding-right: 0px;
 "><span class="current">Gender</span><ul class="list"><li data-value="1" class="option selected focus">Gender</li><li data-value="1" class="option">Male</li><li data-value="1" class="option">Female</li></ul></div>
 
+                                </div>
                             </div>
-                        </div>
-                        <div class="input-group-icon mt-10 mb-15 col-lg-6 form_group" style="
+                            <div class="input-group-icon mt-10 mb-15 col-lg-6 form_group" style="
     padding-left: 15px;
     padding-right: 15px;
 ">
-                            <div class="form-select" id="default-select4">
-                                <select style="display: none;">
-                                    <option value="1">Register as</option>
-                                    <option value="1">Student</option>
-                                    <option value="1">Instructor</option>
-                                </select><div class="nice-select" tabindex="0" style="
+                                <div class="form-select" id="default-select4">
+                                    <select style="display: none;">
+                                        <option value="1">Register as</option>
+                                        <option value="1">Student</option>
+                                        <option value="1">Instructor</option>
+                                    </select><div class="nice-select" tabindex="0" style="
     padding-left: 12px;
     padding-right: 0px;
 "><span class="current">Register as</span><ul class="list"><li data-value="1" class="option selected focus">Register as</li><li data-value="1" class="option">Student</li><li data-value="1" class="option">Instructor</li></ul></div>
 
+                                </div>
                             </div>
-                        </div>
-                        <div class="input-group-icon mt-10 mb-15 col-lg-12 form_group">
-                            <div class="form-select" id="default-select5">
-                                <select style="display: none;">
-                                    <option value="1">University</option>
-                                    <option value="1">An-Najah National University</option>
-                                    <option value="1"></option>
-                                    <option value="1"></option>
-                                    <option value="1"></option>
-                                </select><div class="nice-select" tabindex="0" style="
-    padding-left: 12px;">
-                                    <span class="current">University</span>
-                                     <ul class="list">
-                                        <?php
-                                            $server_name = "localhost";
-                                            $user_name = "root";
-                                            $password = "";
+                            <div class="input-group-icon mt-10 mb-15 col-lg-12 form_group">
+                                <div class="form-select" id="default-select5">
+                                    <select id="" name="universelect" style="display:none ;">
+                                        <option value="University">University</option>
+                                        <option value="An-Najah National University">An-Najah National University</option>
+                                        <option value=""></option>
+                                        <option value=""></option>
+                                        <option value=""></option>
+                                    </select><div class="nice-select" tabindex="0" style="padding-left: 12px;">
+                                        <span name="" id="selectspan" class="user-location current">University</span>
+                                        <ul  name="" class="list">
+                                            <script>
+                                                $('.user-location').on('DOMSubtreeModified',function(){
+                                                   // alert('changed');
+                                                    document.getElementById("universelect").selectedIndex=1;
+                                                  //  alert(document.getElementById("univselect"));
+                                                })
+                                            </script>
+                                            <!--document.getElementById('univselect').value=this.innerText;-->
+                                            <?php
+                                            $server_name = "192.168.1.23";
+                                            $user_name = "tamer";
+                                            $password = "tamer";
                                             $database = "web_project";
                                             $mycon = new mysqli($server_name , $user_name , $password , $database);
                                             if ($mycon->connect_error) {
@@ -729,39 +741,45 @@
                                                         $rows = $myresult->fetch_assoc();
                                                         $univ_name = $rows['Univ_Name'];
                                                         echo " 
-                                        <li data-value=\"1\" class=\"option focus selected\">$univ_name</li>
+                                        <li data-value=\"$univ_name\" class=\"option focus selected\">$univ_name</li>
                                                         ";
                                                     }
 
                                                 }
-                                        }
-                                        ?>
+                                            }
+                                            ?>
                                         </ul></div>
+                                </div>
+                            </div>
 
+                            <script>
+                                alert( document.getElementsByName("university").)
+                               ;
+                            </script>
+
+
+
+                            <p>Upload a file verifying your university's membership: </p>
+                            <div class="custom-file mb-3">
+                                <input type="file" class="custom-file-input" id="customFile" required name="filename">
+                                <label class="custom-file-label selected" for="customFile"></label>
+                            </div>
+                            <script>
+                                // Add the following code if you want the name of the file appear on select
+                                $(".custom-file-input").on("change", function() {
+                                    var fileName = $(this).val().split("\\").pop();
+                                    $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+                                });
+                            </script>
+                            <div class="col-lg-12 text-center">
+                                <button name="signup" value="signup" class="primary-btn">sign up</button>
                             </div>
                         </div>
-
-                        <p>Upload a file verifying your university's membership: </p>
-                        <div class="custom-file mb-3">
-                            <input type="file" class="custom-file-input" id="customFile" required name="filename">
-                            <label class="custom-file-label selected" for="customFile"></label>
-                        </div>
-                        <script>
-                            // Add the following code if you want the name of the file appear on select
-                            $(".custom-file-input").on("change", function() {
-                                var fileName = $(this).val().split("\\").pop();
-                                $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
-                            });
-                        </script>
-                        <div class="col-lg-12 text-center">
-                            <button name="signup" value="signup" class="primary-btn">sign up</button>
-                        </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
 </div><!--================ End Registration Area =================-->
 <?php
 if(isset($_SESSION['username'])) {
@@ -778,7 +796,7 @@ if(isset($_SESSION['username'])) {
 }
 ?>
 <?php
-$first_name  = $second_name = $third_name = $last_name  = $EMAIL = $Signup_username = $Signup_Password  = $Date = $filename = "";
+$first_name  = $second_name = $third_name = $last_name  = $EMAIL = $Signup_username = $Signup_Password  = $Date = $filename =$Univ_Name= "";
 if (isset($_POST["signup"])&&$_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($_POST["$first_name"])) {
         echo "";
@@ -848,8 +866,64 @@ if (isset($_POST["signup"])&&$_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         $signup = test_input($_POST["signup"]);
     }
+    if (empty($_POST["universelect"])) {
+        echo "";
+    } else {
+        $universelect = test_input($_POST["universelect"]);
+    }
+
+
+    $servername = "192.168.1.23";
+    $user = "tamer";
+    $pass = "tamer";
+    $dbname = "web_project";
+    $i = 0;
+    $conn = new mysqli($servername, $user, $pass, $dbname);
+    if ($conn->connect_error) {
+       $die= die("Connection Failed: " . $conn->connect_error);
+        echo "
+                         <script>alert(`$die`);</script>
+                         ";
+    } else {
+
+        echo "
+        <script>
+        alert('$universelect');   
+</script>
+        ";
+        if (isset($signup)) {
+            $sql = "select Univ_Name from `university`";
+            $result = $conn->query($sql);
+            if($result->num_rows>0){
+                for ($i = 0; $i < $result->num_rows; $i++) {
+                    $row = $result->fetch_assoc();
+                    if ($row["Univ_Name"] == $Univ_Name) {
+                        break;
+                    }
+
+                }
+            }
+
+            $sql = "INSERT INTO users (UserID,User_Name,UnivID, First_Name, Second_Name,Third_Name,Family_Name,Date,Email,Gender,picture,Valid)
+                    VALUES ('John', '$username')";
+
+            if ($conn->query($sql) === TRUE) {
+                echo "New record created successfully";
+            } else {
+                echo "Error: " . $sql . "<br>" . $conn->error;
+            }
+
+
+        }
+    }
+    $conn->close();
+    unset($signup);
 
 }
+
+
+
+
 ?>
 <!--================ Start Trainers Area =================-->
 <section class="trainer_area section_gap_top">
@@ -880,27 +954,6 @@ if (isset($_POST["signup"])&&$_SERVER["REQUEST_METHOD"] == "POST") {
                     </div>
                     <div class="align-items-center justify-content-center d-flex">
                         <a target="_blank" href="https://www.facebook.com/badawi.wawi"><i class="ti-facebook"></i></a>
-                        <a href="#"><i class="ti-twitter"></i></a>
-                        <a href="#"><i class="ti-linkedin"></i></a>
-                        <a href="#"><i class="ti-pinterest"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-12 single-trainer">
-                <div class="thumb d-flex justify-content-sm-center">
-                    <img class="img-fluid" src="img/trainer/t2.jpg" alt="">
-                </div>
-                <div class="meta-text text-sm-center">
-                    <h4>Mohammed Ghazal</h4>
-                    <p class="designation">Student</p>
-                    <div class="mb-4">
-                        <p>
-                            If you are looking at blank cassettes on the web, you may be
-                            very confused at the.
-                        </p>
-                    </div>
-                    <div class="align-items-center justify-content-center d-flex">
-                        <a target="_blank" href="https://www.facebook.com/profile.php?id=100003034376295"><i class="ti-facebook"></i></a>
                         <a href="#"><i class="ti-twitter"></i></a>
                         <a href="#"><i class="ti-linkedin"></i></a>
                         <a href="#"><i class="ti-pinterest"></i></a>
@@ -1024,4 +1077,3 @@ if (isset($_POST["signup"])&&$_SERVER["REQUEST_METHOD"] == "POST") {
 <script src="js/theme.js"></script>
 
 </body></html>
-
