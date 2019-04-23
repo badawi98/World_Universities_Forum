@@ -80,15 +80,27 @@
                         <div class="dropdown-menu dropdown-menu-right dropdown-info " aria-labelledby="navbar-tools">
                             <a class="dropdown-item waves-effect waves-light" href="">Profile</a>
                             <a class="dropdown-item waves-effect waves-light" href="">Courses</a>
-                            <a onclick="<?php echo logout()?>" class="dropdown-item waves-effect waves-light" href="">Log out</a>
+                            <form method="post" action="index.php">
+                                <button onclick="alert('logged out')" value="logout" name="logout" id="logout" class="dropdown-item waves-effect waves-light" href="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">Log out</button>
+                            </form>
+
+
+
+
                         </div>
                     </li>
 
                         <?php
-                        function logout()
-                        {
-                           unset($_SESSION['username']);
-                        }
+
+                            if (isset($_POST['logout'])) {
+                                unset($_SESSION['username']);
+                                unset($_SESSION['firstTime']);
+                                $logout=$_POST['logout'];
+                                unset($_SESSION['logout']);
+                            }
+
+
+
                         ?>
 
                         <!-- Login / register -->
@@ -537,13 +549,7 @@
                     });
                 });
             </script>
-            <?php echo"
-            <script>
-                if ( window.history.replaceState ) {
-                    window.history.replaceState( null, null, window.location.href );
-                }
-            </script>";
-
+            <?php
 
                 $username = $Password = $login = "";
                 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -563,7 +569,7 @@
                         $login = $_POST["login"];
                     }
 
-                  if(!empty($login)) {
+                  if(isset($login)) {
 
 
                       $servername = "localhost";
@@ -587,10 +593,18 @@
 
                                   }
                                   if ($i < $result->num_rows) {
+
                                       $_SESSION["username"]=$username;
+                                      if(isset($_SESSION['firstTime'])) {$_SESSION['firstTime']=false;
+                                          echo "
+                                          <script>alert ('good job');</script>";}
+                                      else $_SESSION['firstTime']=true;
+                                      if($_SESSION['firstTime']==true){
+                                          echo "
+                                          <script>alert ('Welcome  $username');</script>";
+                                      }
                                       echo "
                                     <script> 
-                                        alert ('Welcome  $username');
                                         document.getElementById('loginfisrt').style.display='none';
                                         document.getElementById('navbar-static-user').style.display='inline-block';
                                         document.getElementById('navbar-user').innerText='👤 $username';
@@ -601,11 +615,12 @@
                                       #    $_SESSION['counter'] = "visited";
 
                                       #}
-                                  } else {
+                                  } elseif(!isset($logout)) {
                                       echo "
                                     <script> 
                                         alert ('Invalid username or password');
                                 </script>";
+                                      unset($logout);
                                   }
                               } else {
                               }
@@ -613,6 +628,7 @@
                           }
                       }
                       $conn->close();
+                      unset($login);
                   }
                 }
             function test_input($data) {
