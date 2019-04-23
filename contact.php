@@ -47,7 +47,7 @@
             <!-- Brand and toggle get grouped for better mobile display -->
             <a class="navbar-brand logo_h" href="index.php">
               <img width="32" hieght="32" src="img/1321027.png" style=" display: inline-block; bottom: 3px; position:relative;" alt="">
-              <h2 style=" margin-left:5px; color:white; display: inline-block; position: relative; top:5px;" class="mb-3">   World Universities Forum</h2>
+              <h2 style=" margin-left:5px; color:white; display: inline-block; position: relative; top:5px;" class="mb-3">Universities Forum</h2>
             </a>
             <button
               class="navbar-toggler"
@@ -242,19 +242,7 @@
                 <div class="col-lg-4 col-md-6 single-footer-widget">
                     <h4>Newsletter</h4>
                     <p>You can trust us. we only send promo offers,</p>
-                    <div class="form-wrap" id="mc_embed_signup">
-                        <form target="_blank" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01" method="get" class="form-inline" novalidate="true">
-                            <input class="form-control" name="EMAIL" placeholder="Your Email Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your Email Address'" required="" type="email">
-                            <button class="click-btn btn btn-default">
-                                <span>subscribe</span>
-                            </button>
-                            <div style="position: absolute; left: -5000px;">
-                                <input name="b_36c4fd991d266f23781ded980_aefe40901a" tabindex="-1" value="" type="text">
-                            </div>
 
-                            <div class="info"></div>
-                        </form>
-                    </div>
                 </div>
             </div>
             <div class="row footer-bottom d-flex justify-content-between" align="center">
