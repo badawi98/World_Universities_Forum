@@ -1,3 +1,5 @@
+<?php session_start();
+?>
 <html lang="en"><head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -32,7 +34,7 @@
             </div>
         </div>
 
-        <nav class="navbar navbar-expand-lg navbar-light">
+        <nav  class="navbar navbar-expand-lg navbar-light">
             <div class="container">
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <a class="" href="index.html" style="
@@ -58,13 +60,49 @@
                             <a class="nav-link" href="courses.php">Courses</a>
                         </li>
                         <li class="nav-item submenu dropdown">
-                            <a class="nav-link" href="Scholarship.php">Scholarship</a>
+                            <a class="nav-link" href="Scholarship.html">Scholarship</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="contact.php">Contact</a>
                         </li>
 
                     </ul>
+
+
+                    <ul style="margin-left: 40px; margin-right: 40px;" class="nav navbar-nav nav-flex-icons">
+
+                    <!-- user -->
+                    <li style="display:none; padding-bottom: 5px; padding-top: 2px; " id="navbar-static-user" class="nav-item dropdown">
+
+                        <button  class="btn btn-light btn-block dropdown-toggle" aria-haspopup="true" aria-expanded="false" type="button" id="navbar-user" data-toggle="dropdown">tamer
+                            <span class="caret"></span></button>
+
+                        <div class="dropdown-menu dropdown-menu-right dropdown-info " aria-labelledby="navbar-tools">
+                            <a class="dropdown-item waves-effect waves-light" href="">Profile</a>
+                            <a class="dropdown-item waves-effect waves-light" href="">Courses</a>
+                            <a onclick="<?php echo logout()?>" class="dropdown-item waves-effect waves-light" href="">Log out</a>
+                        </div>
+                    </li>
+
+                        <?php
+                        function logout()
+                        {
+                           unset($_SESSION['username']);
+                        }
+                        ?>
+
+                        <!-- Login / register -->
+                        <a id="loginfisrt" href="#regst" class="primary-btn ml-sm-3 ml-0" style="margin-bottom: 5px; margin-top:2px; padding-left: 20px;padding-right: 20px;"
+                        onclick="$('#navbarSupportedContent').collapse('hide')
+                        myFunction3()">Log In</a>
+                        <script type="text/javascript">
+                            function myFunction3() {
+                                document.getElementById("focus").focus();
+                            }
+                        </script>
+                    </ul>
+
+
                 </div>
             </div>
         </nav>
@@ -421,12 +459,10 @@
 <!--================ End Popular Courses Area =================-->
 
 <!--================ Start Registration Area =================-->
-<div class="section_gap registration_area">
-    <div class="container" style="
-    margin-left: 0px;
-    margin-right: 0px;
-    padding-right: 15px;
-    padding-left: 15px;
+
+
+<div  id="regst" class="section_gap registration_area">
+    <div class="container"
 ">
         <div class="row align-items-center">
             <!--    <div class="col-lg-3">
@@ -461,7 +497,7 @@
                     <form class="form_area" id="LogIn" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
                         <div class="row">
                             <div class="col-lg-12 form_group">
-                                <input  id="login_username" class="glyphicon glyphicon-user" name="username"  placeholder="Username or ID" type="text">
+                                <input  id="login_username"  name="username"  placeholder="Username or ID" type="text">
                                 <input id="login_password" name="Password" placeholder="Password"  type="password">
 
                             </div>
@@ -507,9 +543,8 @@
                     window.history.replaceState( null, null, window.location.href );
                 }
             </script>";
-            ?>
 
-            <?php
+
                 $username = $Password = $login = "";
                 if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     if (empty($_POST["username"])) {
@@ -552,9 +587,13 @@
 
                                   }
                                   if ($i < $result->num_rows) {
+                                      $_SESSION["username"]=$username;
                                       echo "
                                     <script> 
                                         alert ('Welcome  $username');
+                                        document.getElementById('loginfisrt').style.display='none';
+                                        document.getElementById('navbar-static-user').style.display='inline-block';
+                                        document.getElementById('navbar-user').innerText='👤 $username';
                                 </script>";
 
                                       #  session_start();
@@ -583,7 +622,7 @@
                 return $data;
             }
             ?>
-            <div class="col-lg-8" style=" margin-left: 0px;">
+            <div class="col-lg-8 " style=" margin-left: 0px;">
 
                 <div style="padding-top: 40px; padding-bottom: 40px;" id="join_us" class="main-container register_form collapse">
                     <h3>Join Us</h3>
@@ -689,6 +728,15 @@
         </div>
     </div>
 </div><!--================ End Registration Area =================-->
+<?php
+if(isset($_SESSION['username']))
+    echo "
+                                    <script> 
+                              
+                                        document.getElementById('regst').style.display='none';
+                                       
+                                </script>";
+?>
 <?php
 $first_name  = $second_name = $third_name = $last_name  = $EMAIL = $Signup_username = $Signup_Password  = $Date = $filename = "";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -846,7 +894,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="col-lg-2 col-md-6 single-footer-widget">
                 <h4>Quick Links</h4>
                 <ul>
-                    <li><a href="Scholarship.php">Scholarship</a></li>
+                    <li><a href="Scholarship.html">Scholarship</a></li>
                     <li><a href="courses.php">courses</a></li>
                 </ul>
             </div>
@@ -854,7 +902,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <h4>Features</h4>
                 <ul>
                     <li><a href="courses.php">Courses</a></li>
-                    <li><a href="Scholarship.php">Scholarship</a></li>
+                    <li><a href="Scholarship.html">Scholarship</a></li>
                     <li><a href="#">Chat</a></li>
                 </ul>
             </div>

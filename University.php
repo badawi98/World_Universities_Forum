@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <!-- Required meta tags -->
-    <meta charset="utf-8" />
+    <meta charset="UTF-8">
     <meta
             name="viewport"
             content="width=device-width, initial-scale=1, shrink-to-fit=no"
@@ -125,9 +125,9 @@
                             </div>
                         </div>
                         <?php
-                        $servername = "localhost";
-                        $user = "root";
-                        $pass = "";
+                        $servername = "192.168.1.23";
+                        $user = "tamer";
+                        $pass = "tamer";
                         $dbname = "web_project";
                         $i = 0;
                         $conn = new mysqli($servername, $user, $pass, $dbname);
@@ -143,7 +143,7 @@
                                     $univname = $row['Univ_Name'];
                                     $univdec = $row['Description'];
                                     $univlink = $row['Link'];
-                                    $univPic = $row['picture'];
+                                    $univPic=$row['picture'];
                                     echo "
                         <div class=\"col-md-9\">
                             <div class=\"blog_post\">
