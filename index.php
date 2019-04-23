@@ -552,7 +552,7 @@
             <?php
 
                 $username = $Password = $login = "";
-                if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                if (isset($_POST["login"])&&$_SERVER["REQUEST_METHOD"] == "POST") {
                     if (empty($_POST["username"])) {
                         echo "";
                     } else {
@@ -568,9 +568,6 @@
                     } else {
                         $login = $_POST["login"];
                     }
-
-                  if(isset($login)) {
-
 
                       $servername = "192.168.1.23";
                       $user = "tamer";
@@ -629,7 +626,7 @@
                       }
                       $conn->close();
                       unset($login);
-                  }
+
                 }
             function test_input($data) {
                 $data = trim($data);
@@ -760,12 +757,12 @@ if(isset($_SESSION['username'])) {
 ?>
 <?php
 $first_name  = $second_name = $third_name = $last_name  = $EMAIL = $Signup_username = $Signup_Password  = $Date = $filename = "";
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if (isset($_POST["signup"])&&$_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($_POST["$first_name"])) {
         echo "";
     } else {
         $first_name = test_input($_POST["first_name"]);
-        if (!preg_match("/^[a-zA-Z ]*$/", first_name)) {
+        if (!preg_match("/^[a-zA-Z ]*$/", 'first_name')) {
             echo "";
         }
     }
@@ -773,7 +770,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "";
     } else {
         $second_name = test_input($_POST["second_name"]);
-        if (!preg_match("/^[a-zA-Z ]*$/", second_name)) {
+        if (!preg_match("/^[a-zA-Z ]*$/", 'second_name')) {
             echo "";
         }
     }
@@ -781,7 +778,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "";
     } else {
         $third_name = test_input($_POST["third_name"]);
-        if (!preg_match("/^[a-zA-Z ]*$/", third_name)) {
+        if (!preg_match("/^[a-zA-Z ]*$/", 'third_name')) {
             echo "";
         }
     }
@@ -789,7 +786,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "";
     } else {
         $last_name = test_input($_POST["last_name"]);
-        if (!preg_match("/^[a-zA-Z ]*$/", last_name)) {
+        if (!preg_match("/^[a-zA-Z ]*$/", 'last_name')) {
             echo "";
         }
     }
@@ -805,14 +802,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "";
     } else {
         $Signup_Password = test_input($_POST["Signup_Password"]);
-        if (!preg_match("(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}", Signup_Password)) {
+        if (!preg_match("(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}", 'Signup_Password')) {
             echo "";
         }
     }
     if (empty($_POST["Signup_username"])) {
         echo "";
     } else {
-        $Signup_username = test_input($_POST["ignup_username"]);
+        $Signup_username = test_input($_POST["signup_username"]);
     }
     if (empty($_POST["Date"])) {
         echo "";
