@@ -1,221 +1,113 @@
-<body>
-<!--================ Start Header Menu Area =================-->
-<header class="header_area white-header">
-    <div class="main_menu">
-        <div class="search_input" id="search_input_box">
-            <div class="container">
-                <form class="d-flex justify-content-between" method="" action="">
-                    <input
-                            type="text"
-                            class="form-control"
-                            id="search_input"
-                            placeholder="Search Here"
-                    />
-                    <button type="submit" class="btn"></button>
-                    <span
-                            class="ti-close"
-                            id="close_search"
-                            title="Close Search"
-                    ></span>
+<div class="section_gap registration_area">
+    <div class="container" style="
+    margin-left: 0px;
+    margin-right: 0px;
+    padding-right: 15px;
+    padding-left: 15px;
+">
+        <div class="col-lg-8" style=" margin-left: 0px;">
+
+            <div style="padding-top: 40px; padding-bottom: 40px;" id="join_us" class="main-container register_form collapse">
+                <h3>Join Us</h3>
+                <p>It is high time for learning</p>
+
+                <form class="form_area md-form" id="SignUp" action="mail.html" method="post">
+                    <div class="row">
+
+
+                        <div class="col-lg-6 form_group mt-10">
+                            <input type="text" name="first_name" placeholder="First Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'First Name'" required="" class="single-input">
+                        </div>
+                        <div class="mt-10 col-lg-6 form_group">
+                            <input type="text" name="second_name" placeholder="Second Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Second Name'" required="" class="single-input">
+                        </div>
+                        <div class="mt-10 col-lg-6 form_group">
+                            <input type="text" name="third_name" placeholder="Third Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Third Name'" required="" class="single-input">
+                        </div>
+                        <div class="mt-10 col-lg-6 form_group">
+                            <input type="text" name="last_name" placeholder="Last Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Last Name'" required="" class="single-input">
+                        </div>
+                        <div class="mt-10 col-lg-12 form_group">
+                            <input type="email" name="EMAIL" placeholder="Email address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email address'" required="" class="single-input">
+                            <i class=" input-icon js-btn-calendar"></i>
+                        </div>
+
+                        <div class="mt-10 col-lg-12 form_group">
+                            <input placeholder="Birth Date" class="single-input-secondary" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" id="date">
+
+                        </div>
+
+                        <div class="input-group-icon mt-10 col-lg-6 form_group">
+                            <div class="form-select" id="default-select3">
+                                <select>
+                                    <option value="1">Gender</option>
+                                    <option value="1">Male</option>
+                                    <option value="1">Female</option>
+                                </select><div class="nice-select" tabindex="0" style="
+    padding-left: 12px;
+    padding-right: 0px;
+"><span class="current">Gender</span><ul class="list"><li data-value="1" class="option selected focus">Gender</li><li data-value="1" class="option">Male</li><li data-value="1" class="option">Female</li></ul></div>
+
+                            </div>
+                        </div>
+                        <div class="input-group-icon mt-10 mb-15 col-lg-6 form_group" style="
+    padding-left: 15px;
+    padding-right: 15px;
+">
+                            <div class="form-select" id="default-select4">
+                                <select >
+                                    <option value="1">Register as</option>
+                                    <option value="1">Student</option>
+                                    <option value="1">Instructor</option>
+                                </select><div class="nice-select" tabindex="0" style="
+    padding-left: 12px;
+    padding-right: 0px;
+"><span class="current">Register as</span><ul class="list"><li data-value="1" class="option selected focus">Register as</li><li data-value="1" class="option">Student</li><li data-value="1" class="option">Instructor</li></ul></div>
+
+                            </div>
+                        </div>
+                        <div class="input-group-icon mt-10 mb-15 col-lg-12 form_group">
+                            <div class="form-select" id="default-select5">
+                                <select >
+                                    <option value="1">University</option>
+                                    <option value="1">An-Najah National University</option>
+                                    <option value="1"></option>
+                                    <option value="1"></option>
+                                    <option value="1"></option>
+                                </select><div class="nice-select" tabindex="0" style="
+    padding-left: 12px;
+"><span class="current">An-Najah National University</span><ul class="list"><li data-value="1" class="option">University</li><li data-value="1" class="option focus selected">An-Najah National University</li><li data-value="1" class="option"></li><li data-value="1" class="option"></li><li data-value="1" class="option"></li></ul></div>
+
+                            </div>
+                        </div>
+
+
+                        <p>Upload a file verifying your university's membership: </p>
+                        <div class="custom-file mb-3">
+                            <input type="file" class="custom-file-input" id="customFile" name="filename">
+                            <label class="custom-file-label selected" for="customFile"></label>
+                        </div>
+                        <script>
+                            // Add the following code if you want the name of the file appear on select
+                            $(".custom-file-input").on("change", function() {
+                                var fileName = $(this).val().split("\\").pop();
+                                $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+                            });
+                        </script>
+
+
+
+
+
+
+
+                        <div class="col-lg-12 text-center">
+                            <button class="primary-btn">sign up</button>
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>
-
-        <nav class="navbar navbar-expand-lg navbar-light">
-            <div class="container">
-                <!-- Brand and toggle get grouped for better mobile display -->
-                <a class="navbar-brand logo_h" href="index.php">
-                    <img width="32" hieght="32" src="img/1321027.png" style=" display: inline-block; bottom: 3px; position:relative;" alt="">
-                    <h2 style=" margin-left:5px; color:white; display: inline-block; position: relative; top:5px;" class="mb-3">Universities Forum</h2>
-                </a>
-                <button
-                        class="navbar-toggler"
-                        type="button"
-                        data-toggle="collapse"
-                        data-target="#navbarSupportedContent"
-                        aria-controls="navbarSupportedContent"
-                        aria-expanded="false"
-                        aria-label="Toggle navigation"
-                >
-                    <span class="icon-bar"></span> <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <!-- Collect the nav links, forms, and other content for toggling -->
-                <div
-                        class="collapse navbar-collapse offset"
-                        id="navbarSupportedContent"
-                >
-                    <ul class="nav navbar-nav menu_nav ml-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="index.php">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="about-us.php">About</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="University.php">Universities</a>
-                        </li>
-                        <li class="nav-item submenu dropdown">
-                            <a class="nav-link" href="Scholarship.php"> Scholarships</a
-                            >
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="contact.php">Contact</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
     </div>
-</header>
-<!--================ End Header Menu Area =================-->
-
-<!--================Home Banner Area =================-->
-<section class="banner_area">
-    <div class="banner_inner d-flex align-items-center">
-    <div class=\"overlay\"></div>
-    <div class=\"container\">
-        <div class="row justify-content-center">
-        <div class=\"col-lg-6\">
-            <div class="banner_content text-center">
-            <h2>Course Details</h2>
-            <div class=\"page_link\">
-                <a href=\"index.php\">Home</a>
-                <a href=\"courses.php\">Courses</a>
-                <a href=\"course-details.php\">Courses Details</a>
-            </div>
-        </div>
-    </div>
-    </div>
-    </div>
-    </div>
-</section>
-<!--================End Home Banner Area =================-->
-
-<!--================ Start Course Details Area =================-->
-<section class="course_details_area section_gap">
-<div class=\"container\">
-    <div class=\"row\">
-        <div class="col-lg-8 course_details_left">
-        <div class=\"main_image\">
-            <img class=\"img-fluid\" src=$course_pic alt=\"\">
-        </div>
-        <div class=\"content_wrapper\">
-            <h4 class=\"title\">Objectives</h4>
-            <div class=\"content\">
-                When you enter into any new area of science, you almost always find yourself with a
-                baffling new language of
-                technical terms to learn before you can converse with the experts. This is certainly
-                true in astronomy both in
-                terms of terms that refer to the cosmos and terms that describe the tools of the trade,
-                the most prevalent
-                being the telescope.
-                <br>
-                <br>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                incididunt ut labore et dolore
-                magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
-                ut aliquip ex ea
-                commodoconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                cillum. Lorem ipsum dolor sit
-                amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                dolore magna aliqua. Ut enim
-                ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                commodo consequat. Duis aute
-                irure dolor in reprehenderit in voluptate velit esse cillum.
-            </div>
-
-            <h4 class=\"title\">Eligibility</h4>
-            <div class=\"content\">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                incididunt ut labore et dolore
-                magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
-                ut aliquip ex ea commodo
-                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.
-                <br>
-                <br>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                incididunt ut labore et dolore
-                magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
-                ut aliquip ex ea
-                commodoconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                cillum. Lorem ipsum dolor sit
-                amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                dolore magna aliqua. Ut enim
-                ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                commodo consequat. Duis aute
-                irure dolor in reprehenderit in voluptate velit esse cillum.
-            </div>
-
-            <h4 class=\"title\">Course Outline</h4>
-            <div class=\"content\">
-                <ul class=\"course_list\">
-                    <li class="justify-content-between d-flex">
-                    <p>Introduction Lesson</p>
-                    <a class="primary-btn text-uppercase" href=\"#\">View Details</a>
-                    </li>
-                    <li class="justify-content-between d-flex">
-                    <p>Basics of HTML</p>
-                    <a class="primary-btn text-uppercase" href=\"#\">View Details</a>
-                    </li>
-                    <li class="justify-content-between d-flex">
-                    <p>Getting Know about HTML</p>
-                    <a class="primary-btn text-uppercase=" href=\"#\">View Details</a>
-                    </li>
-                    <li class="justify-content-between d-flex">
-                    <p>Tags and Attributes</p>
-                    <a class="primary-btn text-uppercase" href=\"#\">View Details</a>
-                    </li>
-                    <li class="justify-content-between d-flex">
-                    <p>Basics of CSS</p>
-                    <a class="primary-btn text-uppercase" href=\"#\">View Details</a>
-                    </li>
-                    <li class="justify-content-between d-flex">
-                    <p>Getting Familiar with CSS</p>
-                    <a class="primary-btn text-uppercase" href=\"#\">View Details</a>
-                    </li>
-                    <li class="justify-content-between d-flex">
-                    <p>Introduction to Bootstrap</p>
-                    <a class="primary-btn text-uppercase\" href=\"#\">View Details</a>
-                    </li>
-                    <li class="justify-content-between d-flex\">
-                    <p>Responsive Design</p>
-                    <a class="primary-btn text-uppercase\" href=\"#\">View Details</a>
-                    </li>
-                    <li class="justify-content-between d-flex\">
-                    <p>Canvas in HTML 5</p>
-                    <a class="primary-btn text-uppercase\" href=\"#\">View Details</a>
-                    </li>
-
-                </ul>
-            </div>
-        </div>
-    </div>
-
-
-    <div class="col-lg-4 right-contents\">
-    <ul>
-        <li>
-            <a class="justify-content-between d-flex\" href=\"#\">
-            <p>Trainer’s Name</p>
-            <span class="or\">$instructor_name</span>
-            </a>
-        </li>
-
-
-
-    </ul>
-    <a href=\"#\" class="primary-btn2 text-uppercase enroll rounded-0 text-white\">Enroll the course</a>
-
-
-
-
-
-
-
 </div>
 </div>
-</div>
-</div>
-</section>
-</body>
