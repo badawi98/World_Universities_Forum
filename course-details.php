@@ -154,6 +154,7 @@ echo"
     </section>
     <!--================End Home Banner Area =================-->
 
+
     <!--================ Start Course Details Area =================-->
     <section class=\"course_details_area section_gap\">
         <div class=\"container\">
