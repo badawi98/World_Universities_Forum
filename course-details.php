@@ -371,5 +371,7 @@ alert('You already a member');
         }
     }
 }
+echo "
+<script>MathCourse=$course_name</script>";
 #<a href="#" class="primary-btn2 text-uppercase enroll rounded-0 text-white">Enroll the course</a>
 ?>
