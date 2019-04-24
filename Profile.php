@@ -1,3 +1,5 @@
+<?php
+session_start();?>
 <html lang="en"><head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -54,9 +56,47 @@
                         <li class="nav-item">
                             <a class="nav-link" href="contact.php">Contact</a>
                         </li>
+                    </ul>
+                    <ul style="margin-left: 40px; margin-right: 40px;" class="nav navbar-nav nav-flex-icons">
+
+                        <!-- user -->
+                        <li style="display:none; padding-bottom: 5px; padding-top: 2px; " id="navbar-static-user" class="nav-item dropdown">
+
+                            <button  class="btn btn-light btn-block dropdown-toggle" aria-haspopup="true" aria-expanded="false" type="button" id="navbar-user" data-toggle="dropdown">tamer
+                                <span class="caret"></span></button>
+
+                            <div class="dropdown-menu dropdown-menu-right dropdown-info " aria-labelledby="navbar-tools">
+                                <a class="dropdown-item waves-effect waves-light" href="">Profile</a>
+                                <a class="dropdown-item waves-effect waves-light" href="">Courses</a>
+                                <form method="post" action="index.php">
+                                    <button onclick="alert('logged out')" value="logout" name="logout" id="logout" class="dropdown-item waves-effect waves-light" href="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">Log out</button>
+                                </form>
 
 
 
+
+                            </div>
+                        </li>
+
+                        <?php
+
+                        if (isset($_POST['logout'])) {
+                            unset($_SESSION['username']);
+                            unset($_SESSION['firstTime']);
+                            $logout=$_POST['logout'];
+                        }
+
+                        ?>
+
+                        <!-- Login / register -->
+                        <a id="loginfisrt" href="index.php#regst" class="primary-btn ml-sm-3 ml-0" style="margin-bottom: 5px; margin-top:2px; padding-left: 20px;padding-right: 20px;"
+                           onclick="$('#navbarSupportedContent').collapse('hide')
+                        focus()">Log In</a>
+                        <script type="text/javascript">
+                            function focus() {
+                                document.getElementById("login_username").focus();
+                            }
+                        </script>
                     </ul>
 
 
@@ -66,6 +106,18 @@
         </nav>
     </div>
 </header>
+<?php
+if(isset($_SESSION['username'])) {
+    $username = $_SESSION['username'];
+    echo "
+                                    <script> 
+                                        document.getElementById('loginfisrt').style.display='none';
+                                        document.getElementById('navbar-static-user').style.display='inline-block';
+                                        document.getElementById('navbar-user').innerText='👤 $username';
+                                       
+                                </script>";
+}
+?>
 <!--================ End Header Menu Area =================-->
 
 <!--================ Start Home Banner Area =================-->

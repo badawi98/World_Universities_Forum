@@ -567,9 +567,9 @@
                         $login = $_POST["login"];
                     }
 
-                      $servername = "192.168.1.23";
-                      $user = "tamer";
-                      $pass = "tamer";
+                      $servername = "localhost";
+                      $user = "root";
+                      $pass = "";
                       $dbname = "web_project";
                       $i = 0;
                       $conn = new mysqli($servername, $user, $pass, $dbname);
@@ -713,9 +713,9 @@
                                     <select name="Univ_Name" style="display: none;" >
 
                                         <?php
-                                        $server_name = "192.168.1.23";
-                                        $user_name = "tamer";
-                                        $password = "tamer";
+                                        $server_name = "localhost";
+                                        $user_name = "root";
+                                        $password = "";
                                         $database = "web_project";
                                         $mycon = new mysqli($server_name , $user_name , $password , $database);
                                         if ($mycon->connect_error) {
@@ -897,9 +897,9 @@ if (isset($_POST["signup"])&&$_SERVER["REQUEST_METHOD"] == "POST") {
         $regester_as = test_input($_POST['regester_as']);
     }
 
-    $servername = "192.168.1.23";
-    $user = "tamer";
-    $pass = "tamer";
+    $servername = "localhost";
+    $user = "root";
+    $pass = "";
     $dbname = "web_project";
     $i = 0;
     $conn = new mysqli($servername, $user, $pass, $dbname);
