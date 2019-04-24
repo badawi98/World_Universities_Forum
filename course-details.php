@@ -81,7 +81,7 @@ echo"
     margin-right: 0px;
 \">
                     <img width=\"32\" hieght=\"32\" src=\"img/1321027.png\" style=\" display: inline-block; bottom: 3px; position:relative;\" alt=\"\">
-                    <h3 style=\" margin-left:5px; display: inline-block; position: relative; top:5px;\" class=\"mb-3\">Universities Forum</h3>
+                    <h3 style=\" margin-left:5px; color:white; display: inline-block; position: relative; top:5px;\" class=\"mb-3\">Universities Forum</h3>
                 </a>
             <button
               class=\"navbar-toggler\"
@@ -406,7 +406,7 @@ else {
         }
         else {
 
-                if ($conn->query($sql) === TRUE) {
+                if ($conns->query($MySql) === TRUE) {
                     echo "<script>
                 alert('Now You are a member on this course');
                 </script>";

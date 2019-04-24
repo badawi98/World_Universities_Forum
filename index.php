@@ -566,12 +566,10 @@
                     } else {
                         $login = $_POST["login"];
                     }
-
                       $servername = "localhost";
                       $user = "root";
                       $pass = "";
                       $dbname = "web_project";
-                      $i = 0;
                       $conn = new mysqli($servername, $user, $pass, $dbname);
                       if ($conn->connect_error) {
                          $die= die("Connection Failed: " . $conn->connect_error);
@@ -585,11 +583,18 @@
                               if ($result->num_rows > 0) {
                                   for ($i = 0; $i < $result->num_rows; $i++) {
                                       $row = $result->fetch_assoc();
-                                      if ($row["User_Name"] == $username && $row["Password"] == sha1($Password)) {
+                                      if ($row["User_Name"] == $username  && $row["Password"] == sha1($Password)) {
                                           break;
                                       }
 
                                   }
+                                  echo $row["User_Name"];
+                                  echo "<br>";
+                                  echo $username;
+                                  echo "<br>";
+                                  echo $row["Password"];
+                                  echo "<br>";
+                                  echo sha1($Password);
                                   if ($i < $result->num_rows) {
 
                                       $_SESSION["username"]=$username;
@@ -611,7 +616,8 @@
                                       #    $_SESSION['counter'] = "visited";
 
                                       #}
-                                  } elseif(!isset($logout)) {
+                                  }
+                                  elseif(!isset($logout)) {
                                       echo "
                                     <script> 
                                         alert ('Invalid username or password');
@@ -630,9 +636,9 @@
             function test_input($data) {
                 $data = trim($data);
                 $data = htmlspecialchars($data);
-                $data = strtolower($data);
                 return $data;
             }
+
             ?>
             <div class="col-lg-8 " style=" margin-left: 0px;">
 
