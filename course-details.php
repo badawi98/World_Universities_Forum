@@ -3,7 +3,7 @@ session_start();
 $username = $_SESSION['username'];
 if (!isset($username)){
     echo "<script>
-    alert('You Should be a student');
+    alert('You Should be a member');
     </script>";
     echo "<script>
 window.location.replace('courses.php');</script>;
@@ -357,21 +357,12 @@ echo"
 $conn->close();
       ?>
 <?php
-$servername = "localhost";
-$user = "root";
-$pass = "";
-$dbname = "web_project";
-$conns = new mysqli($servername, $user, $pass, $dbname);
-
-                            if (isset($_POST['logout'])) {
-                                unset($_SESSION['username']);
-                                unset($_SESSION['firstTime']);
-                                unset($_SESSION['notstdntftime']);
-                                $logout=$_POST['logout'];
-                            }
-
-
-
+if (isset($_POST['logout'])) {
+    unset($_SESSION['username']);
+    unset($_SESSION['firstTime']);
+    unset($_SESSION['notstdntftime']);
+    $logout=$_POST['logout'];
+}
 if(isset($_SESSION['username'])) {
     $username = $_SESSION['username'];
     echo "
@@ -382,20 +373,25 @@ if(isset($_SESSION['username'])) {
                                        
                                 </script>";
 }
+$servername = "localhost";
+$user = "root";
+$pass = "";
+$dbname = "web_project";
+$conns = new mysqli($servername, $user, $pass, $dbname);
+
+
 if ($conns->connect_error) {
     die("Connection Failed: " . $conns->connect_error);
 }
 else {
 
-    $MySql = " select * from `users` where '$username'  =  User_Name";
+    $MySql = " select * from `users` where '$username' = User_Name";
     $MyResult = $conns->query($MySql);
     if ($MyResult->num_rows > 0) {
         $rows = $MyResult->fetch_assoc();
         $StudentId = $rows['UserID'];
         $MySql = "INSERT INTO course_students (CourseID,InstructorID,StudentID)
                     VALUES ('$CourseID', '$instructor_id','$StudentId' )";
-        $sqlIfExist = "select * from `course_students` where '$StudentId'  =  StudentID";
-        $checkResult = $conns->query($sqlIfExist);
         $sqlIfStudent = "select * from `student` where '$StudentId'  =  StudentID";
         $resultStudent = $conns->query($sqlIfStudent);
         if ($resultStudent->num_rows == 0) {
@@ -409,14 +405,13 @@ else {
             }
         }
         else {
-            if ($checkResult->num_rows == 0) {
+
                 if ($conn->query($sql) === TRUE) {
                     echo "<script>
                 alert('Now You are a member on this course');
                 </script>";
                 }
-
-            } else {
+             else {
                 echo "<script>
 alert('You already a member');
 </script>";
