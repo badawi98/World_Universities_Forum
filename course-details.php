@@ -1,6 +1,14 @@
 <?php
 session_start();
 $username = $_SESSION['username'];
+if (!isset($username)){
+    echo "<script>
+    alert('You Should be a student');
+    </script>";
+    echo "<script>
+window.location.replace('courses.php');</script>;
+";
+}
 $course_name = $_GET["coursename"];
 $servername = "localhost";
 $user = "root";
