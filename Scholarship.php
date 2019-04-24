@@ -32,7 +32,7 @@ session_start();?>
             <!-- Brand and toggle get grouped for better mobile display -->
               <a class="navbar-brand logo_h" href="index.php">
                   <img width="32" hieght="32" src="img/1321027.png" style=" display: inline-block; bottom: 3px; position:relative;" alt="">
-                  <h2 style=" margin-left:5px; display: inline-block; position: relative; top:5px;" class="mb-3">   World Universities Forum</h2>
+                  <h2 style=" margin-left:5px; display: inline-block; position: relative; top:5px;" class="mb-3">Universities Forum</h2>
               </a>
             <button
               class="navbar-toggler"

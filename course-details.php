@@ -1,4 +1,6 @@
 <?php
+session_start();
+$username = $_SESSION['username'];
 $course_name = $_GET["coursename"];
 $servername = "localhost";
 $user = "root";
@@ -36,7 +38,6 @@ else {
         }
 
         }
-    $conn->close();
 }
 echo"
 <!DOCTYPE html>
@@ -121,6 +122,11 @@ echo"
                           <a class=\"nav-link\" href=\"Scholarship.php\"> Scholarships</a
                           >
                       </li>
+                      </li>
+                      <li class=\"nav-item submenu dropdown\">
+                          <a class=\"nav-link\" href=\"courses.php\">Courses</a
+                          >
+                      </li>
                       <li class=\"nav-item\">
                           <a class=\"nav-link\" href=\"contact.php\">Contact</a>
                       </li>
@@ -174,42 +180,29 @@ echo"
                         <div class=\"content\">
                             <ul class=\"course_list\">
                                 <li class=\"justify-content-between d-flex\">
-                                    <p>Introduction Lesson</p>
+                                    <p>Course Slides</p>
                                     <a class=\"primary-btn text-uppercase\" href=\"#\">View Details</a>
                                 </li>
                                 <li class=\"justify-content-between d-flex\">
-                                    <p>Basics of HTML</p>
+                                    <p>Course Records</p>
                                     <a class=\"primary-btn text-uppercase\" href=\"#\">View Details</a>
                                 </li>
                                 <li class=\"justify-content-between d-flex\">
-                                    <p>Getting Know about HTML</p>
+                                    <p>Course Exams</p>
                                     <a class=\"primary-btn text-uppercase\" href=\"#\">View Details</a>
                                 </li>
                                 <li class=\"justify-content-between d-flex\">
-                                    <p>Tags and Attributes</p>
+                                    <p>Course Summaries</p>
                                     <a class=\"primary-btn text-uppercase\" href=\"#\">View Details</a>
                                 </li>
                                 <li class=\"justify-content-between d-flex\">
-                                    <p>Basics of CSS</p>
+                                    <p>Course Illustrated lectures</p>
                                     <a class=\"primary-btn text-uppercase\" href=\"#\">View Details</a>
                                 </li>
                                 <li class=\"justify-content-between d-flex\">
-                                    <p>Getting Familiar with CSS</p>
+                                    <p>Course Info</p>
                                     <a class=\"primary-btn text-uppercase\" href=\"#\">View Details</a>
-                                </li>
-                                <li class=\"justify-content-between d-flex\">
-                                    <p>Introduction to Bootstrap</p>
-                                    <a class=\"primary-btn text-uppercase\" href=\"#\">View Details</a>
-                                </li>
-                                <li class=\"justify-content-between d-flex\">
-                                    <p>Responsive Design</p>
-                                    <a class=\"primary-btn text-uppercase\" href=\"#\">View Details</a>
-                                </li>
-                                <li class=\"justify-content-between d-flex\">
-                                    <p>Canvas in HTML 5</p>
-                                    <a class=\"primary-btn text-uppercase\" href=\"#\">View Details</a>
-                                </li>
-
+                                </li>                             
                             </ul>
                         </div>
                     </div>
@@ -233,8 +226,9 @@ echo"
                         
                         
                     </ul>
+                    <form class=\"form_area md-form\" id=\"SignUp\" action=$_SERVER[PHP_SELF];\" method=\"post\">
                     <a href=\"#\" class=\"primary-btn2 text-uppercase enroll rounded-0 text-white\">Enroll the course</a>
-
+                    </form>
                   
                              
                         
@@ -332,4 +326,50 @@ echo"
           <script src=\"js/theme.js\"></script>
         </body>
       </html>";
+$conn->close();
       ?>
+<?php
+$servername = "localhost";
+$user = "root";
+$pass = "";
+$dbname = "web_project";
+$conns = new mysqli($servername, $user, $pass, $dbname);
+if ($conns->connect_error) {
+    die("Connection Failed: " . $conns->connect_error);
+}
+else {
+
+    $MySql = " select * from `users` where '$username'  =  User_Name";
+    $MyResult = $conns->query($MySql);
+    if ($MyResult->num_rows > 0) {
+        $rows = $MyResult->fetch_assoc();
+        $StudentId = $rows['UserID'];
+        $MySql = "INSERT INTO course_students (CourseID,InstructorID,StudentID)
+                    VALUES ('$CourseID', '$instructor_id','$StudentId' )";
+        $sqlIfExist = "select * from `course_students` where '$StudentId'  =  StudentID";
+        $checkResult = $conns->query($sqlIfExist);
+        $sqlIfStudent = "select * from `student` where '$StudentId'  =  StudentID";
+        $resultStudent = $conns->query($sqlIfStudent);
+        if ($resultStudent->num_rows == 0) {
+            echo "<script>
+                alert('You Should be a student');
+                </script>";
+        }
+        else {
+            if ($checkResult->num_rows == 0) {
+                if ($conn->query($sql) === TRUE) {
+                    echo "<script>
+                alert('Now You are a member on this course');
+                </script>";
+                }
+
+            } else {
+                echo "<script>
+alert('You already a member');
+</script>";
+            }
+        }
+    }
+}
+#<a href="#" class="primary-btn2 text-uppercase enroll rounded-0 text-white">Enroll the course</a>
+?>

@@ -78,7 +78,7 @@
                             <span class="caret"></span></button>
 
                         <div class="dropdown-menu dropdown-menu-right dropdown-info " aria-labelledby="navbar-tools">
-                            <a class="dropdown-item waves-effect waves-light" href="">Profile</a>
+                            <a class="dropdown-item waves-effect waves-light" href="Profile.php">Profile</a>
                             <a class="dropdown-item waves-effect waves-light" href="">Courses</a>
                             <form method="post" action="index.php">
                                 <button onclick="alert('logged out')" value="logout" name="logout" id="logout" class="dropdown-item waves-effect waves-light" href="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">Log out</button>
@@ -91,7 +91,6 @@
                     </li>
 
                         <?php
-
                             if (isset($_POST['logout'])) {
                                 unset($_SESSION['username']);
                                 unset($_SESSION['firstTime']);
@@ -817,7 +816,7 @@ if (isset($_POST["signup"])&&$_SERVER["REQUEST_METHOD"] == "POST") {
         echo "";
     } else {
         $first_name = test_input($_POST["first_name"]);
-        if (!preg_match("/^[a-zA-Z ]*$/", 'first_name')) {
+        if (!preg_match("/^[a-zA-Z ]*$/", $first_name)) {
             echo "";
         }
     }
@@ -825,7 +824,7 @@ if (isset($_POST["signup"])&&$_SERVER["REQUEST_METHOD"] == "POST") {
         echo "";
     } else {
         $second_name = test_input($_POST["second_name"]);
-        if (!preg_match("/^[a-zA-Z ]*$/", 'second_name')) {
+        if (!preg_match("/^[a-zA-Z ]*$/", $second_name)) {
             echo "";
         }
     }
@@ -833,7 +832,7 @@ if (isset($_POST["signup"])&&$_SERVER["REQUEST_METHOD"] == "POST") {
         echo "";
     } else {
         $third_name = test_input($_POST["third_name"]);
-        if (!preg_match("/^[a-zA-Z ]*$/", 'third_name')) {
+        if (!preg_match("/^[a-zA-Z ]*$/", $third_name)) {
             echo "";
         }
     }
@@ -841,7 +840,7 @@ if (isset($_POST["signup"])&&$_SERVER["REQUEST_METHOD"] == "POST") {
         echo "";
     } else {
         $last_name = test_input($_POST["last_name"]);
-        if (!preg_match("/^[a-zA-Z ]*$/", 'last_name')) {
+        if (!preg_match("/^[a-zA-Z ]*$/", $last_name)) {
             echo "";
         }
     }
@@ -905,6 +904,7 @@ if (isset($_POST["signup"])&&$_SERVER["REQUEST_METHOD"] == "POST") {
         return $data;
     }
 
+    $userID = 0000000000000000;
     $servername = "localhost";
     $user = "root";
     $pass = "";
@@ -914,8 +914,7 @@ if (isset($_POST["signup"])&&$_SERVER["REQUEST_METHOD"] == "POST") {
     if ($conn->connect_error) {
        $die= die("Connection Failed: " . $conn->connect_error);
 
-    } else {
-    #   echo "<script>
+    } else {#   echo "<script>
 #alert('$first_name');
 #</script>";
 
@@ -931,15 +930,29 @@ if (isset($_POST["signup"])&&$_SERVER["REQUEST_METHOD"] == "POST") {
 
                 }
             }
-
-            $sql = "INSERT INTO users (UserID,User_Name,UnivID, First_Name, Second_Name,Third_Name,Family_Name,Date,Email,Gender,picture,Valid)
-                    VALUES (1000100000000012, '$Signup_username',1000 ,'$first_name','$second_name','$third_name','$last_name','$Date','$EMAIL','$gender','$filename',false)";
-
-            if ($conn->query($sql) === TRUE) {
+            $sql2 = " select UnivID from `university` where '$Univ_Name'  =  Univ_Name ";
+            $result2 = $conn->query($sql2);
+            if($result2->num_rows > 0) {
+                $row2 = $result2->fetch_assoc();
+                $univID = $row2['UnivID'];
+                $userID =  $univID * 1000000000000;
+                if(strcmp($regester_as,"Student") === 0) {
+                    $userID = $userID + (10 * 10000000000);
+                }
+                else {
+                    $userID = $userID + (11 * 10000000000);
+                }
+                $userID = $userID + rand(0,9999999999);
+                $passwords = sha1($Signup_Password);
+                $sql = "INSERT INTO users (UserID,User_Name,UnivID, First_Name, Second_Name,Third_Name,Family_Name,Date,Email,Gender,picture,Valid)
+                    VALUES ($userID, '$Signup_username',$univID ,'$first_name','$second_name','$third_name','$last_name','$Date','$EMAIL','$gender','$filename',false)";
+                $sql5 = ("INSERT INTO passwords (UserID,Password,User_Name)
+                    VALUES ('$userID','$passwords' , '$Signup_username')");
+                if ($conn->query($sql) === TRUE) {
                 echo "<script>
 alert('New record created successfully');
 </script>";
-
+$conn->query($sql5);
             } else {
                 echo "<script>
 alert('$sql.$conn->error');
@@ -948,6 +961,7 @@ alert('$sql.$conn->error');
 
 
         }
+            }
     }
     $conn->close();
     unset($signup);
@@ -1033,7 +1047,7 @@ alert('$sql.$conn->error');
             <div class="col-lg-2 col-md-6 single-footer-widget">
                 <h4>Top Products</h4>
                 <ul>
-                    <li><a href="index.html">Home Page</a></li>
+                    <li><a href="index.php">Home Page</a></li>
                     <li><a href="about-us.php">About us</a></li>
                     <li><a href="contact.php">Contact us</a></li>
                 </ul>
