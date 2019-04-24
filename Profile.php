@@ -42,7 +42,7 @@ echo "
     <!-- Required meta tags -->
     <meta charset=\"utf-8\">
     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\">
-    <link rel=\"icon\" href=\"img/1321027.png\" type=\"image/png\">
+    <link rel=\"icon\" href=\"img/icon.png\" type=\"image/png\" />
     <title>World Universities Forum</title>
     <!-- Bootstrap CSS -->
     <link rel=\"stylesheet\" href=\"css/bootstrap.css\">
@@ -558,8 +558,12 @@ if (isset($_POST["update"])&&$_SERVER["REQUEST_METHOD"] == "POST") {
         $sql2 = "UPDATE `users` SET `First_Name`='$first_name',
                   `Second_Name`='$second_name',`Third_Name`='$third_name',`Family_Name`='$last_name',`Date`='$Data',
                   `Email` = '$EMAIL' where '$username' =  User_Name";
+        $passwords = sha1($Password);
+        $sql5 = "UPDATE `passwords` SET `Password`='$passwords' where '$username' = User_Name";
     }
             if ($conn2->query($sql2) === TRUE) {
+                $conn2->query($sql5);
+                echo $sql5;
                 echo "<script>
 alert('Done');
 </script>";
