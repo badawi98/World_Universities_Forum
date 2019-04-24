@@ -558,7 +558,7 @@
                     if (empty($_POST["Password"])) {
 
                     } else {
-                        $Password = test_input($_POST["Password"]);
+                        $Password = htmlspecialchars($_POST["Password"]);
                     }
                     if (empty($_POST["login"])) {
 
@@ -630,10 +630,10 @@
                       unset($login);
 
                 }
-            function test_input($data) {
+            function test_input_1($data) {
                 $data = trim($data);
-                $data = stripslashes($data);
                 $data = htmlspecialchars($data);
+                $data = strtolower($data);
                 return $data;
             }
             ?>
@@ -856,7 +856,7 @@ if (isset($_POST["signup"])&&$_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($_POST["Signup_Password"])) {
         echo "";
     } else {
-        $Signup_Password = test_input($_POST["Signup_Password"]);
+        $Signup_Password = htmlspecialchars($_POST["Signup_Password"]);
         if (!preg_match("(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}", $Signup_username)) {
             echo "";
         }
@@ -864,7 +864,7 @@ if (isset($_POST["signup"])&&$_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($_POST["Signup_username"])) {
         echo "";
     } else {
-        $Signup_username = test_input($_POST["Signup_username"]);
+        $Signup_username = test_input1($_POST["Signup_username"]);
     }
     if (empty($_POST["Date"])) {
         echo "";
@@ -874,7 +874,7 @@ if (isset($_POST["signup"])&&$_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($_POST["filename"])) {
         echo "";
     } else {
-        $filename = test_input($_POST["filename"]);
+        $filename = test_input1($_POST["filename"]);
     }
     if (empty($_POST["signup"])) {
         echo "";
@@ -895,6 +895,14 @@ if (isset($_POST["signup"])&&$_SERVER["REQUEST_METHOD"] == "POST") {
 
     } else {
         $regester_as = test_input($_POST['regester_as']);
+    }
+
+    function test_input_2($data) {
+        $data = trim($data);
+        $data = stripslashes($data);
+        $data = htmlspecialchars($data);
+        $data = strtolower($data);
+        return $data;
     }
 
     $servername = "localhost";
