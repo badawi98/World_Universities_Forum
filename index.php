@@ -78,7 +78,7 @@
                             <span class="caret"></span></button>
 
                         <div class="dropdown-menu dropdown-menu-right dropdown-info " aria-labelledby="navbar-tools">
-                            <a class="dropdown-item waves-effect waves-light" href="">Profile</a>
+                            <a class="dropdown-item waves-effect waves-light" href="Profile.php">Profile</a>
                             <a class="dropdown-item waves-effect waves-light" href="">Courses</a>
                             <form method="post" action="index.php">
                                 <button onclick="alert('logged out')" value="logout" name="logout" id="logout" class="dropdown-item waves-effect waves-light" href="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">Log out</button>
@@ -91,7 +91,6 @@
                     </li>
 
                         <?php
-
                             if (isset($_POST['logout'])) {
                                 unset($_SESSION['username']);
                                 unset($_SESSION['firstTime']);
@@ -817,7 +816,7 @@ if (isset($_POST["signup"])&&$_SERVER["REQUEST_METHOD"] == "POST") {
         echo "";
     } else {
         $first_name = test_input($_POST["first_name"]);
-        if (!preg_match("/^[a-zA-Z ]*$/", 'first_name')) {
+        if (!preg_match("/^[a-zA-Z ]*$/", $first_name)) {
             echo "";
         }
     }
@@ -825,7 +824,7 @@ if (isset($_POST["signup"])&&$_SERVER["REQUEST_METHOD"] == "POST") {
         echo "";
     } else {
         $second_name = test_input($_POST["second_name"]);
-        if (!preg_match("/^[a-zA-Z ]*$/", 'second_name')) {
+        if (!preg_match("/^[a-zA-Z ]*$/", $second_name)) {
             echo "";
         }
     }
@@ -833,7 +832,7 @@ if (isset($_POST["signup"])&&$_SERVER["REQUEST_METHOD"] == "POST") {
         echo "";
     } else {
         $third_name = test_input($_POST["third_name"]);
-        if (!preg_match("/^[a-zA-Z ]*$/", 'third_name')) {
+        if (!preg_match("/^[a-zA-Z ]*$/", $third_name)) {
             echo "";
         }
     }
@@ -841,7 +840,7 @@ if (isset($_POST["signup"])&&$_SERVER["REQUEST_METHOD"] == "POST") {
         echo "";
     } else {
         $last_name = test_input($_POST["last_name"]);
-        if (!preg_match("/^[a-zA-Z ]*$/", 'last_name')) {
+        if (!preg_match("/^[a-zA-Z ]*$/", $last_name)) {
             echo "";
         }
     }
@@ -1025,7 +1024,7 @@ alert('$sql.$conn->error');
             <div class="col-lg-2 col-md-6 single-footer-widget">
                 <h4>Top Products</h4>
                 <ul>
-                    <li><a href="index.html">Home Page</a></li>
+                    <li><a href="index.php">Home Page</a></li>
                     <li><a href="about-us.php">About us</a></li>
                     <li><a href="contact.php">Contact us</a></li>
                 </ul>
