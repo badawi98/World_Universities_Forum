@@ -65,32 +65,16 @@ echo"
     <!--================ Start Header Menu Area =================-->
     <header class=\"header_area white-header\">
       <div class=\"main_menu\">
-        <div class=\"search_input\" id=\"search_input_box\">
-          <div class=\"container\">
-            <form class=\"d-flex justify-content-between\" method=\"\" action=\"\">
-              <input
-                type=\"text\"
-                class=\"form-control\"
-                id=\"search_input\"
-                placeholder=\"Search Here\"
-              />
-              <button type=\"submit\" class=\"btn\"></button>
-              <span
-                class=\"ti-close\"
-                id=\"close_search\"
-                title=\"Close Search\"
-              ></span>
-            </form>
-          </div>
-        </div>
 
         <nav class=\"navbar navbar-expand-lg navbar-light\">
           <div class=\"container\">
             <!-- Brand and toggle get grouped for better mobile display -->
-            <a class=\"navbar-brand logo_h\" href=\"index.php\">
-                  <img width=\"32\" hieght=\"32\" src=\"img/1321027.png\" style=\" display: inline-block; bottom: 3px; position:relative;\" alt=\"\">
-                  <h2 style=\" margin-left:5px; color:white; display: inline-block; position: relative; top:5px;\" class=\"mb-3\">Universities Forum</h2>
-              </a>
+             <a class=\"\" href=\"index.php\" style=\"
+    margin-right: 0px;
+\">
+                    <img width=\"32\" hieght=\"32\" src=\"img/1321027.png\" style=\" display: inline-block; bottom: 3px; position:relative;\" alt=\"\">
+                    <h3 style=\" margin-left:5px; display: inline-block; position: relative; top:5px;\" class=\"mb-3\">Universities Forum</h3>
+                </a>
             <button
               class=\"navbar-toggler\"
               type=\"button\"
@@ -131,11 +115,47 @@ echo"
                           <a class=\"nav-link\" href=\"contact.php\">Contact</a>
                       </li>
                   </ul>
+                  
+                   <ul style=\"margin-left: 40px; margin-right: 40px;\" class=\"nav navbar-nav nav-flex-icons\">
+
+                    <!-- user -->
+                    <li style=\"display:none; padding-bottom: 5px; padding-top: 2px; \" id=\"navbar-static-user\" class=\"nav-item dropdown\">
+
+                        <button  class=\"btn btn-light btn-block dropdown-toggle\" aria-haspopup=\"true\" aria-expanded=\"false\" type=\"button\" id=\"navbar-user\" data-toggle=\"dropdown\">tamer
+                            <span class=\"caret\"></span></button>
+
+                        <div class=\"dropdown-menu dropdown-menu-right dropdown-info \" aria-labelledby=\"navbar-tools\">
+                            <a class=\"dropdown-item waves-effect waves-light\" href=\"Profile.php\">Profile</a>
+                            <a class=\"dropdown-item waves-effect waves-light\" href=\"\">Courses</a>
+                            <form method=\"post\" action=\"index.php\">
+                                <button onclick=\"alert('logged out')\" value=\"logout\" name=\"logout\" id=\"logout\" class=\"dropdown-item waves-effect waves-light\" href=\"<?php echo htmlspecialchars($_SERVER[PHP_SELF]);?>\">Log out</button>
+                            </form>
+
+
+
+
+                        </div>
+                    </li>
+
+                        <!-- Login / register -->
+                        <a id=\"loginfisrt\" href=\"#regst\" class=\"primary-btn ml-sm-3 ml-0\" style=\"margin-bottom: 5px; margin-top:2px; padding-left: 20px;padding-right: 20px;\"
+                        onclick=\"$('#navbarSupportedContent').collapse('hide')
+                        focus()\">Log In</a>
+                        <script type=\"text/javascript\">
+                            function focus() {
+                                document.getElementById(\"login_username\").focus();
+                            }
+                        </script>
+                    </ul>
+                  
+                  
+                  
               </div>
           </div>
         </nav>
       </div>
     </header>
+    
     <!--================ End Header Menu Area =================-->
 
     <!--================Home Banner Area =================-->
@@ -226,7 +246,7 @@ echo"
                         
                         
                     </ul>
-                    <form class=\"form_area md-form\" id=\"SignUp\" action=$_SERVER[PHP_SELF];\" method=\"post\">
+                    <form class=\"form_area md-form\" id=\"SignUp\" action=$_SERVER[PHP_SELF] method=\"post\">
                     <a href=\"#\" class=\"primary-btn2 text-uppercase enroll rounded-0 text-white\">Enroll the course</a>
                     </form>
                   
@@ -334,6 +354,26 @@ $user = "root";
 $pass = "";
 $dbname = "web_project";
 $conns = new mysqli($servername, $user, $pass, $dbname);
+
+                            if (isset($_POST['logout'])) {
+                                unset($_SESSION['username']);
+                                unset($_SESSION['firstTime']);
+                                unset($_SESSION['notstdntftime']);
+                                $logout=$_POST['logout'];
+                            }
+
+
+
+if(isset($_SESSION['username'])) {
+    $username = $_SESSION['username'];
+    echo "
+                                    <script> 
+                                        document.getElementById('loginfisrt').style.display='none';
+                                        document.getElementById('navbar-static-user').style.display='inline-block';
+                                        document.getElementById('navbar-user').innerText='👤 $username';
+                                       
+                                </script>";
+}
 if ($conns->connect_error) {
     die("Connection Failed: " . $conns->connect_error);
 }
@@ -351,9 +391,14 @@ else {
         $sqlIfStudent = "select * from `student` where '$StudentId'  =  StudentID";
         $resultStudent = $conns->query($sqlIfStudent);
         if ($resultStudent->num_rows == 0) {
-            echo "<script>
-                alert('You Should be a student');
-                </script>";
+            $_SESSION['notstdntftime'];
+
+            if(isset($_SESSION['notstdntftime'])) {$_SESSION['notstdntftime']=false;}
+            else $_SESSION['notstdntftime']=true;
+            if($_SESSION['notstdntftime']==true){
+                echo "
+                                          <script> alert('You Should be a student');</script>";
+            }
         }
         else {
             if ($checkResult->num_rows == 0) {

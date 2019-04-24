@@ -94,6 +94,7 @@
                             if (isset($_POST['logout'])) {
                                 unset($_SESSION['username']);
                                 unset($_SESSION['firstTime']);
+                                unset($_SESSION['notstdntftime']);
                                 $logout=$_POST['logout'];
                             }
 
@@ -592,12 +593,9 @@
                                   if ($i < $result->num_rows) {
 
                                       $_SESSION["username"]=$username;
-                                      if(isset($_SESSION['firstTime'])) {$_SESSION['firstTime']=false;
-                                          echo "
-                                          <script>alert ('good job');</script>";}
+                                      if(isset($_SESSION['firstTime'])) {$_SESSION['firstTime']=false;}
                                       else $_SESSION['firstTime']=true;
                                       if($_SESSION['firstTime']==true){
-
                                           echo "
                                           <script>alert ('Welcome  $username');</script>";
                                       }
@@ -629,7 +627,7 @@
                       unset($login);
 
                 }
-            function test_input_1($data) {
+            function test_input($data) {
                 $data = trim($data);
                 $data = htmlspecialchars($data);
                 $data = strtolower($data);
@@ -863,7 +861,7 @@ if (isset($_POST["signup"])&&$_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($_POST["Signup_username"])) {
         echo "";
     } else {
-        $Signup_username = test_input1($_POST["Signup_username"]);
+        $Signup_username = test_input($_POST["Signup_username"]);
     }
     if (empty($_POST["Date"])) {
         echo "";
@@ -873,7 +871,7 @@ if (isset($_POST["signup"])&&$_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($_POST["filename"])) {
         echo "";
     } else {
-        $filename = test_input1($_POST["filename"]);
+        $filename = test_input($_POST["filename"]);
     }
     if (empty($_POST["signup"])) {
         echo "";
