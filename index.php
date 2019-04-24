@@ -588,13 +588,6 @@
                                       }
 
                                   }
-                                  echo $row["User_Name"];
-                                  echo "<br>";
-                                  echo $username;
-                                  echo "<br>";
-                                  echo $row["Password"];
-                                  echo "<br>";
-                                  echo sha1($Password);
                                   if ($i < $result->num_rows) {
 
                                       $_SESSION["username"]=$username;
