@@ -166,9 +166,9 @@ session_start();?>
             </div>
             <div class="row">
     <?php
-    $servername = "localhost";
-    $user = "root";
-    $pass = "";
+    $servername = "192.168.1.23";
+    $user = "tamer";
+    $pass = "tamer";
     $dbname = "web_project";
     $i = 0;
     $conn = new mysqli($servername, $user, $pass, $dbname);
@@ -208,8 +208,8 @@ session_start();?>
                         </div>
                         <div class=\"course_content\">
                             <span class=\"tag mb-4 d-inline-block\">$UnivName</span>
-                            <h4 class=\"mb-3\">
-                                <a href=\"course-details.php?coursename=$CourseName\">$CourseName</a>
+                            <h4 class=\"mb-3\">                       
+                                <a name='courseTag' href=\"course-details.php?coursename=$CourseName\">$CourseName</a>                          
                             </h4>
                             <p>$CourseDescription</p>
                             <div
@@ -227,6 +227,17 @@ session_start();?>
                 </div>
             </div>
                     ";
+
+                if(!isset($username)){
+                    echo "
+                    <script>
+                    document.getElementsByName('courseTag')[$i].href='courses.php?member=\"no\"';
+</script>";
+                }
+            }
+            if(isset($_GET['member'])) {
+                echo "
+                    <script>(alert('you are not a member in this course'));</script>";
             }
         }
     }

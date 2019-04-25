@@ -566,9 +566,9 @@
                     } else {
                         $login = $_POST["login"];
                     }
-                      $servername = "localhost";
-                      $user = "root";
-                      $pass = "";
+                      $servername = "192.168.1.23";
+                      $user = "tamer";
+                      $pass = "tamer";
                       $dbname = "web_project";
                       $conn = new mysqli($servername, $user, $pass, $dbname);
                       if ($conn->connect_error) {
@@ -709,9 +709,9 @@
                                     <select name="Univ_Name" style="display: none;" >
 
                                         <?php
-                                        $server_name = "localhost";
-                                        $user_name = "root";
-                                        $password = "";
+                                        $server_name = "192.168.1.23";
+                                        $user_name = "tamer";
+                                        $password = "tamer";
                                         $database = "web_project";
                                         $mycon = new mysqli($server_name , $user_name , $password , $database);
                                         if ($mycon->connect_error) {
@@ -739,9 +739,9 @@
                                         <span class="current">University</span>
                                         <ul  class="list">
                                             <?php
-                                            $server_name = "localhost";
-                                            $user_name = "root";
-                                            $password = "";
+                                            $server_name = "192.168.1.23";
+                                            $user_name = "tamer";
+                                            $password = "tamer";
                                             $database = "web_project";
                                             $mycon = new mysqli($server_name , $user_name , $password , $database);
                                             if ($mycon->connect_error) {
@@ -902,9 +902,9 @@ if (isset($_POST["signup"])&&$_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     $userID = 0000000000000000;
-    $servername = "localhost";
-    $user = "root";
-    $pass = "";
+    $servername = "192.168.1.23";
+    $user = "tamer";
+    $pass = "tamer";
     $dbname = "web_project";
     $i = 0;
     $conn = new mysqli($servername, $user, $pass, $dbname);
