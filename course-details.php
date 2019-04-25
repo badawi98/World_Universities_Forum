@@ -10,9 +10,9 @@ window.location.replace('courses.php');</script>;
 ";
 }
 $course_name = $_GET["coursename"];
-$servername = "192.168.1.23";
-$user = "tamer";
-$pass = "tamer";
+$servername = "localhost";
+$user = "root";
+$pass = "";
 $dbname = "web_project";
 $i = 0;
 $conn = new mysqli($servername, $user, $pass, $dbname);
@@ -37,15 +37,19 @@ else {
             if ($result3->num_rows > 0) {
                 $row3 = $result3->fetch_assoc();
                 $instructor_name =  $row3['First_Name'] . ' ' . $row3['Family_Name'];
-                }
+            }
             $sql4 ="select * from `course_students` where $instructor_id  =  InstructorID and $CourseID = CourseID";
             $result4 = $conn->query($sql4);
             $numberOfStudent = $result4->num_rows;
+                $row10 = $result4->fetch_assoc();
+                $StudentId = $row10['StudentID'];
+
+
 
 
         }
 
-        }
+    }
 }
 echo"
 <!DOCTYPE html>
@@ -202,7 +206,24 @@ echo"
                         <div class=\"content\">
                            $course_Decription
                         </div>
-
+";
+?>
+<?php
+$servername = "localhost";
+$user = "root";
+$pass = "";
+$dbname = "web_project";
+$conns = new mysqli($servername, $user, $pass, $dbname);
+if ($conns->connect_error) {
+    die("Connection Failed: " . $conns->connect_error);
+}
+else {
+    $MySql = " select * from `course_students` where '$CourseID' = CourseID and '$instructor_id'=InstructorID and '$StudentId'=StudentID";
+    $result = $conns->query($MySql);
+    echo $StudentId;
+    if ($result->num_rows == 0) {
+        $row11 = $result4->fetch_assoc();
+        echo " 
                         
                         <h4 class=\"title\">Course Outline</h4>
                         <div class=\"content\">
@@ -268,6 +289,78 @@ echo"
             </div>
         </div>
     </section>
+    ";
+    }
+    else {
+        echo"
+
+        <h4 class= \"title\">Course Outline</h4>
+                        <div class=\"content\">
+                            <ul class=\"course_list\">
+                                <li class=\"justify-content-between d-flex\">
+                                    <p>Course Slides</p>
+                                    <a class=\"primary-btn text-uppercase\" href=\"#\">View Details</a>
+                                </li>
+                                <li class=\"justify-content-between d-flex\">
+                                    <p>Course Records</p>
+                                    <a class=\"primary-btn text-uppercase\" href=\"#\">View Details</a>
+                                </li>
+                                <li class=\"justify-content-between d-flex\">
+                                    <p>Course Exams</p>
+                                    <a class=\"primary-btn text-uppercase\" href=\"#\">View Details</a>
+                                </li>
+                                <li class=\"justify-content-between d-flex\">
+                                    <p>Course Summaries</p>
+                                    <a class=\"primary-btn text-uppercase\" href=\"#\">View Details</a>
+                                </li>
+                                <li class=\"justify-content-between d-flex\">
+                                    <p>Course Illustrated lectures</p>
+                                    <a class=\"primary-btn text-uppercase\" href=\"#\">View Details</a>
+                                </li>
+                                <li class=\"justify-content-between d-flex\">
+                                    <p>Course Info</p>
+                                    <a class=\"primary-btn text-uppercase\" href=\"#\">View Details</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class=\"col-lg-4 right-contents\">
+                    <ul>
+                        <li>
+                            <a class=\"justify-content-between d-flex\" href=\"#\">
+                                <p>Trainer’s Name</p>
+                                <span class=\"or\">$instructor_name</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class=\"justify-content-between d-flex\" href=\"#\">
+                                <p>Number of Students </p>
+                                <span>$numberOfStudent</span>
+                            </a>
+                        </li>
+
+
+                    </ul>
+
+
+
+
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>";
+    }
+}
+?>
+<?php
+echo " 
     <!--================ End Course Details Area =================-->
 
     <!--================ Start footer Area  =================-->
@@ -354,8 +447,7 @@ echo"
           <script src=\"js/theme.js\"></script>
         </body>
       </html>";
-$conn->close();
-      ?>
+?>
 <?php
 if (isset($_POST['logout'])) {
     unset($_SESSION['username']);
@@ -373,18 +465,18 @@ if(isset($_SESSION['username'])) {
                                        
                                 </script>";
 }
-$servername = "192.168.1.23";
-$user = "tamer";
-$pass = "tamer";
+$servername = "localhost";
+$user = "root";
+$pass = "";
 $dbname = "web_project";
 $conns = new mysqli($servername, $user, $pass, $dbname);
+
 
 
 if ($conns->connect_error) {
     die("Connection Failed: " . $conns->connect_error);
 }
 else {
-
     $MySql = " select * from `users` where '$username' = User_Name";
     $MyResult = $conns->query($MySql);
     if ($MyResult->num_rows > 0) {
@@ -406,12 +498,12 @@ else {
         }
         else {
 
-                if ($conns->query($MySql) === TRUE) {
-                    echo "<script>
+            if ($conns->query($MySql) === TRUE) {
+                echo "<script>
                 alert('Now You are a member on this course');
                 </script>";
-                }
-             else {
+            }
+            else {
                 echo "<script>
 alert('You already a member');
 </script>";

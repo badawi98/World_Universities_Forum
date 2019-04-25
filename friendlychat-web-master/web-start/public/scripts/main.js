@@ -14,21 +14,52 @@
  * limitations under the License.
  */
 'use strict';
-var CourseName="messages";
+var  CourseName='';
+var UserName="Tamer Assaliya";
 // Signs-in Friendly Chat.
-function signIn() {
-  // Sign into Firebase using popup auth & Google as the identity provider.
-  var provider = new firebase.auth.GoogleAuthProvider();
-  firebase.auth().signInWithPopup(provider);
+var setCourseName=function (cre,User) {
+  CourseName=cre;
+  UserName=User;
 
 }
+
+var signIn =function (email,password) {
+  // Sign into Firebase using popup auth & Google as the identity provider.
+
+
+
+  firebase.auth().signInWithEmailAndPassword(email, password).then(loadMessages(CourseName)).catch(function(error) {
+    // Handle Errors here.
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    alert("You are not signed in")
+    // ...
+  });
+
+
+  //var provider = new firebase.auth.GoogleAuthProvider();
+  //firebase.auth().signInWithPopup(provider);
+
+
+  // writeUserData("","","",new Date("27 July 2016 13:30:00 GMT+05:45"));
+
+
+}
+
+
+
+
+
 
 // Signs-out of Friendly Chat.
 function signOut() {
   // Sign out of Firebase.
+  // Sign out of Firebase
   firebase.auth().signOut();
 
+
 }
+
 
 // Initiate firebase auth.
 function initFirebaseAuth() {
@@ -38,7 +69,7 @@ function initFirebaseAuth() {
 
 // Returns the signed-in user's profile Pic URL.
 function getProfilePicUrl() {
-  return firebase.auth().currentUser.photoURL || '/images/profile_placeholder.png';
+  return  'friendlychat-web-master/web-start/public/images/profile_placeholder.png';
 }
 
 // Returns the signed-in user's display name.
@@ -54,8 +85,11 @@ function isUserSignedIn() {
 // Saves a new message on the Firebase DB.
 function saveMessage(messageText) {
   // Add a new message entry to the Firebase database.
+
+
+
   return firebase.firestore().collection(CourseName).add({
-    name: getUserName(),
+    name: UserName,
     text: messageText,
     profilePicUrl: getProfilePicUrl(),
     timestamp: firebase.firestore.FieldValue.serverTimestamp()
@@ -65,12 +99,16 @@ function saveMessage(messageText) {
 }
 
 // Loads chat messages history and listens for upcoming ones.
-function loadMessages() {
+function loadMessages (course) {
   // Create the query to load the last 12 messages and listen for new ones.
+  var s=course;
+  alert(s);
   var query = firebase.firestore()
       .collection(CourseName)
       .orderBy('timestamp', 'desc')
       .limit(12);
+
+
 
   // Start listening to the query.
   query.onSnapshot(function(snapshot) {
@@ -80,7 +118,7 @@ function loadMessages() {
       } else {
         var message = change.doc.data();
         displayMessage(change.doc.id, message.timestamp, message.name,
-            message.text, message.profilePicUrl, message.imageUrl);
+            message.text, getProfilePicUrl(), message.imageUrl);
       }
     });
   });
@@ -91,7 +129,7 @@ function loadMessages() {
 function saveImageMessage(file) {
   // 1 - We add a message with a loading icon that will get updated with the shared image.
   firebase.firestore().collection(CourseName).add({
-    name: getUserName(),
+    name: UserName,
     imageUrl: LOADING_IMAGE_URL,
     profilePicUrl: getProfilePicUrl(),
     timestamp: firebase.firestore.FieldValue.serverTimestamp()
@@ -126,7 +164,7 @@ function saveMessagingDeviceToken() {
       requestNotificationsPermissions();
     }
   }).catch(function(error){
-    console.error('Unable to get messaging token.', error);
+    console.error("Unable to get messaging token.", error);
   });
 }
 
@@ -174,6 +212,7 @@ function onMessageFormSubmit(e) {
       // Clear message text field and re-enable the SEND button.
       resetMaterialTextfield(messageInputElement);
       toggleButton();
+      displayMessage()
     });
   }
 }
@@ -235,9 +274,9 @@ function resetMaterialTextfield(element) {
 // Template for messages.
 var MESSAGE_TEMPLATE =
     '<div class="message-container">' +
-      '<div class="spacing"><div class="pic"></div></div>' +
-      '<div class="message"></div>' +
-      '<div class="name"></div>' +
+    '<div class="spacing"><div class="pic"></div></div>' +
+    '<div class="message"></div>' +
+    '<div class="name"></div>' +
     '</div>';
 
 // Adds a size to Google Profile pics URLs.
@@ -318,7 +357,7 @@ function checkSetup() {
   if (!window.firebase || !(firebase.app instanceof Function) || !firebase.app().options) {
     window.alert('You have not configured and imported the Firebase SDK. ' +
         'Make sure you go through the codelab setup instructions and make ' +
-        'sure you are running the codelab using `firebase serve`');
+        'sure you are running the codelab using firebase serve');
   }
 }
 
@@ -358,10 +397,9 @@ mediaCaptureElement.addEventListener('change', onMediaFileSelected);
 // initialize Firebase
 initFirebaseAuth();
 
-// Remove the warning about timstamps change. 
+// Remove the warning about timstamps change.
 var firestore = firebase.firestore();
-var settings = {timestampsInSnapshots: true};
-firestore.settings(settings);
+//var settings = {timestampsInSnapshots: true};
+//firestore.settings(settings);
 
 // We load currently existing chat messages and listen to new ones.
-loadMessages();

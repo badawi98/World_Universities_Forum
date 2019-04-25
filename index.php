@@ -566,9 +566,9 @@
                     } else {
                         $login = $_POST["login"];
                     }
-                      $servername = "192.168.1.23";
-                      $user = "tamer";
-                      $pass = "tamer";
+                      $servername = "localhost";
+                      $user = "root";
+                      $pass = "";
                       $dbname = "web_project";
                       $conn = new mysqli($servername, $user, $pass, $dbname);
                       if ($conn->connect_error) {
@@ -709,9 +709,9 @@
                                     <select name="Univ_Name" style="display: none;" >
 
                                         <?php
-                                        $server_name = "192.168.1.23";
-                                        $user_name = "tamer";
-                                        $password = "tamer";
+                                        $server_name = "localhost";
+                                        $user_name = "root";
+                                        $password = "";
                                         $database = "web_project";
                                         $mycon = new mysqli($server_name , $user_name , $password , $database);
                                         if ($mycon->connect_error) {
@@ -739,9 +739,9 @@
                                         <span class="current">University</span>
                                         <ul  class="list">
                                             <?php
-                                            $server_name = "192.168.1.23";
-                                            $user_name = "tamer";
-                                            $password = "tamer";
+                                            $server_name = "localhost";
+                                            $user_name = "root";
+                                            $password = "";
                                             $database = "web_project";
                                             $mycon = new mysqli($server_name , $user_name , $password , $database);
                                             if ($mycon->connect_error) {
@@ -902,9 +902,9 @@ if (isset($_POST["signup"])&&$_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     $userID = 0000000000000000;
-    $servername = "192.168.1.23";
-    $user = "tamer";
-    $pass = "tamer";
+    $servername = "localhost";
+    $user = "root";
+    $pass = "";
     $dbname = "web_project";
     $i = 0;
     $conn = new mysqli($servername, $user, $pass, $dbname);
@@ -948,7 +948,37 @@ if (isset($_POST["signup"])&&$_SERVER["REQUEST_METHOD"] == "POST") {
                 if ($conn->query($sql) === TRUE) {
                 echo "<script>
 alert('New record created successfully');
-</script>";
+</script>
+
+<script src=\"https://www.gstatic.com/firebasejs/5.10.0/firebase.js\"></script>
+<script>
+    var config = {
+        apiKey: \"AIzaSyB-4y1lO-YsaFpcMaybmpc_vKhrWbUYiiE\",
+        authDomain: \"chattest116.firebaseapp.com\",
+        databaseURL: \"https://chattest116.firebaseio.com\",
+        projectId: \"chattest116\",
+        storageBucket: \"chattest116.appspot.com\",
+        messagingSenderId: \"399563458247\"
+    };
+    firebase.initializeApp(config);
+</script>
+<script >
+
+    firebase.auth().createUserWithEmailAndPassword($EMAIL, $passwords)
+        .then(function(user) {
+            var user = firebase.auth().currentUser;
+            setUserInfo(\"\", \"\", userName, userEmail, user.uid)
+        })
+        .catch(function(error) {
+            // no if (error) is needed here: if catch is called, there was an error
+            var errorCode = error.code;
+            var errorMessage = error.message;
+
+            window.alert(\"There went something wrong : \" + errorMessage);
+        });
+</script>
+";
+
 $conn->query($sql5);
             } else {
                 echo "<script>
@@ -1052,7 +1082,7 @@ alert('$sql.$conn->error');
             <div class="col-lg-2 col-md-6 single-footer-widget">
                 <h4>Quick Links</h4>
                 <ul>
-                    <li><a href="Scholarship.html">Scholarship</a></li>
+                    <li><a href="Scholarship.php">Scholarship</a></li>
                     <li><a href="courses.php">courses</a></li>
                 </ul>
             </div>
@@ -1060,8 +1090,8 @@ alert('$sql.$conn->error');
                 <h4>Features</h4>
                 <ul>
                     <li><a href="courses.php">Courses</a></li>
-                    <li><a href="Scholarship.html">Scholarship</a></li>
-                    <li><a href="#">Chat</a></li>
+                    <li><a href="Scholarship.php">Scholarship</a></li>
+                    <li><a href="courses.php">Course Chat</a></li>
                 </ul>
             </div>
             <div class="col-lg-2 col-md-6 single-footer-widget">
@@ -1071,23 +1101,7 @@ alert('$sql.$conn->error');
                     <li><a href="https://colorlib.com/wp/template/edustage/" target="_blank">ColorLib</a></li>
                 </ul>
             </div>
-            <div class="col-lg-4 col-md-6 single-footer-widget">
-                <h4>Newsletter</h4>
-                <p>You can trust us. we only send promo offers,</p>
-                <div class="form-wrap" id="mc_embed_signup">
-                    <form target="_blank" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01" method="get" class="form-inline" novalidate="true">
-                        <input class="form-control" name="EMAIL" placeholder="Your Email Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your Email Address'" required="" type="email">
-                        <button class="click-btn btn btn-default">
-                            <span>subscribe</span>
-                        </button>
-                        <div style="position: absolute; left: -5000px;">
-                            <input name="b_36c4fd991d266f23781ded980_aefe40901a" tabindex="-1" value="" type="text">
-                        </div>
 
-                        <div class="info"></div>
-                    </form>
-                </div>
-            </div>
         </div>
         <div class="row footer-bottom d-flex justify-content-between" align="center">
             <p class="col-lg-8 col-sm-12 footer-text m-0 text-white">

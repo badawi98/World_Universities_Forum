@@ -159,7 +159,7 @@ if(isset($_SESSION['username'])) {
                 <div class="col-lg-12">
                     <div class="banner_content text-center">
                         <h2 class="text-uppercase mt-4 mb-5" style="font-size: 36px">
-                            World is full  of opportunities <br>take your's and apply to scholarships
+                            Universities <br>
                         </h2>
                         <div>
                         </div>
@@ -186,9 +186,9 @@ if(isset($_SESSION['username'])) {
                             </div>
                         </div>
                         <?php
-                        $servername = "192.168.1.23";
-                        $user = "tamer";
-                        $pass = "tamer";
+                        $servername = "localhost";
+                        $user = "root";
+                        $pass = "";
                         $dbname = "web_project";
                         $i = 0;
                         $conn = new mysqli($servername, $user, $pass, $dbname);
@@ -357,9 +357,9 @@ if(isset($_SESSION['username'])) {
  } else {
      $second_univ = test_input($_POST["second_univ"]);
  }
- $servername = "192.168.1.23";
- $user = "tamer";
- $pass = "tamer";
+ $servername = "localhost";
+ $user = "root";
+ $pass = "";
  $dbname = "web_project";
  $i = 0;
  $conn = new mysqli($servername, $user, $pass, $dbname);

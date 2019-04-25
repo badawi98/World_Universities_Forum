@@ -341,22 +341,22 @@
 
     @media only screen and (max-width: 400px) {
         div.class1 {
-            height: 400px;
+            height: 200px;
         }
     }
     @media only screen and (max-width: 600px) {
         div.class1 {
-            height: 600px;
+            height: 350px;
         }
     }
     @media only screen and (max-width: 800px) {
        div .class1 {
-            height: 800px;
+            height: 450px;
         }
     }
     @media only screen and (max-width: 2000px) {
         .class1 {
-            height: 1000px;
+            height: 500px;
         }
     }
     @media only screen and (max-width: 400px) {
@@ -386,10 +386,10 @@
 
 
                         <!-- Header section containing logo -->
-                        <header  class="  mdl-layout__header mdl-color-text--white mdl-color--light-blue-700">
-                            <div class="class2 mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-grid">
+                        <header  hidden class="  mdl-layout__header mdl-color-text--white mdl-color--light-blue-700">
+                            <div  hidden class="class2 mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-grid">
 
-                                <div id="user-container">
+                                <div hidden id="user-container">
                                     <div hidden id="user-pic"></div>
                                     <div hidden id="user-name"></div>
                                     <button hidden id="sign-out" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-color-text--white">
@@ -403,7 +403,7 @@
                         </header>
 
                         <main class="mdl-layout__content mdl-color--grey-100">
-                            <div id="messages-card-container" style="width:100%" class="mdl-cell mdl-cell--12-col mdl-grid">
+                            <div id="messages-card-container" style="background-color: white;width:100%" class="mdl-cell mdl-cell--12-col mdl-grid">
 
                                 <!-- Messages container -->
                                 <div id="messages-card" class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-cell--12-col-desktop">
@@ -468,14 +468,11 @@
     <!-- If you do not want to serve/host your project using Firebase Hosting see https://firebase.google.com/docs/web/setup -->
 
 
-    <script src="/__/firebase/5.10.0/firebase-app.js"></script>
-    <script src="/__/firebase/5.10.0/firebase-auth.js"></script>
-    <script src="/__/firebase/5.10.0/firebase-storage.js"></script>
-    <script src="/__/firebase/5.10.0/firebase-messaging.js"></script>
-    <script src="/__/firebase/5.10.0/firebase-firestore.js"></script>
-    <script src="/__/firebase/init.js"></script>
+
+
 
     <script src="friendlychat-web-master/web-start/public/scripts/main.js"></script>
 
+    <script>setCourseName('messages','Badawi Wawi');signIn("mohammed.gh1979@gmail.com","ghazalco");</script>
         </body>
       </html>

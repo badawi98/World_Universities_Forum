@@ -173,7 +173,6 @@ session_start();?>
           <div class="col-lg-9">
             <form
               class="row contact_form"
-              action="contact_process.php"
               method="post"
               id="contactForm"
               novalidate="novalidate"
@@ -231,9 +230,11 @@ session_start();?>
                 </div>
               </div>
               <div class="col-md-12 text-right">
+                  <a href="mailto: world.universities.forum@gmail.com">
                 <button type="submit" value="submit" class="btn primary-btn">
                   Send Message
                 </button>
+                  </a>
               </div>
             </form>
           </div>
@@ -249,9 +250,9 @@ session_start();?>
                 <div class="col-lg-2 col-md-6 single-footer-widget">
                     <h4>Top Products</h4>
                     <ul>
-                        <li><a href="index.html">Home Page</a></li>
+                        <li><a href="index.php">Home Page</a></li>
                         <li><a href="about-us.php">About us</a></li>
-                        <li><a href="contact.html">Contact us</a></li>
+                        <li><a href="contact.php">Contact us</a></li>
                     </ul>
                 </div>
                 <div class="col-lg-2 col-md-6 single-footer-widget">
@@ -266,7 +267,7 @@ session_start();?>
                     <ul>
                         <li><a href="courses.php">Courses</a></li>
                         <li><a href="Scholarship.php">Scholarship</a></li>
-                        <li><a href="#">Chat</a></li>
+                        <li><a href="courses.php">Course Chat</a></li>
                     </ul>
                 </div>
                 <div class="col-lg-2 col-md-6 single-footer-widget">
@@ -276,11 +277,7 @@ session_start();?>
                         <li><a href="https://colorlib.com/wp/template/edustage/" target="_blank">ColorLib</a></li>
                     </ul>
                 </div>
-                <div class="col-lg-4 col-md-6 single-footer-widget">
-                    <h4>Newsletter</h4>
-                    <p>You can trust us. we only send promo offers,</p>
 
-                </div>
             </div>
             <div class="row footer-bottom d-flex justify-content-between" align="center">
                 <p class="col-lg-8 col-sm-12 footer-text m-0 text-white">
