@@ -195,7 +195,7 @@ session_start();?>
         <div class=\"blog_post\">
             <img  width=\"100%\" src=$ScPic alt=\"\">
             <div class=\"blog_details\">
-                <a href=\"single-blog.html\">
+                <a target='_blank' href=$Sclink>
                     <h2>$ScTitle</h2>
                 </a>
                 <p>$Scdec</p>
