@@ -9,7 +9,7 @@ if (!isset($username)){
 window.location.replace('courses.php');</script>;
 ";
 }
-$course_name = $_GET["coursename"];
+$course_name = $_GET['coursename'];
 $servername = "localhost";
 $user = "root";
 $pass = "";
@@ -22,6 +22,7 @@ if ($conn->connect_error) {
 else {
     $sql = " select * from `course` where '$course_name'  =  Course_Name";
     $result = $conn->query($sql);
+
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
         $course_pic = $row['picture'];
@@ -41,9 +42,10 @@ else {
             $sql4 ="select * from `course_students` where $instructor_id  =  InstructorID and $CourseID = CourseID";
             $result4 = $conn->query($sql4);
             $numberOfStudent = $result4->num_rows;
-                $row10 = $result4->fetch_assoc();
-                $StudentId = $row10['StudentID'];
-
+            $sql5 ="select * from `users` where '$username'  =  User_Name";
+            $result5 = $conn->query($sql5);
+            $row10 = $result5->fetch_assoc();
+            $StudentId = $row10['UserID'];
 
 
 
@@ -208,6 +210,7 @@ echo"
                         </div>
 ";
 ?>
+
 <?php
 $servername = "localhost";
 $user = "root";
@@ -220,7 +223,7 @@ if ($conns->connect_error) {
 else {
     $MySql = " select * from `course_students` where '$CourseID' = CourseID and '$instructor_id'=InstructorID and '$StudentId'=StudentID";
     $result = $conns->query($MySql);
-    echo $StudentId;
+
     if ($result->num_rows == 0) {
         $row11 = $result4->fetch_assoc();
         echo " 
@@ -275,9 +278,7 @@ else {
                         
                         
                     </ul>
-                    <form class=\"form_area md-form\" id=\"SignUp\" action=$_SERVER[PHP_SELF] method=\"post\">
-                    <a href=\"#\" class=\"primary-btn2 text-uppercase enroll rounded-0 text-white\">Enroll the course</a>
-                    </form>
+                    <a id='enroll' href=\"course-details.php?coursename=$course_name&Add='true'\" class=\"primary-btn2 text-uppercase enroll rounded-0 text-white\">Enroll the course</a>
                   
                              
                         
@@ -447,6 +448,9 @@ echo "
           <script src=\"js/theme.js\"></script>
         </body>
       </html>";
+echo "
+<script>MathCourse=$course_name</script>";
+#<a href="#" class="primary-btn2 text-uppercase enroll rounded-0 text-white">Enroll the course</a>
 ?>
 <?php
 if (isset($_POST['logout'])) {
@@ -465,53 +469,33 @@ if(isset($_SESSION['username'])) {
                                        
                                 </script>";
 }
-$servername = "localhost";
-$user = "root";
-$pass = "";
-$dbname = "web_project";
-$conns = new mysqli($servername, $user, $pass, $dbname);
+if(isset($_GET['Add'])) {
+    $servername = "localhost";
+    $user = "root";
+    $pass = "";
+    $dbname = "web_project";
+    $conns = new mysqli($servername, $user, $pass, $dbname);
 
-
-
-if ($conns->connect_error) {
-    die("Connection Failed: " . $conns->connect_error);
-}
-else {
-    $MySql = " select * from `users` where '$username' = User_Name";
-    $MyResult = $conns->query($MySql);
-    if ($MyResult->num_rows > 0) {
-        $rows = $MyResult->fetch_assoc();
-        $StudentId = $rows['UserID'];
-        $MySql = "INSERT INTO course_students (CourseID,InstructorID,StudentID)
+    if ($conns->connect_error) {
+        die("Connection Failed: " . $conns->connect_error);
+    } else {
+        $MySql = " select * from `users` where '$username' = User_Name";
+        $MyResult = $conns->query($MySql);
+        if ($MyResult->num_rows > 0) {
+            $rows = $MyResult->fetch_assoc();
+            $StudentId = $rows['UserID'];
+            $MySql = "INSERT INTO course_students (CourseID,InstructorID,StudentID)
                     VALUES ('$CourseID', '$instructor_id','$StudentId' )";
-        $sqlIfStudent = "select * from `student` where '$StudentId'  =  StudentID";
-        $resultStudent = $conns->query($sqlIfStudent);
-        if ($resultStudent->num_rows == 0) {
-            $_SESSION['notstdntftime'];
-
-            if(isset($_SESSION['notstdntftime'])) {$_SESSION['notstdntftime']=false;}
-            else $_SESSION['notstdntftime']=true;
-            if($_SESSION['notstdntftime']==true){
-                echo "
-                                          <script> alert('You Should be a student');</script>";
-            }
-        }
-        else {
-
             if ($conns->query($MySql) === TRUE) {
                 echo "<script>
                 alert('Now You are a member on this course');
+                document.getElementById('enroll').style.display='none';
                 </script>";
             }
-            else {
-                echo "<script>
-alert('You already a member');
-</script>";
-            }
+
         }
     }
 }
-echo "
-<script>MathCourse=$course_name</script>";
-#<a href="#" class="primary-btn2 text-uppercase enroll rounded-0 text-white">Enroll the course</a>
+
 ?>
+
