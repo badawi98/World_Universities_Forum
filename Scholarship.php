@@ -156,9 +156,9 @@ session_start();?>
                     <div class="blog_left_sidebar">
 
                         <?php
-                        $servername = "192.168.1.23";
-                        $user = "tamer";
-                        $pass = "tamer";
+                        $servername = "localhost";
+                        $user = "root";
+                        $pass = "";
                         $dbname = "web_project";
                         $i = 0;
                         $conn = new mysqli($servername, $user, $pass, $dbname);

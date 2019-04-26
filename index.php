@@ -8,6 +8,7 @@
     <title>World Universities Forum</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.css">
+
     <link rel="stylesheet" href="css/flaticon.css">
     <link rel="stylesheet" href="css/themify-icons.css">
     <link rel="stylesheet" href="vendors/owl-carousel/owl.carousel.min.css">
@@ -19,6 +20,9 @@
     <link rel="canonical" href="https://mdbootstrap.com/snippets/jquery/temp/590679/">
 
     <script type="text/javascript" charset="UTF-8" src="https://maps.googleapis.com/maps-api-v3/api/js/36/10a/common.js"></script><script type="text/javascript" charset="UTF-8" src="https://maps.googleapis.com/maps-api-v3/api/js/36/10a/util.js"></script></head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css" />
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
 
 <body>
 <!--================ Start Header Menu Area =================-->
@@ -595,8 +599,12 @@
                                       else $_SESSION['firstTime']=true;
                                       if($_SESSION['firstTime']==true){
                                           echo "
-                                          <script>alert ('Welcome  $username');</script>";
-                                      }
+<script type=\"text/javascript\">
+    $(document).ready(function () {
+        swal('Welcome  $username');
+    });
+</script>
+";                                      }
                                       echo "
                                     <script> 
                                         document.getElementById('loginfisrt').style.display='none';

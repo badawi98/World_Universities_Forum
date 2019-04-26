@@ -7,9 +7,9 @@ function test_input($data) {
     return $data;
 }
 $username = $_SESSION['username'];
-$servername = "192.168.1.23";
-$user = "tamer";
-$pass = "tamer";
+$servername = "localhost";
+$user = "root";
+$pass = "";
 $dbname = "web_project";
 $conn = new mysqli($servername, $user, $pass, $dbname);
 if ($conn->connect_error) {
@@ -545,9 +545,9 @@ if (isset($_POST["update"])&&$_SERVER["REQUEST_METHOD"] == "POST") {
         $Date = test_input($_POST["Date"]);
     }
 
-    $servername = "192.168.1.23";
-    $user = "tamer";
-    $pass = "tamer";
+    $servername = "locahhsot";
+    $user = "root";
+    $pass = "";
     $dbname = "web_project";
     $i = 0;
     $conn2 = new mysqli($servername, $user, $pass, $dbname);
