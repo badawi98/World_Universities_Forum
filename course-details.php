@@ -3,8 +3,9 @@ session_start();
 $username = $_SESSION['username'];
 if (!isset($username)){
     echo "<script>
-    alert('You Should be a member');
-    </script>";
+  $(document).ready(function () {
+                                swal('You should be a member');
+                                });    </script>";
     echo "<script>
 window.location.replace('courses.php');</script>;
 ";
@@ -73,6 +74,11 @@ echo"
     <link rel=\"stylesheet\" href=\"vendors/nice-select/css/nice-select.css\" />
     <!-- main css -->
     <link rel=\"stylesheet\" href=\"css/style.css\" />
+    <script type=\"text/javascript\" charset=\"UTF-8\" src=\"https://maps.googleapis.com/maps-api-v3/api/js/36/10a/common.js\"></script><script type=\"text/javascript\" charset=\"UTF-8\" src=\"https://maps.googleapis.com/maps-api-v3/api/js/36/10a/util.js\"></script></head>
+<link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css\" />
+<script type=\"text/javascript\" src=\"http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js\"></script>
+<script src=\"https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js\"></script>
+
   </head>
 
   <body>
@@ -142,7 +148,11 @@ echo"
                             <a class=\"dropdown-item waves-effect waves-light\" href=\"Profile.php\">Profile</a>
                             <a class=\"dropdown-item waves-effect waves-light\" href=\"\">Courses</a>
                             <form method=\"post\" action=\"index.php\">
-                                <button onclick=\"alert('logged out')\" value=\"logout\" name=\"logout\" id=\"logout\" class=\"dropdown-item waves-effect waves-light\" href=\"<?php echo htmlspecialchars($_SERVER[PHP_SELF]);?>\">Log out</button>
+                                <button onclick=\"
+    $(document).ready(function () {
+        swal('Good Bye');
+    });
+ value=\"logout\" name=\"logout\" id=\"logout\" class=\"dropdown-item waves-effect waves-light\" href=\"<?php echo htmlspecialchars($_SERVER[PHP_SELF]);?>\">Log out</button>
                             </form>
 
 
@@ -487,10 +497,11 @@ if(isset($_GET['Add'])) {
             $MySql = "INSERT INTO course_students (CourseID,InstructorID,StudentID)
                     VALUES ('$CourseID', '$instructor_id','$StudentId' )";
             if ($conns->query($MySql) === TRUE) {
-                echo "<script>
-                alert('Now You are a member on this course');
-                document.getElementById('enroll').style.display='none';
-                </script>";
+                echo "<script type=\"text/javascript\">
+    $(document).ready(function () {
+        swal('Now You are a member in this course');
+    });
+</script>";
             }
 
         }

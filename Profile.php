@@ -109,7 +109,9 @@ echo "
                                 
                                 <a class=\"dropdown-item waves-effect waves-light\" href=\"\">Courses</a>
                                 <form method=\"post\" action=\"index.php\">
-                                    <button onclick=\"alert('logged out')\" value=\"logout\" name=\"logout\" id=\"logout\" class=\"dropdown-item waves-effect waves-light\" href=`$_SERVER[PHP_SELF]`;?>Log out</button>
+                                    <button onclick=\"(document).ready(function () {
+        swal('Good Bye');
+    });\" value=\"logout\" name=\"logout\" id=\"logout\" class=\"dropdown-item waves-effect waves-light\" href=`$_SERVER[PHP_SELF]`;?>Log out</button>
                                 </form>
 
 
@@ -565,7 +567,9 @@ if (isset($_POST["update"])&&$_SERVER["REQUEST_METHOD"] == "POST") {
                 $conn2->query($sql5);
                 echo $sql5;
                 echo "<script>
-alert('Done');
+  $(document).ready(function () {
+                                swal('Done');
+                                });
 </script>";
 
             }

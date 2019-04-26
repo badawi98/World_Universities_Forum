@@ -85,10 +85,12 @@
                             <a class="dropdown-item waves-effect waves-light" href="Profile.php">Profile</a>
                             <a class="dropdown-item waves-effect waves-light" href="">Courses</a>
                             <form method="post" action="index.php">
-                                <button onclick="alert('logged out')" value="logout" name="logout" id="logout" class="dropdown-item waves-effect waves-light" href="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">Log out</button>
+                                <button onclick="
+                                $(document).ready(function () {
+                                swal('Good Bye');
+                                });
+                                >value="logout" name="logout" id="logout" class="dropdown-item waves-effect waves-light" href="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">Log out</button>
                             </form>
-
-
 
 
                         </div>
@@ -510,7 +512,7 @@
                     <form class="form_area" id="LogIn" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
                         <div class="row">
                             <div class="col-lg-12 form_group">
-                                <input  id="login_username"  name="username"  placeholder="Username or ID" type="text">
+                                <input  id="login_username"  name="username"  placeholder="Username" type="text">
                                 <input id="login_password" name="Password" placeholder="Password"  type="password">
                             </div>
                             <div class="col-lg-12 text-center">
@@ -619,9 +621,12 @@
                                   }
                                   elseif(!isset($logout)) {
                                       echo "
-                                    <script> 
-                                        alert ('Invalid username or password');
-                                </script>";
+<script type=\"text/javascript\">
+    $(document).ready(function () {
+        swal('Invalid Username');
+    });
+</script>
+";
                                       unset($logout);
                                   }
                               } else {
@@ -975,9 +980,13 @@ if (isset($_POST["signup"])&&$_SERVER["REQUEST_METHOD"] == "POST") {
                 $sql5 = ("INSERT INTO passwords (UserID,Password,User_Name)
                     VALUES ('$userID','$passwords' , '$Signup_username')");
                 if ($conn->query($sql) === TRUE) {
-                echo "<script>
-alert('New record created successfully');
+                echo "
+<script type=\"text / javascript\">
+    $(document).ready(function () {
+        swal('Welcome to our Website');
+    });
 </script>
+\";   
 
 <script src=\"https://www.gstatic.com/firebasejs/5.10.0/firebase.js\"></script>
 <script>
