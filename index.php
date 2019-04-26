@@ -512,7 +512,6 @@
                             <div class="col-lg-12 form_group">
                                 <input  id="login_username"  name="username"  placeholder="Username or ID" type="text">
                                 <input id="login_password" name="Password" placeholder="Password"  type="password">
-
                             </div>
                             <div class="col-lg-12 text-center">
                                 <button  name="login" value="login" class="primary-btn" style=" margin-bottom: 30px;"
@@ -652,31 +651,31 @@
 
 
                             <div class="col-lg-6 form_group mt-10">
-                                <input type="text" name="first_name" placeholder="First Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'First Name'" required class="single-input">
+                                <input id="Signup_first_name" type="text" name="first_name" placeholder="First Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'First Name'"  class="single-input">
                             </div>
                             <div class="mt-10 col-lg-6 form_group">
-                                <input type="text" name="second_name" placeholder="Second Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Second Name'" required class="single-input">
+                                <input id="Signup_second_name" type="text" name="second_name" placeholder="Second Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Second Name'"  class="single-input">
                             </div>
                             <div class="mt-10 col-lg-6 form_group">
-                                <input type="text" name="third_name" placeholder="Third Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Third Name'" required class="single-input">
+                                <input id="Signup_third_name" type="text" name="third_name" placeholder="Third Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Third Name'"  class="single-input">
                             </div>
                             <div class="mt-10 col-lg-6 form_group">
-                                <input type="text" name="last_name" placeholder="Last Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Last Name'" required class="single-input">
+                                <input id="Signup_last_name" type="text" name="last_name" placeholder="Last Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Last Name'"  class="single-input">
                             </div>
                             <div class="mt-10 col-lg-12 form_group">
-                                <input type="email" name="EMAIL" placeholder="Email address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email address'" required class="single-input">
+                                <input  id="Signup_email"type="email" name="EMAIL" placeholder="Email address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email address'"  class="single-input">
                                 <i class=" input-icon js-btn-calendar"></i>
                             </div>
                             <div class="mt-10 col-lg-12 form_group">
-                                <input type="text" name="Signup_username" placeholder="User Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'User Name'" required class="single-input">
+                                <input id="Signup_username" type="text" name="Signup_username" placeholder="User Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'User Name'"  class="single-input">
                                 <i class=" input-icon js-btn-calendar"></i>
                             </div>
                             <div class="mt-10 col-lg-12 form_group">
-                                <input type="password" name="Signup_Password" placeholder="Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'" required class="single-input">
+                                <input id="Signup_password" type="password" name="Signup_Password" placeholder="Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'"  class="single-input">
                                 <i class=" input-icon js-btn-calendar"></i>
                             </div>
                             <div class="mt-10 col-lg-12 form_group">
-                                <input name="Date" placeholder="Birth Date" class="single-input-secondary" required type="text" onfocus="(this.type='date')" onblur="(this.type='text')" id="date">
+                                <input id="Signup_date" name="Date" placeholder="Birth Date" class="single-input-secondary"  type="text" onfocus="(this.type='date')" onblur="(this.type='text')" id="date">
 
                             </div>
 
@@ -791,7 +790,29 @@
                                 });
                             </script>
                             <div class="col-lg-12 text-center">
-                                <button name="signup" value="signup" class="primary-btn">sign up</button>
+                                <button name="signup" value="signup" class="primary-btn"
+                                    <?php
+                                    echo " onclick='make_rqd1()'
+               
+                                                         ";
+                                    ?>>sign up</button>
+                                <?php
+                                echo "
+                                <script>
+                                    function make_rqd1(){
+                                        document.getElementById('Signup_first_name').required = true;
+                                        document.getElementById('Signup_second_name').required = true;
+                                        document.getElementById('Signup_third_name').required = true;
+                                        document.getElementById('Signup_last_name').required = true;
+                                        document.getElementById('Signup_email').required = true;
+                                        document.getElementById('Signup_username').required = true;
+                                        document.getElementById('Signup_date').required = true;
+                                        document.getElementById('Signup_password').required = true;
+                                    }
+
+                                </script>";
+                                ?>
+
                             </div>
                         </div>
                     </form>
