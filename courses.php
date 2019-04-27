@@ -157,7 +157,9 @@ session_start();?>
       </div>
     </section>
     <!--================End Home Banner Area =================-->
+<style>
 
+</style>
     <!--================ Start Popular Courses Area =================-->
     <div class="popular_courses section_gap_top">
         <div class="container">
@@ -171,7 +173,7 @@ session_start();?>
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <div class="row row-eq-height">
     <?php
     $servername = "localhost";
     $user = "root";
@@ -207,18 +209,17 @@ session_start();?>
                 $UnivName = $row4['Univ_Name'];
 
                 echo "
-                <div class=\"col-lg-12\">
+                <div class=\"col-lg-4 d-flex align-items-stretch h-auto\" style='display: flex'>
                 <div class=\" \">
-                    <div class=\"single_course\">
+                    <div class=\"single_course\" >
                         <div class=\"course_head\">
-                            <img width='100%' class=\"img-fluid\" src=$CoursePic alt=\"\" />
+                            <img  width='100%' class=\"img-fluid\" src=$CoursePic alt=\"\" />
                         </div>
                         <div class=\"course_content\">
                             <span class=\"tag mb-4 d-inline-block\">$UnivName</span>
                             <h4 class=\"mb-3\">                       
                                 <a name='courseTag' href=\"course-details.php?coursename=$CourseName\">$CourseName</a>                          
                             </h4>
-                            <p>$CourseDescription</p>
                             <div
                                     class=\"course_meta d-flex justify-content-lg-between align-items-lg-center flex-lg-row flex-column mt-4\"
                             >

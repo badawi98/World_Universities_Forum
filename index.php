@@ -614,6 +614,9 @@
                                             $_SESSION['firstTime'] = false;
                                         } else $_SESSION['firstTime'] = true;
                                         if ($_SESSION['firstTime'] == true) {
+                                          #  $sql7 = "select * from `admin` where $username = Username";
+                                           # $result = $conn->query($sql7);
+                                            #if($result->num)
                                             echo "
 <script type='text/javascript'>
     $(document).ready(function () {
