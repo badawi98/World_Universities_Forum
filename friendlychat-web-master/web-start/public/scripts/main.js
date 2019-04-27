@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 'use strict';
+import swal from 'sweetalert';
 var  CourseName="";
 var UserName="";
 // Signs-in Friendly Chat.
@@ -31,7 +32,7 @@ var signIn =function (email,password) {
     // Handle Errors here.
     var errorCode = error.code;
     var errorMessage = error.message;
-    alert("You are not signed in")
+    swal("You are not signed in");
     // ...
   });
 
@@ -101,7 +102,7 @@ function saveMessage(messageText) {
 function loadMessages (course) {
   // Create the query to load the last 12 messages and listen for new ones.
   var s=course;
-  alert(s);
+  swal("s");
   var query = firebase.firestore()
       .collection(CourseName)
       .orderBy('timestamp', 'desc')
@@ -354,9 +355,10 @@ function toggleButton() {
 // Checks that the Firebase SDK has been correctly setup and configured.
 function checkSetup() {
   if (!window.firebase || !(firebase.app instanceof Function) || !firebase.app().options) {
-    window.alert('You have not configured and imported the Firebase SDK. ' +
-        'Make sure you go through the codelab setup instructions and make ' +
-        'sure you are running the codelab using firebase serve');
+    swal("You have not configured and imported the Firebase SDK. ' +\n" +
+        "        'Make sure you go through the codelab setup instructions and make ' +\n" +
+        "        'sure you are running the codelab using firebase serve");
+
   }
 }
 
