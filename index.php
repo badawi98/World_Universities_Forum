@@ -85,14 +85,16 @@
                             <a class="dropdown-item waves-effect waves-light" href="Profile.php">Profile</a>
                             <a class="dropdown-item waves-effect waves-light" href="">Courses</a>
                             <form method="post" action="index.php">
-                                <button onclick="
-                                $(document).ready(function () {
-                                swal('Good Bye');
-                                });
-                                >value="logout" name="logout" id="logout" class="dropdown-item waves-effect waves-light" href="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">Log out</button>
+                                <button onclick="t()"value="logout" name="logout" id="logout" class="dropdown-item waves-effect waves-light" href="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">Log out</button>
                             </form>
 
-
+                            <script type="text/javascript">
+                            function t () {
+                                $(document).ready(function () {
+                                    swal("Good Bye");
+                                });
+                            }
+</script>
                         </div>
                     </li>
 
@@ -981,13 +983,13 @@ if (isset($_POST["signup"])&&$_SERVER["REQUEST_METHOD"] == "POST") {
                     VALUES ('$userID','$passwords' , '$Signup_username')");
                 if ($conn->query($sql) === TRUE) {
                 echo "
-<script type=\"text / javascript\">
+<script type='text/javascript'>
     $(document).ready(function () {
         swal('Welcome to our Website');
     });
 </script>
-\";   
-
+";
+                echo "
 <script src=\"https://www.gstatic.com/firebasejs/5.10.0/firebase.js\"></script>
 <script>
     var config = {
