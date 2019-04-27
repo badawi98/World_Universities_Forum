@@ -56,7 +56,12 @@ echo "
     <script src=\"https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js\"></script>
     <link rel=\"canonical\" href=\"https://mdbootstrap.com/snippets/jquery/temp/590679/\">
 
+   
     <script type=\"text/javascript\" charset=\"UTF-8\" src=\"https://maps.googleapis.com/maps-api-v3/api/js/36/10a/common.js\"></script><script type=\"text/javascript\" charset=\"UTF-8\" src=\"https://maps.googleapis.com/maps-api-v3/api/js/36/10a/util.js\"></script>
+
+    <script src=\"https://code.jquery.com/jquery-3.3.1.min.js\"></script>
+    <script src=\"https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js\" type=\"text/javascript\"></script>
+    <link href=\"https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css\" rel=\"stylesheet\" type=\"text/css\" />
 </head>
 
 <body>
@@ -558,7 +563,9 @@ if (isset($_POST["update"])&&$_SERVER["REQUEST_METHOD"] == "POST") {
             }
             else {
                 echo "<script>
-alert('$sql.$conn2->error');
+$(document).ready(function () {
+                                swal('$sql.$conn2->error');
+                                });
 </script>";
             }
 

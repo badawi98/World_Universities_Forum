@@ -101,7 +101,9 @@ session_start()?>
                                 <a class="dropdown-item waves-effect waves-light" href="">Profile</a>
                                 <a class="dropdown-item waves-effect waves-light" href="">Courses</a>
                                 <form method="post" action="index.php">
-                                    <button onclick="alert('logged out')" value="logout" name="logout" id="logout" class="dropdown-item waves-effect waves-light" href="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">Log out</button>
+                                    <button onclick="$(document).ready(function () {
+                                swal('Good Bye');
+                                });" value="logout" name="logout" id="logout" class="dropdown-item waves-effect waves-light" href="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">Log out</button>
                                 </form>
 
 

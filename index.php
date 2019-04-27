@@ -590,8 +590,11 @@
                         if ($conn->connect_error) {
                             $die = die("Connection Failed: " . $conn->connect_error);
                             echo "
-                         <script>alert('$die');</script>
-                         ";
+<script type='text/javascript'>
+    $(document).ready(function () {
+        swal('$die');
+    });
+</script>                         ";
                         } else {
                             if (isset($login)) {
                                 $sql = "select * from `Passwords`";
@@ -612,8 +615,11 @@
                                         } else $_SESSION['firstTime'] = true;
                                         if ($_SESSION['firstTime'] == true) {
                                             echo "
-                                          <script>alert ('Welcome  $username');</script>";
-                                        }
+<script type='text/javascript'>
+    $(document).ready(function () {
+        swal('Welcome $username');
+    });
+</script>        ";                                }
                                         echo "
                                     <script> 
                                         document.getElementById('loginfisrt').style.display='none';
@@ -628,9 +634,11 @@
                                         #}
                                     } elseif (!isset($logout)) {
                                         echo "
-                                    <script> 
-                                        alert ('Invalid username or password');
-                                </script>";
+<script type='text/javascript'>
+    $(document).ready(function () {
+        swal('Invalid Username or Password');
+    });
+</script>                                  </script>";
                                         unset($logout);
                                     }
                                 } else {
@@ -643,9 +651,11 @@
                     }
                     else{
                         echo "
-                                    <script> 
-                                        alert ('Wow! Invalid username or password');
-                                </script>";
+                                   <script type='text/javascript'>
+    $(document).ready(function () {
+        swal('Invalid Username or Password');
+    });
+</script>";
 
                     }
 
@@ -1077,8 +1087,11 @@ if($submit===true) {
                         echo "Sorry, there was an error uploading your file.";
                     }
 
-                    echo "<script>
-                    alert('New record created successfully'); </script>";
+                    echo "<script type='text/javascript'>
+    $(document).ready(function () {
+        swal('Welcome to our Website');
+    });
+</script>";
                     $conn->query($sql5);
 
 
@@ -1105,7 +1118,7 @@ if($submit===true) {
 <script>
     firebase.auth().createUserWithEmailAndPassword(\"$EMAIL\", \"$passwords\")
         .then(function(user) {
-            alert(\"Added to firebas\");
+           
             var user = firebase.auth().currentUser;
             
         })
@@ -1113,14 +1126,17 @@ if($submit===true) {
             // no if (error) is needed here: if catch is called, there was an error
             var errorCode = error.code;
             var errorMessage = error.message;
-
-            window.alert(\"There went something wrong : \" + errorMessage);
+    $(document).ready(function () {
+        swal(\"There went something wrong : \" + errorMessage);
+    });
         });
 </script>
 ";
                 } else {
                 echo "<script>
-alert('$sql.$conn->error');
+$(document).ready(function () {
+        swal($sql.$conn->error);
+    });
 </script>";
                 }
 
@@ -1136,8 +1152,11 @@ alert('$sql.$conn->error');
     unset($signup);
 }
 else{
-    echo "<script>
-alert('Invalid inputs formats');
+    echo "
+<script type='text/javascript'>
+    $(document).ready(function () {
+        swal('Invalid inputs formats');
+    });
 </script>";
 }
 }
