@@ -172,7 +172,7 @@ session_start();?>
               </div>
               <div class="info_item">
                 <i class="ti-email"></i>
-                <h6><a href="#">World_Univ@gmail.com</a></h6>
+                <h6><a href="#">world.universities.forum<br>@gmail.com</a></h6>
                 <p>Send us your query anytime!</p>
               </div>
             </div>
