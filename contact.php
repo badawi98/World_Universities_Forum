@@ -51,7 +51,7 @@ session_start();?>
               <span class="icon-bar"></span>
             </button>
             <!-- Collect the nav links, forms, and other content for toggling -->
-            <div
+            <div style="max-height:260px;overflow-y: visible"
               class="collapse navbar-collapse offset"
               id="navbarSupportedContent"
             >

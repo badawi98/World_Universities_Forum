@@ -99,10 +99,10 @@
   }
   .header_area .navbar-collapse {
     max-height: 340px;
-    overflow-y: scroll;
+    overflow-y: visible;
   }
   .header_area .navbar .nav .nav-item.submenu ul .nav-item .nav-link {
-    padding: 0px 15px;
+    padding: 0px 0px;
   }
   .header_area .navbar .nav .nav-item {
     margin-right: 0px;
@@ -276,6 +276,7 @@
   .header_area .navbar-collapse {
     max-height: 250px;
   }
+
   /* End Main Menu Area css
 	============================================================================================ */
 

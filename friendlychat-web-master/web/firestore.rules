@@ -23,6 +23,8 @@ service cloud.firestore {
                           && request.resource.data.imageUrl.matches('https?://.*'));
           allow delete: if false;
         }
+
+
     // FCM Tokens:
     //   - Anyone can write their token.
     //   - Reading list of tokens is not allowed.

@@ -8,7 +8,6 @@
     <title>World Universities Forum</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.css">
-
     <link rel="stylesheet" href="css/flaticon.css">
     <link rel="stylesheet" href="css/themify-icons.css">
     <link rel="stylesheet" href="vendors/owl-carousel/owl.carousel.min.css">
@@ -23,6 +22,12 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css" />
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+    <script type="text/javascript" charset="UTF-8" src="https://maps.googleapis.com/maps-api-v3/api/js/36/10a/common.js"></script><script type="text/javascript" charset="UTF-8" src="https://maps.googleapis.com/maps-api-v3/api/js/36/10a/util.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
+    <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+</head>
 
 <body>
 <!--================ Start Header Menu Area =================-->
@@ -52,7 +57,9 @@
                     <span class="icon-bar"></span>
                 </button>
                 <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+
+
+                <div style="max-height:260px;overflow-y: visible"  class="collapse navbar-collapse offset" id="navbarSupportedContent">
                     <ul class="nav navbar-nav menu_nav ml-auto">
                         <li class="nav-item">
                             <a class="nav-link" href="about-us.php">About</a>
@@ -516,6 +523,7 @@
                             <div class="col-lg-12 form_group">
                                 <input  id="login_username"  name="username"  placeholder="Username" type="text">
                                 <input id="login_password" name="Password" placeholder="Password"  type="password">
+
                             </div>
                             <div class="col-lg-12 text-center">
                                 <button  name="login" value="login" class="primary-btn" style=" margin-bottom: 30px;"
@@ -556,88 +564,90 @@
             <?php
 
                 $username = $Password = $login = "";
+                $submit=true;
                 if (isset($_POST["login"])&&$_SERVER["REQUEST_METHOD"] == "POST") {
                     if (empty($_POST["username"])) {
-                        echo "";
+                        $submit=false;
                     } else {
-                        $username = test_input($_POST["username"]);
+                        $username = test_input2($_POST["username"]);
                     }
                     if (empty($_POST["Password"])) {
-
+                        $submit=false;
                     } else {
                         $Password = htmlspecialchars($_POST["Password"]);
                     }
                     if (empty($_POST["login"])) {
-
-
+                        $submit=false;
                     } else {
                         $login = $_POST["login"];
                     }
-                      $servername = "localhost";
-                      $user = "root";
-                      $pass = "";
-                      $dbname = "web_project";
-                      $conn = new mysqli($servername, $user, $pass, $dbname);
-                      if ($conn->connect_error) {
-                         $die= die("Connection Failed: " . $conn->connect_error);
-                         echo "
+                    if($submit===true) {
+                        $servername = "localhost";
+                        $user = "root";
+                        $pass = "";
+                        $dbname = "web_project";
+                        $conn = new mysqli($servername, $user, $pass, $dbname);
+                        if ($conn->connect_error) {
+                            $die = die("Connection Failed: " . $conn->connect_error);
+                            echo "
                          <script>alert('$die');</script>
                          ";
-                      } else {
-                          if (isset($login)) {
-                              $sql = "select * from `Passwords`";
-                              $result = $conn->query($sql);
-                              if ($result->num_rows > 0) {
-                                  for ($i = 0; $i < $result->num_rows; $i++) {
-                                      $row = $result->fetch_assoc();
-                                      if ($row["User_Name"] == $username  && $row["Password"] == sha1($Password)) {
-                                          break;
-                                      }
+                        } else {
+                            if (isset($login)) {
+                                $sql = "select * from `Passwords`";
+                                $result = $conn->query($sql);
+                                if ($result->num_rows > 0) {
+                                    for ($i = 0; $i < $result->num_rows; $i++) {
+                                        $row = $result->fetch_assoc();
+                                        if ($row["User_Name"] == $username && $row["Password"] == sha1($Password)) {
+                                            break;
+                                        }
 
-                                  }
-                                  if ($i < $result->num_rows) {
+                                    }
+                                    if ($i < $result->num_rows) {
 
-                                      $_SESSION["username"]=$username;
-                                      if(isset($_SESSION['firstTime'])) {$_SESSION['firstTime']=false;}
-                                      else $_SESSION['firstTime']=true;
-                                      if($_SESSION['firstTime']==true){
-                                          echo "
-<script type=\"text/javascript\">
-    $(document).ready(function () {
-        swal('Welcome  $username');
-    });
-</script>
-";                                      }
-                                      echo "
+                                        $_SESSION["username"] = $username;
+                                        if (isset($_SESSION['firstTime'])) {
+                                            $_SESSION['firstTime'] = false;
+                                        } else $_SESSION['firstTime'] = true;
+                                        if ($_SESSION['firstTime'] == true) {
+                                            echo "
+                                          <script>alert ('Welcome  $username');</script>";
+                                        }
+                                        echo "
                                     <script> 
                                         document.getElementById('loginfisrt').style.display='none';
                                         document.getElementById('navbar-static-user').style.display='inline-block';
                                         document.getElementById('navbar-user').innerText='👤 $username';
                                 </script>";
 
-                                      #  session_start();
-                                      # if (isset($_SESSION['counter'])) {
-                                      #    $_SESSION['counter'] = "visited";
+                                        #  session_start();
+                                        # if (isset($_SESSION['counter'])) {
+                                        #    $_SESSION['counter'] = "visited";
 
-                                      #}
-                                  }
-                                  elseif(!isset($logout)) {
-                                      echo "
-<script type=\"text/javascript\">
-    $(document).ready(function () {
-        swal('Invalid Username');
-    });
-</script>
-";
-                                      unset($logout);
-                                  }
-                              } else {
-                              }
-                              $result->free();
-                          }
-                      }
-                      $conn->close();
-                      unset($login);
+                                        #}
+                                    } elseif (!isset($logout)) {
+                                        echo "
+                                    <script> 
+                                        alert ('Invalid username or password');
+                                </script>";
+                                        unset($logout);
+                                    }
+                                } else {
+                                }
+                                $result->free();
+                            }
+                        }
+                        $conn->close();
+                        unset($login);
+                    }
+                    else{
+                        echo "
+                                    <script> 
+                                        alert ('Wow! Invalid username or password');
+                                </script>";
+
+                    }
 
                 }
             function test_input($data) {
@@ -653,7 +663,7 @@
                     <h3>Join Us</h3>
                     <p>It is high time for learning</p>
 
-                    <form class="form_area md-form" id="SignUp" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
+                    <form class="form_area md-form" id="SignUp" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" enctype="multipart/form-data">
                         <div class="row">
 
 
@@ -682,8 +692,14 @@
                                 <i class=" input-icon js-btn-calendar"></i>
                             </div>
                             <div class="mt-10 col-lg-12 form_group">
-                                <input id="Signup_date" name="Date" placeholder="Birth Date" class="single-input-secondary"  type="text" onfocus="(this.type='date')" onblur="(this.type='text')" id="date">
-
+                              <!--  <input name="Date" placeholder="Birth Date" class="single-input-secondary" required type="text" onfocus="(this.type='date')" onblur="(this.type='text')" id="date">-->
+                                <input name="Date" class="single-input-secondary" required placeholder="Birth Date" id="datepicker" width="100%" />
+                                <script>
+                                    $('#datepicker').datepicker({
+                                        format: 'yyyy/mm/dd',
+                                        showOtherMonths: true
+                                    });
+                                </script>
                             </div>
 
                             <div class="input-group-icon mt-10 col-lg-6 form_group">
@@ -786,7 +802,7 @@
 
                             <p>Upload a file verifying your university's membership: </p>
                             <div class="custom-file mb-3">
-                                <input type="file" class="custom-file-input" id="customFile" required name="filename">
+                                <input type="file" class="custom-file-input" name="filename" id="filename" required >
                                 <label class="custom-file-label selected" for="customFile"></label>
                             </div>
                             <script>
@@ -844,99 +860,158 @@ if(isset($_SESSION['username'])) {
 ?>
 <?php
 $first_name  = $second_name = $third_name = $last_name  = $EMAIL = $Signup_username = $Signup_Password  = $Date = $filename =$Univ_Name=$gender=$regester_as="";
+$submit=true;
 if (isset($_POST["signup"])&&$_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($_POST["first_name"])) {
-        echo "";
+        echo $_POST["first_name"];
+       $submit=false;
     } else {
-        $first_name = test_input($_POST["first_name"]);
-        if (!preg_match("/^[a-zA-Z ]*$/", $first_name)) {
-            echo "";
+        $first_name = test_input2($_POST["first_name"]);
+        if (!preg_match("/^[a-zA-Z]*$/", $first_name)) {
+            echo $_POST["first_name"];
+            $submit=false;
         }
     }
     if (empty($_POST["second_name"])) {
-        echo "";
+        echo  $_POST["second_name"];
+        $submit=false;
     } else {
-        $second_name = test_input($_POST["second_name"]);
-        if (!preg_match("/^[a-zA-Z ]*$/", $second_name)) {
-            echo "";
+        $second_name = test_input2($_POST["second_name"]);
+        if (!preg_match("/^[a-zA-Z]*$/", $second_name)) {
+            echo $_POST["second_name"];
+            $submit=false;
         }
     }
     if (empty($_POST["third_name"])) {
-        echo "";
+        echo $_POST["third_name"];
+        $submit=false;
     } else {
-        $third_name = test_input($_POST["third_name"]);
-        if (!preg_match("/^[a-zA-Z ]*$/", $third_name)) {
-            echo "";
+        $third_name = test_input2($_POST["third_name"]);
+        if (!preg_match("/^[a-zA-Z]*$/", $third_name)) {
+            echo  $_POST["third_name"];
+            $submit=false;
         }
     }
     if (empty($_POST["last_name"])) {
-        echo "";
+        echo $_POST["last_name"];
+        $submit=false;
     } else {
-        $last_name = test_input($_POST["last_name"]);
-        if (!preg_match("/^[a-zA-Z ]*$/", $last_name)) {
-            echo "";
+        $last_name = test_input2($_POST["last_name"]);
+        if (!preg_match("/^[a-zA-Z]*$/", $last_name)) {
+            echo  $_POST["last_name"];
+            $submit=false;
         }
     }
     if (empty($_POST["EMAIL"])) {
-        echo "";
+        echo $_POST["EMAIL"];
+        $submit=false;
     } else {
-        $EMAIL = test_input($_POST["EMAIL"]);
+        $EMAIL = test_input2($_POST["EMAIL"]);
         if (!filter_var('EMAIL', FILTER_VALIDATE_EMAIL)) {
-            echo "";
+           // echo  $_POST["EMAIL"];
+            //$submit=false;
         }
     }
     if (empty($_POST["Signup_Password"])) {
-        echo "";
+        echo  $_POST["Signup_Password"];
+        $submit=false;
     } else {
         $Signup_Password = htmlspecialchars($_POST["Signup_Password"]);
-        if (!preg_match("(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}", $Signup_username)) {
-            echo "";
+        if (!preg_match("/(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/", $Signup_username)) {
+           // echo  $_POST["Signup_Password"];
+          //  $submit=false;
         }
     }
     if (empty($_POST["Signup_username"])) {
-        echo "";
+        echo  $_POST["Signup_username"];
+        $submit=false;
     } else {
-        $Signup_username = test_input($_POST["Signup_username"]);
+        $Signup_username = test_input2($_POST["Signup_username"]);
     }
     if (empty($_POST["Date"])) {
-        echo "";
+        echo  $_POST["Date"];
+        $submit=false;
     } else {
-        $Date = test_input($_POST["Date"]);
+        $Date = $_POST["Date"];
     }
     if (empty($_POST["filename"])) {
-        echo "";
+     //   $submit=false;
     } else {
         $filename = test_input($_POST["filename"]);
     }
     if (empty($_POST["signup"])) {
-        echo "";
+        echo   $_POST["signup"];
+        $submit=false;
     } else {
         $signup = test_input($_POST["signup"]);
     }
     if (empty($_POST['Univ_Name'])) {
-
+        echo  $_POST["Univ_Name"];
+        $submit=false;
     } else {
         $Univ_Name = test_input($_POST['Univ_Name']);
     }
     if (empty($_POST['gender'])) {
-
+        echo  $_POST["gender"];
+        $submit=false;
     } else {
         $gender = test_input($_POST['gender']);
     }
     if (empty($_POST['regester_as'])) {
-
+       echo $_POST["regester_as"];
+        $submit=false;
     } else {
         $regester_as = test_input($_POST['regester_as']);
     }
 
-    function test_input_2($data) {
-        $data = trim($data);
-        $data = stripslashes($data);
-        $data = htmlspecialchars($data);
-        $data = strtolower($data);
-        return $data;
+
+    //start
+
+
+    $target_dir = dirname(__FILE__) ."/uploads/membership_validation/";
+    $target_file = $target_dir . basename($_FILES["filename"]["name"]);
+    $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+// Check if image file is a actual image or fake image
+    if(isset($_POST["submit"])) {
+        $check = getimagesize($_FILES["filename"]["tmp_name"]);
+        if($check !== false) {
+            echo  "File is an image - " . $check["mime"] . ".";
+        } else {
+            echo "File is not an image.";
+            $submit=false;        }
+    }
+// Check if file already exists
+    if (file_exists($target_file)) {
+        echo "Sorry, file already exists.";
+        $submit=false;
+    }
+// Check file size
+    if ($_FILES["filename"]["size"] > 2000000) {
+        echo "Sorry, your file is too large.";
+        $submit=false;
+    }
+// Allow certain file formats
+    if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+        && $imageFileType != "gif" ) {
+        echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+        $submit=false;
+    }
+// Check if $uploadOk is set to 0 by an error
+    if ($submit===false) {
+        echo "Sorry, your file was not uploaded.";
+// if everything is ok, try to upload file
     }
 
+    //end
+
+
+
+
+
+
+
+
+if($submit===true) {
     $userID = 0000000000000000;
     $servername = "localhost";
     $user = "root";
@@ -945,7 +1020,7 @@ if (isset($_POST["signup"])&&$_SERVER["REQUEST_METHOD"] == "POST") {
     $i = 0;
     $conn = new mysqli($servername, $user, $pass, $dbname);
     if ($conn->connect_error) {
-       $die= die("Connection Failed: " . $conn->connect_error);
+        $die = die("Connection Failed: " . $conn->connect_error);
 
     } else {#   echo "<script>
 #alert('$first_name');
@@ -954,7 +1029,7 @@ if (isset($_POST["signup"])&&$_SERVER["REQUEST_METHOD"] == "POST") {
         if (isset($signup)) {
             $sql = "select Univ_Name from `university`";
             $result = $conn->query($sql);
-            if($result->num_rows>0){
+            if ($result->num_rows > 0) {
                 for ($i = 0; $i < $result->num_rows; $i++) {
                     $row = $result->fetch_assoc();
                     if ($row["Univ_Name"] == $Univ_Name) {
@@ -965,39 +1040,47 @@ if (isset($_POST["signup"])&&$_SERVER["REQUEST_METHOD"] == "POST") {
             }
             $sql2 = " select UnivID from `university` where '$Univ_Name'  =  Univ_Name ";
             $result2 = $conn->query($sql2);
-            if($result2->num_rows > 0) {
+            if ($result2->num_rows > 0) {
                 $row2 = $result2->fetch_assoc();
                 $univID = $row2['UnivID'];
-                $userID =  $univID * 1000000000000;
-                if(strcmp($regester_as,"Student") === 0) {
+                $userID = $univID * 1000000000000;
+                if (strcmp($regester_as, "Student") === 0) {
                     $userID = $userID + (10 * 10000000000);
-                }
-                else {
+                } else {
                     $userID = $userID + (11 * 10000000000);
                 }
-                $userID = $userID + rand(0,9999999999);
+                $userID = $userID + rand(0, 9999999999);
                 $passwords = sha1($Signup_Password);
                 $sql = "INSERT INTO users (UserID,User_Name,UnivID, First_Name, Second_Name,Third_Name,Family_Name,Date,Email,Gender,picture,Valid)
-                    VALUES ($userID, '$Signup_username',$univID ,'$first_name','$second_name','$third_name','$last_name','$Date','$EMAIL','$gender','$filename',false)";
+                    VALUES ($userID, '$Signup_username',$univID ,'$first_name','$second_name','$third_name','$last_name','$Date','$EMAIL','$gender','$target_file',false)";
                 $sql5 = ("INSERT INTO passwords (UserID,Password,User_Name)
                     VALUES ('$userID','$passwords' , '$Signup_username')");
                 if ($conn->query($sql) === TRUE) {
-                    $conn->query($sql5);
                     if($regester_as === "Student") {
-                        $studentSql = "INSERT INTO student(`StudentID`, `Username`) VALUES ('$userID' , '$Signup_username')";
+                        $studentSql = "INSERT INTO student(`StudentID`, `Username`) VALUES ('$userID' , '$Signup_username')\";
                         $conn->query($studentSql);
                     }
 
-                    elseif ($regester_as === "Instructor") {
-                        $InstructorSql = "INSERT INTO instrctors(`StudentID`, `Username`) VALUES ('$userID' , '$Signup_username')";
+                    elseif ($regester_as === \"Instructor\") {
+                        $InstructorSql = \"INSERT INTO instrctors(`StudentID`, `Username`) VALUES ('$userID' , '$Signup_username')\";
                         $conn->query($InstructorSql);
                     } else {
-                        echo " 
+                  
                         <script>
                             swal(\"Good job!\", \"You clicked the button!\", \"warning\");
                         </script>
                         ";
                     }
+                    if (move_uploaded_file($_FILES["filename"]["tmp_name"], $target_file)) {
+                        echo "The file ". basename( $_FILES["filename"]["name"]). " has been uploaded.";
+                    } else {
+                        echo "Sorry, there was an error uploading your file.";
+                    }
+
+                    echo "<script>
+                    alert('New record created successfully'); </script>";
+                    $conn->query($sql5);
+
 
                     echo "
 <script type='text/javascript'>
@@ -1019,12 +1102,12 @@ if (isset($_POST["signup"])&&$_SERVER["REQUEST_METHOD"] == "POST") {
     };
     firebase.initializeApp(config);
 </script>
-<script >
-
-    firebase.auth().createUserWithEmailAndPassword($EMAIL, $passwords)
+<script>
+    firebase.auth().createUserWithEmailAndPassword(\"$EMAIL\", \"$passwords\")
         .then(function(user) {
+            alert(\"Added to firebas\");
             var user = firebase.auth().currentUser;
-            setUserInfo(\"\", \"\", userName, userEmail, user.uid)
+            
         })
         .catch(function(error) {
             // no if (error) is needed here: if catch is called, there was an error
@@ -1039,11 +1122,11 @@ if (isset($_POST["signup"])&&$_SERVER["REQUEST_METHOD"] == "POST") {
                 echo "<script>
 alert('$sql.$conn->error');
 </script>";
+                }
+
+
             }
-
-
         }
-            }
     }
     if($regester_as === "Student")
         echo "yes";
@@ -1051,9 +1134,20 @@ alert('$sql.$conn->error');
         echo "no";
     $conn->close();
     unset($signup);
-
 }
-
+else{
+    echo "<script>
+alert('Invalid inputs formats');
+</script>";
+}
+}
+function test_input2($data) {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = strtolower($data);
+    $data = htmlspecialchars($data);
+    return $data;
+}
 
 
 
@@ -1192,5 +1286,7 @@ alert('$sql.$conn->error');
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE"></script>
 <script src="js/gmaps.min.js"></script>
 <script src="js/theme.js"></script>
+
+
 
 </body></html>

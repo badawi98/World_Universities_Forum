@@ -14,13 +14,12 @@
  * limitations under the License.
  */
 'use strict';
-var  CourseName='';
-var UserName="Tamer Assaliya";
+var  CourseName="";
+var UserName="";
 // Signs-in Friendly Chat.
 var setCourseName=function (cre,User) {
   CourseName=cre;
   UserName=User;
-
 }
 
 var signIn =function (email,password) {

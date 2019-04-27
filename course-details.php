@@ -47,6 +47,12 @@ else {
             $result5 = $conn->query($sql5);
             $row10 = $result5->fetch_assoc();
             $StudentId = $row10['UserID'];
+            $email=$row10['Email'];
+
+            $sql = " select * from `passwords` where '$username'  =  User_Name";
+            $result6 = $conn->query($sql);
+            $row11 = $result6->fetch_assoc();
+            $password=$row11['Password'];
 
 
 
@@ -64,7 +70,7 @@ echo"
       name=\"viewport\"
       content=\"width=device-width, initial-scale=1, shrink-to-fit=no\"
     />
-  <link rel=\"icon\" href=\"img/icon.png\" type=\"image/png\" />
+    <link rel=\"icon\" href=\"img/favicon.png\" type=\"image/png\" />
     <title>Courses Details</title>
     <!-- Bootstrap CSS -->
     <link rel=\"stylesheet\" href=\"css/bootstrap.css\" />
@@ -83,9 +89,59 @@ echo"
   integrity=\"sha256-DYZMCC8HTC+QDr5QNaIcfR7VSPtcISykd+6eSmBW5qo=\"
   crossorigin=\"anonymous\"></script>
 
+      <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">
+
+
+      <script src=\"https://www.gstatic.com/firebasejs/5.10.0/firebase.js\"></script>
+      <script>
+          // Initialize Firebase
+          var config = {
+              apiKey: \"AIzaSyB-4y1lO-YsaFpcMaybmpc_vKhrWbUYiiE\",
+              authDomain: \"chattest116.firebaseapp.com\",
+              databaseURL: \"https://chattest116.firebaseio.com\",
+              projectId: \"chattest116\",
+              storageBucket: \"chattest116.appspot.com\",
+              messagingSenderId: \"399563458247\"
+          };
+          firebase.initializeApp(config);
+      </script>\
+      <meta charset=\"utf-8\">
+      <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">
+      <meta name=\"description\" content=\"Learn how to use the Firebase platform on the Web\">
+      <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
+
+      <!-- Disable tap highlight on IE -->
+      <meta name=\"msapplication-tap-highlight\" content=\"no\">
+
+      <!-- Web Application Manifest -->
+      <link rel=\"manifest\" href=\"friendlychat-web-master/web-start/public/manifest.json\">
+
+      <!-- Add to homescreen for Chrome on Android -->
+      <meta name=\"mobile-web-app-capable\" content=\"yes\">
+
+      <meta name=\"theme-color\" content=\"#303F9F\">
+
+      <!-- Add to homescreen for Safari on iOS -->
+      <meta name=\"apple-mobile-web-app-capable\" content=\"yes\">
+      <meta name=\"apple-mobile-web-app-status-bar-style\" content=\"black-translucent\">
+
+      <meta name=\"apple-mobile-web-app-status-bar-style\" content=\"#303F9F\">
+
+      <!-- Tile icon for Win8 -->
+      <meta name=\"msapplication-TileColor\" content=\"#3372DF\">
+      <meta name=\"msapplication-navbutton-color\" content=\"#303F9F\">
+
+      <!-- Material Design Lite -->
+      <link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/icon?family=Material+Icons\">
+      <link rel=\"stylesheet\" href=\"https://code.getmdl.io/1.1.3/material.orange-indigo.min.css\">
+      <script defer src=\"https://code.getmdl.io/1.1.3/material.min.js\"></script>
+
+      <!-- App Styling -->
+      <link rel=\"stylesheet\" href=\"https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en\">
+      <link rel=\"stylesheet\" href=\"friendlychat-web-master/web-start/public/styles/main.css\">
   </head>
 
-  <body>
+  <body style='overflow-x: hidden'>
     <!--================ Start Header Menu Area =================-->
     <header class=\"header_area white-header\">
       <div class=\"main_menu\">
@@ -96,8 +152,8 @@ echo"
              <a class=\"\" href=\"index.php\" style=\"
     margin-right: 0px;
 \">
-                    <img width=\"32\" hieght=\"32\" src=\"img/1321027.png\" style=\" display: inline-block; bottom: 3px; position:relative;\" alt=\"\">
-                    <h3 style=\" margin-left:5px; color:white; display: inline-block; position: relative; top:5px;\" class=\"mb-3\">Universities Forum</h3>
+                    <img width=\"32\" hieght=\"32\" src=\"img/1321027.png\" style=\" display: inline-block; bottom: 8px; position:relative;\" alt=\"\">
+                    <h4 style=\"top: 0px; margin-top: 14px;color: white; margin-left:5px; display: inline-block; position: relative;\" class=\"mb-3\">Universities Forum</h4>
                 </a>
             <button
               class=\"navbar-toggler\"
@@ -112,14 +168,11 @@ echo"
               <span class=\"icon-bar\"></span>
             </button>
             <!-- Collect the nav links, forms, and other content for toggling -->
-              <div
+              <div style=\"max-height:260px;overflow-y: visible\"
                       class=\"collapse navbar-collapse offset\"
                       id=\"navbarSupportedContent\"
               >
                   <ul class=\"nav navbar-nav menu_nav ml-auto\">
-                      <li class=\"nav-item\">
-                          <a class=\"nav-link\" href=\"index.php\">Home</a>
-                      </li>
                       <li class=\"nav-item\">
                           <a class=\"nav-link\" href=\"about-us.php\">About</a>
                       </li>
@@ -334,6 +387,111 @@ else {
 
 
                     </ul>
+                    
+                          <h4 class=\"title\">Chat</h4>
+
+<style>
+
+    @media only screen and (max-width: 400px) {
+        div.class1 {
+            height: 200px;
+        }
+    }
+    @media only screen and (max-width: 600px) {
+        div.class1 {
+            height: 400px;
+        }
+    }
+    @media only screen and (max-width: 800px) {
+       div .class1 {
+            height: 600px;
+        }
+    }
+    @media only screen and (max-width: 2000px) {
+        .class1 {
+            height: 650px;
+        }
+    }
+    @media only screen and (max-width: 400px) {
+        div.class2 {
+            height: 10px;
+        }
+    }
+    @media only screen and (max-width: 600px) {
+        div.class2 {
+            height: 20px;
+        }
+    }
+    @media only screen and (max-width: 800px) {
+        div .class2{
+            height: 30px;
+        }
+    }
+    @media only screen and (max-width: 2000px) {
+        .class2 {
+            height: 50px;
+        }
+    }
+
+</style>
+
+                    <div  style=\" width:100%;\" class=\"class1 demo-layout mdl-layout  mdl-layout--fixed-header\">
+
+
+                        <!-- Header section containing logo -->
+                        <header hidden class=\"  mdl-layout__header mdl-color-text--white mdl-color--light-blue-700\">
+                            <div hidden class=\"class2 mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-grid\">
+
+                                <div hidden id=\"user-container\">
+                                    <div hidden id=\"user-pic\"></div>
+                                    <div hidden id=\"user-name\"></div>
+                                    <button hidden id=\"sign-out\" class=\"mdl-button mdl-js-button mdl-js-ripple-effect mdl-color-text--white\">
+                                        Sign-out
+                                    </button>
+                                    <button hidden id=\"sign-in\" class=\"mdl-button mdl-js-button mdl-js-ripple-effect mdl-color-text--white\">
+                                        <i hidden class=\"material-icons\">account_circle</i>Sign-in with Google
+                                    </button>
+                                </div>
+                            </div>
+                        </header>
+
+                        <main style='overflow-y: hidden;' class=\"mdl-layout__content \">
+                            <div id=\"messages-card-container\" style=\"width:100%; padding-top: 0px;padding-left: 0px;padding-right: 0px;}\"
+                                 class=\"mdl-cell mdl-cell--12-col mdl-grid\">
+
+                                <!-- Messages container -->
+                                <div id=\"messages-card\" class=\"mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-cell--12-col-desktop\">
+                                    <div stype=\"  padding-top: 0px;    padding-right: 10px;    padding-left: 10px;\"
+                                         class=\"mdl-card__supporting-text mdl-color-text--grey-600\">
+                                        <div id=\"messages\">
+                                            <span id=\"message-filler\"></span>
+                                        </div>
+                                        <form id=\"message-form\" action=\"#\">
+                                            <div class=\"mdl-textfield mdl-js-textfield mdl-textfield--floating-label\">
+                                                <input class=\"mdl-textfield__input\" type=\"text\" id=\"message\">
+                                                <label class=\"mdl-textfield__label\" for=\"message\">Message...</label>
+                                            </div>
+                                            <button id=\"submit\" disabled type=\"submit\" class=\"mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect\">
+                                                Send
+                                            </button>
+                                        </form>
+                                        <form id=\"image-form\" action=\"#\">
+                                            <input id=\"mediaCapture\" type=\"file\" accept=\"image/*\" capture=\"camera\">
+                                            <button id=\"submitImage\" title=\"Add an image\" class=\"mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-color--amber-400 mdl-color-text--white\">
+                                                <i class=\"material-icons\">image</i>
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+
+                                <div id=\"must-signin-snackbar\" class=\"mdl-js-snackbar mdl-snackbar\">
+                                    <div class=\"mdl-snackbar__text\"></div>
+                                    <button class=\"mdl-snackbar__action\" type=\"button\"></button>
+                                </div>
+
+                            </div>
+                        </main>
+                    </div>
 
 
 
@@ -341,6 +499,9 @@ else {
 
 
 
+
+                    </div>
+                </div>
                     </div>
                 </div>
             </div>
@@ -388,21 +549,16 @@ echo "
                     </ul>
                 </div>
             </div>
-            <div class=\"row footer-bottom d-flex justify-content-between\" align=\"center\">
-                <p class=\"col-lg-8 col-sm-12 footer-text m-0 text-white\">
-                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                    Copyright ©<script>document.write(new Date().getFullYear());</script> All rights reserved</i><a href=\"https://colorlib.com\" target=\"_blank\"></a>
-
-                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                </p>
-                <div class=\"col-lg-4 col-sm-12 footer-social\">
-                    <a href=\"https://www.facebook.com/badawi.wawi\" target=\"_blank\"><i class=\"ti-facebook\"></i></a>
-                    <a href=\"https://twitter.com/badawi13\" target=\"_blank\"><i class=\"ti-twitter\"></i></a>
-                </div>
-            </div>
         </div>
-    </footer>
-          <!--================ End footer Area  =================-->
+    </section>";
+
+
+?>
+<?php
+echo " 
+    <!--================ End Course Details Area =================-->
+
+  
       
           <!-- Optional JavaScript -->
           <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -418,11 +574,23 @@ echo "
           <script src=\"https://maps.googleapis.com/maps/api/js?key=AIzaSyCjCGmQ0Uq4exrzdcL6rvxywDDOvfAu6eE\"></script>
           <script src=\"js/gmaps.min.js\"></script>
           <script src=\"js/theme.js\"></script>
+          
+           
+
+    <script src=\"friendlychat-web-master/web-start/public/scripts/main.js\"></script>
+   
+    <script>setCourseName('$course_name','$username');signIn('$email','$password');</script>
         </body>
       </html>";
 echo "
 <script>MathCourse=$course_name</script>";
 #<a href="#" class="primary-btn2 text-uppercase enroll rounded-0 text-white">Enroll the course</a>
+
+
+
+
+
+
 ?>
 <?php
 if (isset($_POST['logout'])) {
