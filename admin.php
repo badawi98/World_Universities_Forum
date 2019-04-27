@@ -75,6 +75,128 @@
             
         </div>
     </div>
+    <hr>
+    <div class="col-lg-8 " style=" margin-left: 0px;">
+
+        <div style="padding-top: 40px; padding-bottom: 40px;" id="join_us" class="main-container register_form">
+            <h3>Add Scholarships</h3>
+
+            <form class="form_area md-form" id="SignUp" action="" method="post" enctype="multipart/form-data">
+                <div class="row">
+                    <div class="mt-10 col-lg-12 form_group">
+                        <input id="Univ_Name" type="text" name="Signup_username" placeholder="University name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'User Name'"  class="single-input">
+                        <i class=" input-icon js-btn-calendar"></i>
+                    </div>
+                    <div class="mt-10 col-lg-12 form_group">
+                        <input id="Dep_Name" type="text" name="Signup_username" placeholder="Department name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'User Name'"  class="single-input">
+                        <i class=" input-icon js-btn-calendar"></i>
+                    </div>
+                    <div class="mt-10 col-lg-12 form_group">
+                        <input id="Level" type="text" name="Signup_username" placeholder="Level" onfocus="this.placeholder = ''" onblur="this.placeholder = 'User Name'"  class="single-input">
+                        <i class=" input-icon js-btn-calendar"></i>
+                    </div>
+                    <div class="mt-10 col-lg-12 form_group">
+                        <input id="Dec" type="text" name="Signup_username" placeholder="Decription" onfocus="this.placeholder = ''" onblur="this.placeholder = 'User Name'"  class="single-input">
+                        <i class=" input-icon js-btn-calendar"></i>
+                    </div>
+
+                    <div class="mt-10 col-lg-12 form_group">
+                        <!--  <input name="Date" placeholder="Birth Date" class="single-input-secondary" required type="text" onfocus="(this.type='date')" onblur="(this.type='text')" id="date">-->
+                        <input name="Date" class="single-input-secondary" required placeholder="Birth Date" id="datepicker" width="100%" />
+                        <script>
+                            $('#datepicker').datepicker({
+                                format: 'yyyy/mm/dd',
+                                showOtherMonths: true
+                            });
+                        </script>
+                    </div>
+                    <p>Scholarship Image</p>
+                    <div class="custom-file mb-3">
+                        <input type="file" class="custom-file-input" name="filename" id="filename" required >
+                        <label class="custom-file-label selected" for="customFile"></label>
+                    </div>
+
+
+
+                <button name="signup" value="signup" class="primary-btn"
+                    <?php
+                    echo " onclick='make_rqd1()'";
+                    ?>>Add</button>
+                <?php
+                echo "
+                                <script>
+                                    function make_rqd1(){
+                                        document.getElementById('Univ_Name').required = true;
+                                        document.getElementById('Dep_Name').required = true;
+                                        document.getElementById('Level').required = true;
+                                        document.getElementById('Dec').required = true;
+                                        document.getElementById('dat').required = true;
+                                    }
+
+                                </script>";
+                ?>
+
+            </form>
+        </div>
+    </div>
+
+</div>
+<hr>
+</div>
+</div>
+<div class="col-lg-8 " style=" margin-left: 0px;">
+
+    <div style="padding-top: 40px; padding-bottom: 40px;" id="join_us" class="main-container register_form">
+        <h3>Add Course</h3>
+
+        <form class="form_area md-form" id="SignUp" action="" method="post" enctype="multipart/form-data">
+            <div class="row">
+                <div class="mt-10 col-lg-12 form_group">
+                    <input id="Univ_Name" type="text" name="Signup_username" placeholder="University name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'User Name'"  class="single-input">
+                    <i class=" input-icon js-btn-calendar"></i>
+                </div>
+                <div class="mt-10 col-lg-12 form_group">
+                    <input id="Dep_Name" type="text" name="Signup_username" placeholder="Course name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'User Name'"  class="single-input">
+                    <i class=" input-icon js-btn-calendar"></i>
+                </div>
+                <div class="mt-10 col-lg-12 form_group">
+                    <input id="Dec" type="text" name="Signup_username" placeholder="Decription" onfocus="this.placeholder = ''" onblur="this.placeholder = 'User Name'"  class="single-input">
+                    <i class=" input-icon js-btn-calendar"></i>
+                </div>
+                <div class="mt-10 col-lg-12 form_group">
+                    <input id="Dec" type="text" name="Signup_username" placeholder="Instructor" onfocus="this.placeholder = ''" onblur="this.placeholder = 'User Name'"  class="single-input">
+                    <i class=" input-icon js-btn-calendar"></i>
+                </div>
+                <p>Course Image</p>
+                <div class="custom-file mb-3">
+                    <input type="file" class="custom-file-input" name="filename" id="filename" required >
+                    <label class="custom-file-label selected" for="customFile"></label>
+                </div>
+
+
+
+                <button name="signup" value="signup" class="primary-btn"
+                    <?php
+                    echo " onclick='make_rqd1()'";
+                    ?>>Add</button>
+                <?php
+                echo "
+                                <script>
+                                    function make_rqd1(){
+                                        document.getElementById('Univ_Name').required = true;
+                                        document.getElementById('Dep_Name').required = true;
+                                        document.getElementById('Level').required = true;
+                                        document.getElementById('Dec').required = true;
+                                        document.getElementById('dat').required = true;
+                                    }
+
+                                </script>";
+                ?>
+
+        </form>
+    </div>
+</div>
+
 </div>
 </body>
 </html>
