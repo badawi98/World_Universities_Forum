@@ -78,6 +78,10 @@ echo"
 <link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css\" />
 <script type=\"text/javascript\" src=\"http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js\"></script>
 <script src=\"https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js\"></script>
+<script
+  src=\"https://code.jquery.com/jquery-3.4.0.js\"
+  integrity=\"sha256-DYZMCC8HTC+QDr5QNaIcfR7VSPtcISykd+6eSmBW5qo=\"
+  crossorigin=\"anonymous\"></script>
 
   </head>
 
@@ -240,32 +244,7 @@ else {
                         
                         <h4 class=\"title\">Course Outline</h4>
                         <div class=\"content\">
-                            <ul class=\"course_list\">
-                                <li class=\"justify-content-between d-flex\">
-                                    <p>Course Slides</p>
-                                    <a class=\"primary-btn text-uppercase\" href=\"#\">View Details</a>
-                                </li>
-                                <li class=\"justify-content-between d-flex\">
-                                    <p>Course Records</p>
-                                    <a class=\"primary-btn text-uppercase\" href=\"#\">View Details</a>
-                                </li>
-                                <li class=\"justify-content-between d-flex\">
-                                    <p>Course Exams</p>
-                                    <a class=\"primary-btn text-uppercase\" href=\"#\">View Details</a>
-                                </li>
-                                <li class=\"justify-content-between d-flex\">
-                                    <p>Course Summaries</p>
-                                    <a class=\"primary-btn text-uppercase\" href=\"#\">View Details</a>
-                                </li>
-                                <li class=\"justify-content-between d-flex\">
-                                    <p>Course Illustrated lectures</p>
-                                    <a class=\"primary-btn text-uppercase\" href=\"#\">View Details</a>
-                                </li>
-                                <li class=\"justify-content-between d-flex\">
-                                    <p>Course Info</p>
-                                    <a class=\"primary-btn text-uppercase\" href=\"#\">View Details</a>
-                                </li>                             
-                            </ul>
+                            
                         </div>
                     </div>
                 </div>
@@ -288,7 +267,7 @@ else {
                         
                         
                     </ul>
-                    <a id='enroll' href=\"course-details.php?coursename=$course_name&Add='true'\" class=\"primary-btn2 text-uppercase enroll rounded-0 text-white\">Enroll the course</a>
+                    <a onclick='location.reload()' id='enroll' href=\"course-details.php?coursename=$course_name&Add='true'\" class=\"primary-btn2 text-uppercase enroll rounded-0 text-white\">Enroll the course</a>
                   
                              
                         
@@ -381,49 +360,32 @@ echo "
                 <div class=\"col-lg-2 col-md-6 single-footer-widget\">
                     <h4>Top Products</h4>
                     <ul>
-                        <li><a href=\"index.html\">Home Page</a></li>
-                        <li><a href=\"about-us.html\">About us</a></li>
-                        <li><a href=\"contact.html\">Contact us</a></li>
+                        <li><a href=\"index.php\">Home Page</a></li>
+                        <li><a href=\"about-us.php\">About us</a></li>
+                        <li><a href=\"contact.php\">Contact us</a></li>
                     </ul>
                 </div>
                 <div class=\"col-lg-2 col-md-6 single-footer-widget\">
                     <h4>Quick Links</h4>
                     <ul>
                         <li><a href=\"Scholarship.php\">Scholarship</a></li>
-                        <li><a href=\"courses.html\">courses</a></li>
+                        <li><a href=\"courses.php\">courses</a></li>
                     </ul>
                 </div>
                 <div class=\"col-lg-2 col-md-6 single-footer-widget\">
                     <h4>Features</h4>
                     <ul>
-                        <li><a href=\"courses.html\">Courses</a></li>
+                        <li><a href=\"courses.php\">Courses</a></li>
                         <li><a href=\"Scholarship.php\">Scholarship</a></li>
-                        <li><a href=\"#\">Chat</a></li>
+                        <li><a href=\"courses.php\">Chat</a></li>
                     </ul>
                 </div>
                 <div class=\"col-lg-2 col-md-6 single-footer-widget\">
                     <h4>Resources</h4>
                     <ul>
-                        <li><a href=\"about-us.html\">About</a></li>
+                        <li><a href=\"about-us.php\">About</a></li>
                         <li><a href=\"https://colorlib.com/wp/template/edustage/\" target=\"_blank\">ColorLib</a></li>
                     </ul>
-                </div>
-                <div class=\"col-lg-4 col-md-6 single-footer-widget\">
-                    <h4>Newsletter</h4>
-                    <p>You can trust us. we only send promo offers,</p>
-                    <div class=\"form-wrap\" id=\"mc_embed_signup\">
-                        <form target=\"_blank\" action=\"https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01\" method=\"get\" class=\"form-inline\" novalidate=\"true\">
-                            <input class=\"form-control\" name=\"EMAIL\" placeholder=\"Your Email Address\" onfocus=\"this.placeholder = ''\" onblur=\"this.placeholder = 'Your Email Address'\" required=\"\" type=\"email\">
-                            <button class=\"click-btn btn btn-default\">
-                                <span>subscribe</span>
-                            </button>
-                            <div style=\"position: absolute; left: -5000px;\">
-                                <input name=\"b_36c4fd991d266f23781ded980_aefe40901a\" tabindex=\"-1\" value=\"\" type=\"text\">
-                            </div>
-
-                            <div class=\"info\"></div>
-                        </form>
-                    </div>
                 </div>
             </div>
             <div class=\"row footer-bottom d-flex justify-content-between\" align=\"center\">
@@ -498,10 +460,13 @@ if(isset($_GET['Add'])) {
                     VALUES ('$CourseID', '$instructor_id','$StudentId' )";
             if ($conns->query($MySql) === TRUE) {
                 echo "<script type=\"text/javascript\">
+var click = false;
     $(document).ready(function () {
         swal('Now You are a member in this course');
+        
     });
-</script>";
+</script>
+";
             }
 
         }

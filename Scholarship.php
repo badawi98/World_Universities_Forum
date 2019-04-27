@@ -254,49 +254,32 @@ session_start();?>
                 <div class="col-lg-2 col-md-6 single-footer-widget">
                     <h4>Top Products</h4>
                     <ul>
-                        <li><a href="index.html">Home Page</a></li>
-                        <li><a href="about-us.html">About us</a></li>
-                        <li><a href="contact.html">Contact us</a></li>
+                        <li><a href="index.php">Home Page</a></li>
+                        <li><a href="about-us.php">About us</a></li>
+                        <li><a href="contact.php">Contact us</a></li>
                     </ul>
                 </div>
                 <div class="col-lg-2 col-md-6 single-footer-widget">
                     <h4>Quick Links</h4>
                     <ul>
                         <li><a href="Scholarship.php">Scholarship</a></li>
-                        <li><a href="courses.html">courses</a></li>
+                        <li><a href="courses.php">courses</a></li>
                     </ul>
                 </div>
                 <div class="col-lg-2 col-md-6 single-footer-widget">
                     <h4>Features</h4>
                     <ul>
-                        <li><a href="courses.html">Courses</a></li>
+                        <li><a href="courses.php">Courses</a></li>
                         <li><a href="Scholarship.php">Scholarship</a></li>
-                        <li><a href="#">Chat</a></li>
+                        <li><a href="courses.php">Chat</a></li>
                     </ul>
                 </div>
                 <div class="col-lg-2 col-md-6 single-footer-widget">
                     <h4>Resources</h4>
                     <ul>
-                        <li><a href="about-us.html">About</a></li>
+                        <li><a href="about-us.php">About</a></li>
                         <li><a href="https://colorlib.com/wp/template/edustage/" target="_blank">ColorLib</a></li>
                     </ul>
-                </div>
-                <div class="col-lg-4 col-md-6 single-footer-widget">
-                    <h4>Newsletter</h4>
-                    <p>You can trust us. we only send promo offers,</p>
-                    <div class="form-wrap" id="mc_embed_signup">
-                        <form target="_blank" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01" method="get" class="form-inline" novalidate="true">
-                            <input class="form-control" name="EMAIL" placeholder="Your Email Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your Email Address'" required="" type="email">
-                            <button class="click-btn btn btn-default">
-                                <span>subscribe</span>
-                            </button>
-                            <div style="position: absolute; left: -5000px;">
-                                <input name="b_36c4fd991d266f23781ded980_aefe40901a" tabindex="-1" value="" type="text">
-                            </div>
-
-                            <div class="info"></div>
-                        </form>
-                    </div>
                 </div>
             </div>
             <div class="row footer-bottom d-flex justify-content-between" align="center">

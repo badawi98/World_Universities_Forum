@@ -249,9 +249,9 @@ session_start();?>
                 <div class="col-lg-2 col-md-6 single-footer-widget">
                     <h4>Top Products</h4>
                     <ul>
-                        <li><a href="index.html">Home Page</a></li>
-                        <li><a href="about-us.html">About us</a></li>
-                        <li><a href="contact.html">Contact us</a></li>
+                        <li><a href="index.php">Home Page</a></li>
+                        <li><a href="about-us.php">About us</a></li>
+                        <li><a href="contact.php">Contact us</a></li>
                     </ul>
                 </div>
                 <div class="col-lg-2 col-md-6 single-footer-widget">
@@ -266,20 +266,15 @@ session_start();?>
                     <ul>
                         <li><a href="courses.php">Courses</a></li>
                         <li><a href="Scholarship.php">Scholarship</a></li>
-                        <li><a href="#">Chat</a></li>
+                        <li><a href="courses.php">Chat</a></li>
                     </ul>
                 </div>
                 <div class="col-lg-2 col-md-6 single-footer-widget">
                     <h4>Resources</h4>
                     <ul>
-                        <li><a href="about-us.html">About</a></li>
+                        <li><a href="about-us.php">About</a></li>
                         <li><a href="https://colorlib.com/wp/template/edustage/" target="_blank">ColorLib</a></li>
                     </ul>
-                </div>
-                <div class="col-lg-4 col-md-6 single-footer-widget">
-                    <h4>Newsletter</h4>
-                    <p>You can trust us. we only send promo offers,</p>
-
                 </div>
             </div>
             <div class="row footer-bottom d-flex justify-content-between" align="center">

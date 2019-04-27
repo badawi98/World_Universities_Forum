@@ -274,7 +274,7 @@ session_start();?>
                     <ul>
                         <li><a href="courses.php">Courses</a></li>
                         <li><a href="Scholarship.php">Scholarship</a></li>
-                        <li><a href="courses.php">Course Chat</a></li>
+                        <li><a href="courses.php">Chat</a></li>
                     </ul>
                 </div>
                 <div class="col-lg-2 col-md-6 single-footer-widget">
@@ -284,7 +284,6 @@ session_start();?>
                         <li><a href="https://colorlib.com/wp/template/edustage/" target="_blank">ColorLib</a></li>
                     </ul>
                 </div>
-
             </div>
             <div class="row footer-bottom d-flex justify-content-between" align="center">
                 <p class="col-lg-8 col-sm-12 footer-text m-0 text-white">
@@ -299,8 +298,7 @@ session_start();?>
                 </div>
             </div>
         </div>
-    </footer>
-    <!--================ End footer Area  =================-->
+    </footer>    <!--================ End footer Area  =================-->
 
     <!--================Contact Success and Error message Area =================-->
     <div id="success" class="modal modal-message fade" role="dialog">

@@ -982,7 +982,24 @@ if (isset($_POST["signup"])&&$_SERVER["REQUEST_METHOD"] == "POST") {
                 $sql5 = ("INSERT INTO passwords (UserID,Password,User_Name)
                     VALUES ('$userID','$passwords' , '$Signup_username')");
                 if ($conn->query($sql) === TRUE) {
-                echo "
+                    $conn->query($sql5);
+                    if($regester_as === "Student") {
+                        $studentSql = "INSERT INTO student(`StudentID`, `Username`) VALUES ('$userID' , '$Signup_username')";
+                        $conn->query($studentSql);
+                    }
+
+                    elseif ($regester_as === "Instructor") {
+                        $InstructorSql = "INSERT INTO instrctors(`StudentID`, `Username`) VALUES ('$userID' , '$Signup_username')";
+                        $conn->query($InstructorSql);
+                    } else {
+                        echo " 
+                        <script>
+                            swal(\"Good job!\", \"You clicked the button!\", \"warning\");
+                        </script>
+                        ";
+                    }
+
+                    echo "
 <script type='text/javascript'>
     $(document).ready(function () {
         swal('Welcome to our Website');
@@ -1018,9 +1035,7 @@ if (isset($_POST["signup"])&&$_SERVER["REQUEST_METHOD"] == "POST") {
         });
 </script>
 ";
-
-$conn->query($sql5);
-            } else {
+                } else {
                 echo "<script>
 alert('$sql.$conn->error');
 </script>";
@@ -1030,6 +1045,10 @@ alert('$sql.$conn->error');
         }
             }
     }
+    if($regester_as === "Student")
+        echo "yes";
+    else
+        echo "no";
     $conn->close();
     unset($signup);
 
