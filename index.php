@@ -715,13 +715,13 @@
                             <div class="input-group-icon mt-10 col-lg-6 form_group">
                                 <div class="form-select" id="default-select3">
                                     <select name="gender" style="display: none;" required>
-                                        <option value="Gender">Gender</option>
+                                        <option disabled value="Gender">Gender</option>
                                         <option value="Male">Male</option>
                                         <option value="Female">Female</option>
                                     </select><div class="nice-select" tabindex="0" style="
     padding-left: 12px;
     padding-right: 0px;
-"><span class="current">Gender</span><ul class="list"><li data-value="Gender" class="option selected focus">Gender</li><li data-value="Male" class="option">Male</li><li data-value="Female" class="option">Female</li></ul></div>
+"><span class="current">Gender</span><ul class="list"><li data-value="Gender" class="disabled option selected focus">Gender</li><li data-value="Male" class="option">Male</li><li data-value="Female" class="option">Female</li></ul></div>
 
                                 </div>
                             </div>
@@ -731,14 +731,14 @@
 ">
                                 <div class="form-select" id="default-select4">
                                     <select name="regester_as" style="display: none;">
-                                        <option value="Register As">Register as</option>
+                                        <option disabled value="Register As">Register as</option>
                                         <option value="Student">Student</option>
                                         <option value="Instructor">Instructor</option>
                                     </select><div class="nice-select" tabindex="0" style="
     padding-left: 12px;
     padding-right: 0px;
 "><span class="current">Register as</span><ul class="list">
-                                            <li data-value="Register As" class="option selected focus">Register as</li>
+                                            <li data-value="Register As" class="disabled option selected focus">Register as</li>
                                             <li data-value="Student" class="option">Student</li><li data-value="Instructor" class="option">Instructor</li>
                                         </ul></div>
 
@@ -759,7 +759,7 @@
                                         }
                                         else {
                                             echo " 
-                                       <option value=\"University\">University</option>
+                                       <option disabled value=\"University\">University</option>
                                                         ";
                                             $sql_sel = "select `Univ_Name` from `university`";
                                             $myresult = $mycon->query($sql_sel);
@@ -789,7 +789,7 @@
                                             }
                                             else {
                                                 echo " 
-                                        <li data-value=\"University\" class=\"option focus selected\">University</li>
+                                        <li data-value=\"University\" class=\"disabled option focus selected\">University</li>
                                                         ";
                                                 $sql_sel = "select `Univ_Name` from `university`";
                                                 $myresult = $mycon->query($sql_sel);
@@ -987,6 +987,7 @@ if (isset($_POST["signup"])&&$_SERVER["REQUEST_METHOD"] == "POST") {
         if($check !== false) {
             echo  "File is an image - " . $check["mime"] . ".";
         } else {
+
             echo "File is not an image.";
             $submit=false;        }
     }
