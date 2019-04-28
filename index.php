@@ -93,9 +93,9 @@
                         <div class="dropdown-menu dropdown-menu-right dropdown-info " aria-labelledby="navbar-tools">
                             <a class="dropdown-item waves-effect waves-light" href="Profile.php">Profile</a>
                             <?php
-                            $user_names = $_SESSION["username"];
+
                             echo"
-                            <a class=\"dropdown-item waves-effect waves-light\" href=\"courses.php?username=$user_names\">Courses</a>";?>
+                            <a id='courses' class=\"dropdown-item waves-effect waves-light\" href=\"courses.php\">Courses</a>";?>
                             <form method="post" action="index.php">
                                 <button onclick="t()"value="logout" name="logout" id="logout" class="dropdown-item waves-effect waves-light" href="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">Log out</button>
                             </form>
@@ -437,7 +437,7 @@
                                     }
                                     if ($i < $result->num_rows) {
 
-                                        $_SESSION["username"] = $username;
+                                        $_SESSION['username'] = $username;
                                         if (isset($_SESSION['firstTime'])) {
                                             $_SESSION['firstTime'] = false;
                                         } else $_SESSION['firstTime'] = true;
@@ -690,7 +690,7 @@ if(isset($_SESSION['username'])) {
     $username = $_SESSION['username'];
     echo "
                                     <script> 
-                              
+                                        document.getElementById('courses').href='courses.php?username=$username';
                                         document.getElementById('regst').style.display='none';
                                         document.getElementById('loginfisrt').style.display='none';
                                         document.getElementById('navbar-static-user').style.display='inline-block';

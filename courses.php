@@ -1,6 +1,5 @@
 <?php
 session_start();
-$username_get = $_SESSION['username'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -131,6 +130,7 @@ $username_get = $_SESSION['username'];
         echo "
                                     <script> 
                                         document.getElementById('loginfisrt').style.display='none';
+                                        document.getElementById('regst').style.display='none';
                                         document.getElementById('navbar-static-user').style.display='inline-block';
                                         document.getElementById('navbar-user').innerText='👤 $username';
                                        
@@ -188,7 +188,7 @@ $username_get = $_SESSION['username'];
         die("Connection Failed: " . $conn->connect_error);
     }
     else {
-        if(isset($_get['username'])) {
+        if(isset($_GET['username'])) {
             $sql = "SELECT `Course`.`CourseID`,`Course`.`Course_Name`, `Course`.`picture` FROM `course` 
 , `course_students` , `users` where 
 `Course`.`CourseID`=`course_students`.`CourseID` AND `course_students`.`StudentID`= `users`.`UserID`
@@ -196,7 +196,7 @@ $username_get = $_SESSION['username'];
             $result = $conn->query($sql);
 
             if($result->num_rows > 0) {
-                for($i = 0 ; $i > $result->num_rows ; $i++) {
+                for($i = 0 ; $i < $result->num_rows ; $i++) {
                     $row1 = $result->fetch_assoc();
                     $CourseName = $row1['Course_Name'];
                     $CourseID = $row1['CourseID'];
@@ -246,11 +246,6 @@ $username_get = $_SESSION['username'];
             }
         }
         else {
-            echo"
-            <script>
-                alert('no');
-            </script>
-            ";
         $sql = "select * from `course`";
         $result = $conn->query($sql);
         if ($result->num_rows > 0) {
@@ -276,7 +271,7 @@ $username_get = $_SESSION['username'];
 
                 echo "
                 <div class=\"col-lg-4 d-flex align-items-stretch h-auto\" style='display: flex'>
-                <div style=\"background-color: rgb(249, 249, 255)\" class=\" \">
+                <div class=\" \">
                     <div class=\"single_course\" >
                         <div class=\"course_head\">
                             <img style='width:100%;
