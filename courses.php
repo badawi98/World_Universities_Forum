@@ -1,5 +1,7 @@
 <?php
-session_start();?>
+session_start();
+$username = $_SESSION['username'];
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -181,10 +183,69 @@ session_start();?>
     $dbname = "web_project";
     $i = 0;
     $conn = new mysqli($servername, $user, $pass, $dbname);
+
     if ($conn->connect_error) {
         die("Connection Failed: " . $conn->connect_error);
     }
     else {
+        if(isset($username)) {
+            $sql = "SELECT `Course`.`CourseID`,`Course`.`Course_Name`, `Course`.`picture` FROM `course` 
+, `course_students` , `users` where 
+`Course`.`CourseID`=`course_students`.`CourseID` AND `course_students`.`StudentID`= `users`.`UserID`
+ AND `users`.`User_Name` =  '$username'";
+            $result = $conn->query($sql);
+
+            if($result->num_rows > 0) {
+                for($i = 0 ; $i > $result->num_rows ; $i++) {
+                    $row1 = $result->fetch_assoc();
+                    $CourseName = $row1['Course_Name'];
+                    $CourseID = $row1['CourseID'];
+                    $CoursePic = $row1['picture'];
+                    $sql2 ="select * from `instructors_courses` where $CourseID  =  CourseID";
+                    $result2 = $conn->query($sql2);
+                    $row2 = $result2->fetch_assoc();
+                    $instructorID = $row2['InstructorID'];
+                    $CourseDescription = $row2['Decription'];
+                    $sql3 ="select * from `users` where $instructorID = UserID ";
+                    $result3 = $conn->query($sql3);
+                    $row3 = $result3->fetch_assoc();
+                    $UnivID = $row3['UnivID'];
+                    $Inst_User = $row3['User_Name'];
+                    $sql4 ="select `Univ_Name` from `university` where $UnivID = UnivID ";
+                    $result4 = $conn->query($sql4);
+                    $row4 = $result4->fetch_assoc();
+                    $UnivName = $row4['Univ_Name'];
+                    echo"
+                    <div class=\"col-lg-4 d-flex align-items-stretch h-auto\" style='display: flex'>
+                <div class=\" \">
+                    <div class=\"single_course\" >
+                        <div class=\"course_head\">
+                            <img style='width:100%;
+    height: 200px;' width='100%' class=\"img-fluid\" src=$CoursePic alt=\"\" />
+                        </div>
+                        <div class=\"course_content\">
+                            <span class=\"tag mb-4 d-inline-block\">$UnivName</span>
+                            <h4 class=\"mb-3\">                       
+                                <a name='courseTag' href=\"course-details.php?coursename=$CourseName\">$CourseName</a>                          
+                            </h4>
+                            <div
+                                    class=\"course_meta d-flex justify-content-lg-between align-items-lg-center flex-lg-row flex-column mt-4\"
+                            >
+                                <div class=\"authr_meta\">
+                                    <img src=\"img/courses/author1.png\" alt=\"\" />
+                                    <span class=\"d-inline-block ml-2\">$Inst_User</span>
+                                </div>
+                               
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>";
+                }
+            }
+        }
+        else {
         $sql = "select * from `course`";
         $result = $conn->query($sql);
         if ($result->num_rows > 0) {
@@ -213,7 +274,8 @@ session_start();?>
                 <div class=\" \">
                     <div class=\"single_course\" >
                         <div class=\"course_head\">
-                            <img  width='100%' class=\"img-fluid\" src=$CoursePic alt=\"\" />
+                            <img style='width:100%;
+    height: 200px;' width='100%' class=\"img-fluid\" src=$CoursePic alt=\"\" />
                         </div>
                         <div class=\"course_content\">
                             <span class=\"tag mb-4 d-inline-block\">$UnivName</span>
@@ -248,6 +310,7 @@ session_start();?>
                     <script>  $(document).ready(function () {
                                 swal('You are not a member');
                                 });</script>";
+            }
             }
         }
     }

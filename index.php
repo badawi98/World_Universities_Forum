@@ -1,3 +1,4 @@
+
 <?php session_start();
 ?>
 <html lang="en"><head>
@@ -90,7 +91,10 @@
 
                         <div class="dropdown-menu dropdown-menu-right dropdown-info " aria-labelledby="navbar-tools">
                             <a class="dropdown-item waves-effect waves-light" href="Profile.php">Profile</a>
-                            <a class="dropdown-item waves-effect waves-light" href="">Courses</a>
+                            <?php
+                            $user_names = $_SESSION["username"];
+                            echo"
+                            <a class=\"dropdown-item waves-effect waves-light\" href=\"courses.php?username=$user_names\">Courses</a>";?>
                             <form method="post" action="index.php">
                                 <button onclick="t()"value="logout" name="logout" id="logout" class="dropdown-item waves-effect waves-light" href="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">Log out</button>
                             </form>
@@ -224,261 +228,84 @@
             </div>
         </div>
         <div class="row">
-            <!-- single course -->
             <div class="col-lg-12">
-                <div class="owl-carousel active_course owl-loaded owl-drag">
+                <div class="owl-carousel active_course">
+                    <?php
+                    $servername = "localhost";
+                    $user = "root";
+                    $pass = "";
+                    $dbname = "web_project";
+                    $i = 0;
+                    $conn = new mysqli($servername, $user, $pass, $dbname);
+                    if ($conn->connect_error) {
+                        die("Connection Failed: " . $conn->connect_error);
+                    }
+                    else {
+                    $sql = "SELECT count(`course_students`.`StudentID`) as students_count,
+`Course`.`CourseID`,`Course`.`Course_Name`, `Course`.`picture` FROM `course` , `course_students` where 
+`Course`.`CourseID`=`course_students`.`CourseID` GROUP BY `course`.`Course_Name` LIMIT 3;";
+                    $result = $conn->query($sql);
+                    if ($result->num_rows > 0) {
+                        for ($i = 0; $i < $result->num_rows; $i++) {
+                            $row1 = $result->fetch_assoc();
+                            $CourseName = $row1['Course_Name'];
+                            $CourseID = $row1['CourseID'];
+                            $CoursePic = $row1['picture'];
+                            $sql2 = "select * from `instructors_courses` where $CourseID  =  CourseID";
+                            $result2 = $conn->query($sql2);
+                            $row2 = $result2->fetch_assoc();
+                            $instructorID = $row2['InstructorID'];
+                            $CourseDescription = $row2['Decription'];
+                            $sql3 = "select * from `users` where $instructorID = UserID ";
+                            $result3 = $conn->query($sql3);
+                            $row3 = $result3->fetch_assoc();
+                            $UnivID = $row3['UnivID'];
+                            $Inst_User = $row3['User_Name'];
+                            $sql4 = "select `Univ_Name` from `university` where $UnivID = UnivID ";
+                            $result4 = $conn->query($sql4);
+                            $row4 = $result4->fetch_assoc();
+                            $UnivName = $row4['Univ_Name'];
+                            echo " 
+            
+              <div class=\"single_course\">
+                <div class=\"course_head\">
+                 <img style='width:100%;
+    height: 200px;' width='100%' class=\"img - fluid\" src=$CoursePic alt=\"\" />
+                </div>
+                <div class=\"course_content\">
+                  <span class=\"tag mb-4 d-inline-block\">$UnivName</span>
+                  <h4 class=\"mb-3\">
+                                <a name='courseTag' href=\"course-details.php?coursename=$CourseName\">$CourseName</a>                          
+                  </h4>
+                  
+                  <div
+                    class=\"course_meta d-flex justify-content-lg-between align-items-lg-center flex-lg-row flex-column mt-4\"
+                  >
+                    <div class=\"authr_meta\">
+                      <img src=\"img/courses/author1.png\" alt=\"\" />
+                      <span class=\"d-inline-block ml-2\">$Inst_User</span>
+                    </div>
+                    <div class=\"mt-lg-0 mt-3\">
+                      <span class=\"meta_info mr-4\">
+                      </span>
+                      <span class=\"meta_info\">
+                    </div>
+                  </div>
+                </div>
+              </div>
 
-
-
-
-
-                    <div class="owl-stage-outer"><div class="owl-stage" style="transform: translate3d(-1140px, 0px, 0px); transition: all 0s ease 0s; width: 3420px;"><div class="owl-item cloned" style="width: 350px; margin-right: 30px;"><div class="single_course">
-                                    <div class="course_head">
-                                        <img class="img-fluid" src="img/courses/c1.jpg" alt="">
-                                    </div>
-                                    <div class="course_content">
-                                        <span class="price">$25</span>
-                                        <span class="tag mb-4 d-inline-block">design</span>
-                                        <h4 class="mb-3">
-                                            <a href="course-details.php">Custom Product Design</a>
-                                        </h4>
-                                        <p>
-                                            One make creepeth man bearing their one firmament won't fowl
-                                            meat over sea
-                                        </p>
-                                        <div class="course_meta d-flex justify-content-lg-between align-items-lg-center flex-lg-row flex-column mt-4">
-                                            <div class="authr_meta">
-                                                <img src="img/courses/author1.png" alt="">
-                                                <span class="d-inline-block ml-2">Cameron</span>
-                                            </div>
-                                            <div class="mt-lg-0 mt-3">
-                      <span class="meta_info mr-4">
-                        <a href="#"> <i class="ti-user mr-2"></i>25 </a>
-                      </span>
-                                                <span class="meta_info"><a href="#"> <i class="ti-heart mr-2"></i>35 </a></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div></div><div class="owl-item cloned" style="width: 350px; margin-right: 30px;"><div class="single_course">
-                                    <div class="course_head">
-                                        <img class="img-fluid" src="img/courses/c2.jpg" alt="">
-                                    </div>
-                                    <div class="course_content">
-                                        <span class="price">$25</span>
-                                        <span class="tag mb-4 d-inline-block">design</span>
-                                        <h4 class="mb-3">
-                                            <a href="course-details.php">Social Media Network</a>
-                                        </h4>
-                                        <p>
-                                            One make creepeth man bearing their one firmament won't fowl
-                                            meat over sea
-                                        </p>
-                                        <div class="course_meta d-flex justify-content-lg-between align-items-lg-center flex-lg-row flex-column mt-4">
-                                            <div class="authr_meta">
-                                                <img src="img/courses/author2.png" alt="">
-                                                <span class="d-inline-block ml-2">Cameron</span>
-                                            </div>
-                                            <div class="mt-lg-0 mt-3">
-                      <span class="meta_info mr-4">
-                        <a href="#"> <i class="ti-user mr-2"></i>25 </a>
-                      </span>
-                                                <span class="meta_info"><a href="#"> <i class="ti-heart mr-2"></i>35 </a></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div></div><div class="owl-item cloned" style="width: 350px; margin-right: 30px;"><div class="single_course">
-                                    <div class="course_head">
-                                        <img class="img-fluid" src="img/courses/c3.jpg" alt="">
-                                    </div>
-                                    <div class="course_content">
-                                        <span class="price">$25</span>
-                                        <span class="tag mb-4 d-inline-block">design</span>
-                                        <h4 class="mb-3">
-                                            <a href="course-details.php">Computer Engineering</a>
-                                        </h4>
-                                        <p>
-                                            One make creepeth man bearing their one firmament won't fowl
-                                            meat over sea
-                                        </p>
-                                        <div class="course_meta d-flex justify-content-lg-between align-items-lg-center flex-lg-row flex-column mt-4">
-                                            <div class="authr_meta">
-                                                <img src="img/courses/author3.png" alt="">
-                                                <span class="d-inline-block ml-2">Cameron</span>
-                                            </div>
-                                            <div class="mt-lg-0 mt-3">
-                      <span class="meta_info mr-4">
-                        <a href="#"> <i class="ti-user mr-2"></i>25 </a>
-                      </span>
-                                                <span class="meta_info"><a href="#"> <i class="ti-heart mr-2"></i>35 </a></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div></div><div class="owl-item active" style="width: 350px; margin-right: 30px;"><div class="single_course">
-                                    <div class="course_head">
-                                        <img class="img-fluid" src="img/courses/c1.jpg" alt="">
-                                    </div>
-                                    <div class="course_content">
-                                        <span class="price">$25</span>
-                                        <span class="tag mb-4 d-inline-block">design</span>
-                                        <h4 class="mb-3">
-                                            <a href="course-details.php">Custom Product Design</a>
-                                        </h4>
-                                        <p>
-                                            One make creepeth man bearing their one firmament won't fowl
-                                            meat over sea
-                                        </p>
-                                        <div class="course_meta d-flex justify-content-lg-between align-items-lg-center flex-lg-row flex-column mt-4">
-                                            <div class="authr_meta">
-                                                <img src="img/courses/author1.png" alt="">
-                                                <span class="d-inline-block ml-2">Cameron</span>
-                                            </div>
-                                            <div class="mt-lg-0 mt-3">
-                      <span class="meta_info mr-4">
-                        <a href="#"> <i class="ti-user mr-2"></i>25 </a>
-                      </span>
-                                                <span class="meta_info"><a href="#"> <i class="ti-heart mr-2"></i>35 </a></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div></div><div class="owl-item active" style="width: 350px; margin-right: 30px;"><div class="single_course">
-                                    <div class="course_head">
-                                        <img class="img-fluid" src="img/courses/c2.jpg" alt="">
-                                    </div>
-                                    <div class="course_content">
-                                        <span class="price">$25</span>
-                                        <span class="tag mb-4 d-inline-block">design</span>
-                                        <h4 class="mb-3">
-                                            <a href="course-details.php">Social Media Network</a>
-                                        </h4>
-                                        <p>
-                                            One make creepeth man bearing their one firmament won't fowl
-                                            meat over sea
-                                        </p>
-                                        <div class="course_meta d-flex justify-content-lg-between align-items-lg-center flex-lg-row flex-column mt-4">
-                                            <div class="authr_meta">
-                                                <img src="img/courses/author2.png" alt="">
-                                                <span class="d-inline-block ml-2">Cameron</span>
-                                            </div>
-                                            <div class="mt-lg-0 mt-3">
-                      <span class="meta_info mr-4">
-                        <a href="#"> <i class="ti-user mr-2"></i>25 </a>
-                      </span>
-                                                <span class="meta_info"><a href="#"> <i class="ti-heart mr-2"></i>35 </a></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div></div><div class="owl-item active" style="width: 350px; margin-right: 30px;"><div class="single_course">
-                                    <div class="course_head">
-                                        <img class="img-fluid" src="img/courses/c3.jpg" alt="">
-                                    </div>
-                                    <div class="course_content">
-                                        <span class="price">$25</span>
-                                        <span class="tag mb-4 d-inline-block">design</span>
-                                        <h4 class="mb-3">
-                                            <a href="course-details.php">Computer Engineering</a>
-                                        </h4>
-                                        <p>
-                                            One make creepeth man bearing their one firmament won't fowl
-                                            meat over sea
-                                        </p>
-                                        <div class="course_meta d-flex justify-content-lg-between align-items-lg-center flex-lg-row flex-column mt-4">
-                                            <div class="authr_meta">
-                                                <img src="img/courses/author3.png" alt="">
-                                                <span class="d-inline-block ml-2">Cameron</span>
-                                            </div>
-                                            <div class="mt-lg-0 mt-3">
-                      <span class="meta_info mr-4">
-                        <a href="#"> <i class="ti-user mr-2"></i>25 </a>
-                      </span>
-                                                <span class="meta_info"><a href="#"> <i class="ti-heart mr-2"></i>35 </a></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div></div><div class="owl-item cloned" style="width: 350px; margin-right: 30px;"><div class="single_course">
-                                    <div class="course_head">
-                                        <img class="img-fluid" src="img/courses/c1.jpg" alt="">
-                                    </div>
-                                    <div class="course_content">
-                                        <span class="price">$25</span>
-                                        <span class="tag mb-4 d-inline-block">design</span>
-                                        <h4 class="mb-3">
-                                            <a href="course-details.php">Custom Product Design</a>
-                                        </h4>
-                                        <p>
-                                            One make creepeth man bearing their one firmament won't fowl
-                                            meat over sea
-                                        </p>
-                                        <div class="course_meta d-flex justify-content-lg-between align-items-lg-center flex-lg-row flex-column mt-4">
-                                            <div class="authr_meta">
-                                                <img src="img/courses/author1.png" alt="">
-                                                <span class="d-inline-block ml-2">Cameron</span>
-                                            </div>
-                                            <div class="mt-lg-0 mt-3">
-                      <span class="meta_info mr-4">
-                        <a href="#"> <i class="ti-user mr-2"></i>25 </a>
-                      </span>
-                                                <span class="meta_info"><a href="#"> <i class="ti-heart mr-2"></i>35 </a></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div></div><div class="owl-item cloned" style="width: 350px; margin-right: 30px;"><div class="single_course">
-                                    <div class="course_head">
-                                        <img class="img-fluid" src="img/courses/c2.jpg" alt="">
-                                    </div>
-                                    <div class="course_content">
-                                        <span class="price">$25</span>
-                                        <span class="tag mb-4 d-inline-block">design</span>
-                                        <h4 class="mb-3">
-                                            <a href="course-details.php">Social Media Network</a>
-                                        </h4>
-                                        <p>
-                                            One make creepeth man bearing their one firmament won't fowl
-                                            meat over sea
-                                        </p>
-                                        <div class="course_meta d-flex justify-content-lg-between align-items-lg-center flex-lg-row flex-column mt-4">
-                                            <div class="authr_meta">
-                                                <img src="img/courses/author2.png" alt="">
-                                                <span class="d-inline-block ml-2">Cameron</span>
-                                            </div>
-                                            <div class="mt-lg-0 mt-3">
-                      <span class="meta_info mr-4">
-                        <a href="#"> <i class="ti-user mr-2"></i>25 </a>
-                      </span>
-                                                <span class="meta_info"><a href="#"> <i class="ti-heart mr-2"></i>35 </a></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div></div><div class="owl-item cloned" style="width: 350px; margin-right: 30px;"><div class="single_course">
-                                    <div class="course_head">
-                                        <img class="img-fluid" src="img/courses/c3.jpg" alt="">
-                                    </div>
-                                    <div class="course_content">
-                                        <span class="price">$25</span>
-                                        <span class="tag mb-4 d-inline-block">design</span>
-                                        <h4 class="mb-3">
-                                            <a href="course-details.php">Computer Engineering</a>
-                                        </h4>
-                                        <p>
-                                            One make creepeth man bearing their one firmament won't fowl
-                                            meat over sea
-                                        </p>
-                                        <div class="course_meta d-flex justify-content-lg-between align-items-lg-center flex-lg-row flex-column mt-4">
-                                            <div class="authr_meta">
-                                                <img src="img/courses/author3.png" alt="">
-                                                <span class="d-inline-block ml-2">Cameron</span>
-                                            </div>
-                                            <div class="mt-lg-0 mt-3">
-                      <span class="meta_info mr-4">
-                        <a href="#"> <i class="ti-user mr-2"></i>25 </a>
-                      </span>
-                                                <span class="meta_info"><a href="#"> <i class="ti-heart mr-2"></i>35 </a></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div></div></div></div><div class="owl-nav disabled"><div class="owl-prev"><img src="img/prev.png"></div><div class="owl-next"><img src="img/next.png"></div></div><div class="owl-dots disabled"></div></div>
+             
+            
+            ";
+                        }
+        }
+    }
+?>
+                </div>
             </div>
         </div>
     </div>
+</div>
 </div>
 <!--================ End Popular Courses Area =================-->
 
