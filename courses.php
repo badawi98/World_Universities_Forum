@@ -1,6 +1,6 @@
 <?php
 session_start();
-$username = $_SESSION['username'];
+$username_get = $_SESSION['username'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -188,7 +188,7 @@ $username = $_SESSION['username'];
         die("Connection Failed: " . $conn->connect_error);
     }
     else {
-        if(isset($username)) {
+        if(isset($_get['username'])) {
             $sql = "SELECT `Course`.`CourseID`,`Course`.`Course_Name`, `Course`.`picture` FROM `course` 
 , `course_students` , `users` where 
 `Course`.`CourseID`=`course_students`.`CourseID` AND `course_students`.`StudentID`= `users`.`UserID`
@@ -246,6 +246,11 @@ $username = $_SESSION['username'];
             }
         }
         else {
+            echo"
+            <script>
+                alert('no');
+            </script>
+            ";
         $sql = "select * from `course`";
         $result = $conn->query($sql);
         if ($result->num_rows > 0) {
