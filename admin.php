@@ -1,4 +1,33 @@
+<?php
+session_start();
+if(!isset($_SESSION["name"])) {
+    echo "
+        <script>
+            window.location.replace('Login_v14/adminlogin.php');
+        </script>";
 
+}
+else {
+    $username = $_SESSION['name'];
+    $servername = "localhost";
+    $user = "root";
+    $pass = "";
+    $dbname = "web_project";
+    $conn = new mysqli($servername, $user, $pass, $dbname);
+    $sql = "select * from `users` where '$username' = User_Name";
+    $result = $conn->query($sql);
+    if($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        $univID = $row['UnivID'];
+        $sql = "select * from `university` where $univID = UnivID";
+        $result = $conn->query($sql);
+        if($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+            $UnivName = $row['Univ_Name'];
+        }
+    }
+}
+?>
 <html lang="en"><head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -44,7 +73,7 @@
 <body>
 <div class="jumbotron text-center" style="margin-bottom:0">
     <h1>Universities Forum Administrator Page</h1>
-   <!-- <p>Resize this responsive page to see the effect!</p>-->
+    <!-- <p>Resize this responsive page to see the effect!</p>-->
 </div>
 <nav class="site-header sticky-top py-1">
     <div class="container d-flex flex-column flex-md-row justify-content-between">
@@ -64,7 +93,12 @@
         <form class="form_area md-form" id="SignUp" action="" method="post" enctype="multipart/form-data">
             <div class="row">
                 <div class="mt-10 col-lg-12 form_group">
-                    <input id="Univ_Name" type="text" name="Signup_username" placeholder="University name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'User Name'"  class="single-input">
+                    <?php
+                    echo " 
+                                        <input disabled value='$UnivName' id=\"Univ_Name\" type=\"text\" name=\"Signup_username\" placeholder=\"University name\" onfocus=\"this.placeholder = ''\" onblur=\"this.placeholder = 'User Name'\"  class=\"single-input\">
+
+                    ";
+                    ?>
                     <i class=" input-icon js-btn-calendar"></i>
                 </div>
                 <div class="mt-10 col-lg-12 form_group">
@@ -95,9 +129,6 @@
                     <input type="file" class="custom-file-input" name="filename" id="filename" required >
                     <label class="custom-file-label selected" for="customFile"></label>
                 </div>
-
-
-
                 <button name="signup" value="signup" class="primary-btn"
                     <?php
                     echo " onclick='make_rqd1()'";
@@ -132,8 +163,12 @@
         <form class="form_area md-form" id="SignUp" action="" method="post" enctype="multipart/form-data">
             <div class="row">
                 <div class="mt-10 col-lg-12 form_group">
-                    <input id="Univ_Name" type="text" name="Signup_username" placeholder="University name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'User Name'"  class="single-input">
-                    <i class=" input-icon js-btn-calendar"></i>
+                    <?php
+                    echo " 
+                                        <input disabled value='$UnivName' id=\"Univ_Name\" type=\"text\" name=\"Signup_username\" placeholder=\"University name\" onfocus=\"this.placeholder = ''\" onblur=\"this.placeholder = 'User Name'\"  class=\"single-input\">
+
+                    ";
+                    ?>                    <i class=" input-icon js-btn-calendar"></i>
                 </div>
                 <div class="mt-10 col-lg-12 form_group">
                     <input id="Dep_Name" type="text" name="Signup_username" placeholder="Course name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'User Name'"  class="single-input">
@@ -215,11 +250,7 @@
                 <div class=\"country\" > $User_Name</div >
                 <div class=\"visit\" >
                 
-            <div id=\"demoLightbox\" class=\"lightbox hide fade\"  tabindex=\"-1\" role=\"dialog\" aria-hidden=\"true\">
-	<div class='lightbox-content'>
-		<img src=\"https://unsplash.it/600.jpg?image=250\">
-		<div class=\"lightbox-caption\"><p>Your caption here</p></div>
-	</div>
+		<div class=\"lightbox-caption\"><button type = \"submit\" class=\"btn\" style = \"margin-right: 5px\" >View</button></div>
 </div>
                 
                 
@@ -230,13 +261,16 @@
                 </div >
             </div >";
                     }
-                    }
+                }
             }
             ?>
-            
+
         </div>
     </div>
     <hr>
 
 </body>
 </html>
+<?php
+session_destroy();
+?>
