@@ -276,7 +276,7 @@ $username_get = $_SESSION['username'];
 
                 echo "
                 <div class=\"col-lg-4 d-flex align-items-stretch h-auto\" style='display: flex'>
-                <div class=\" \">
+                <div style=\"background-color: rgb(249, 249, 255)\" class=\" \">
                     <div class=\"single_course\" >
                         <div class=\"course_head\">
                             <img style='width:100%;

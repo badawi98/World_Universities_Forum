@@ -582,12 +582,9 @@ echo "
     <script>setCourseName('$course_name','$username');signIn('$email','$password');</script>
         </body>
       </html>";
-echo "
-<script>MathCourse=$course_name</script>";
+
+
 #<a href="#" class="primary-btn2 text-uppercase enroll rounded-0 text-white">Enroll the course</a>
-
-
-
 
 
 

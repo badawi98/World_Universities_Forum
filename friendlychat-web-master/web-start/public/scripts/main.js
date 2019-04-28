@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 'use strict';
-import swal from 'sweetalert';
+
 var  CourseName="";
 var UserName="";
 // Signs-in Friendly Chat.
@@ -404,3 +404,6 @@ var firestore = firebase.firestore();
 //firestore.settings(settings);
 
 // We load currently existing chat messages and listen to new ones.
+
+
+// some scripts for sweet alert:
