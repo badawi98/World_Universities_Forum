@@ -81,7 +81,7 @@ session_start();?>
 
                         <div class="dropdown-menu dropdown-menu-right dropdown-info " aria-labelledby="navbar-tools">
                             <a class="dropdown-item waves-effect waves-light" href="">Profile</a>
-                            <a class="dropdown-item waves-effect waves-light" href="">Courses</a>
+                            <a id="courses" class="dropdown-item waves-effect waves-light" href="">Courses</a>
                             <form method="post" action="index.php">
                                 <button onclick="  $(document).ready(function () {
                                 swal('Good Bye');
@@ -124,6 +124,7 @@ session_start();?>
         $username = $_SESSION['username'];
         echo "
                                     <script> 
+                                        document.getElementById('courses').href='courses.php?username=$username';
                                         document.getElementById('loginfisrt').style.display='none';
                                         document.getElementById('navbar-static-user').style.display='inline-block';
                                         document.getElementById('navbar-user').innerText='👤 $username';

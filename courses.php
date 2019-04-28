@@ -86,7 +86,7 @@ session_start();
 
                         <div class="dropdown-menu dropdown-menu-right dropdown-info " aria-labelledby="navbar-tools">
                             <a class="dropdown-item waves-effect waves-light" href="">Profile</a>
-                            <a class="dropdown-item waves-effect waves-light" href="">Courses</a>
+                            <a id="courses" class="dropdown-item waves-effect waves-light" href="">Courses</a>
                             <form method="post" action="index.php">
                                 <button onclick="  $(document).ready(function () {
                                 swal('Good Bye');
@@ -125,12 +125,13 @@ session_start();
       </div>
     </header>
     <?php
+
     if(isset($_SESSION['username'])) {
         $username = $_SESSION['username'];
         echo "
                                     <script> 
+                                        document.getElementById('courses').href='courses.php?username=$username';
                                         document.getElementById('loginfisrt').style.display='none';
-                                        document.getElementById('regst').style.display='none';
                                         document.getElementById('navbar-static-user').style.display='inline-block';
                                         document.getElementById('navbar-user').innerText='👤 $username';
                                        
@@ -320,180 +321,6 @@ session_start();
     </div>
     <!--================ End Popular Courses Area =================-->
 
-    <!--================ Start Registration Area =================-->
-    <div class="section_gap registration_area">
-      <div class="container" style="
-    margin-left: 0px;
-    margin-right: 0px;
-    padding-right: 15px;
-    padding-left: 15px;
-">
-        <div class="row align-items-center">
-          <!--    <div class="col-lg-3">
-                  <div class="row clock_sec clockdiv" id="clockdiv">
-                      <div class="col-lg-12">
-                          <h1 class="mb-3">Register Now</h1>
-                          <p>
-                              There is a moment in the life of any aspiring astronomer that
-                              it is time to buy that first telescope. It’s exciting to think
-                              about setting up your own viewing station.
-                          </p>
-                      </div>
-
-
-
-
-                  </div>
-              </div>-->
-
-          <div class="col-lg-4" style="
-    margin-left: 0px;
-">
-            <div class="register_form" style="
-    padding-top: 30px;
-">
-              <h3 style="
-    border-bottom-width: 5px;
-    margin-bottom: 20px;
-">Welcome</h3>
-
-
-              <form class="form_area" id="LogIn" action="mail.html" method="post">
-                <div class="row">
-                  <div class="col-lg-12 form_group">
-                    <input class="glyphicon glyphicon-user" name="name" placeholder="Username or ID" required="" type="text">
-                    <input name="name" placeholder="Password" required="" type="password">
-
-                  </div>
-                  <div class="col-lg-12 text-center">
-                    <button class="primary-btn" style="
-    margin-bottom: 30px;
-">log in</button>
-                  </div>
-                </div>
-              </form>
-              <h6>Not a member ? </h6>
-              <a href="javascript:void(0)" id="showjoinus" style="
-
-                     margin-top: 0px;
-                     padding-top: 0px;
-                     ">Register now</a>
-            </div>
-          </div>
-          <script>
-            $(document).ready(function(){
-              $("#showjoinus").click(function(){
-                $("#join_us.collapse").collapse('show');
-              });
-            });
-          </script>
-          <div class="col-lg-8" style=" margin-left: 0px;">
-
-            <div style="padding-top: 40px; padding-bottom: 40px;" id="join_us" class="main-container register_form collapse">
-              <h3>Join Us</h3>
-              <p>It is high time for learning</p>
-
-              <form class="form_area md-form" id="SignUp" action="mail.html" method="post">
-                <div class="row">
-
-
-                  <div class="col-lg-6 form_group mt-10">
-                    <input type="text" name="first_name" placeholder="First Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'First Name'" required="" class="single-input">
-                  </div>
-                  <div class="mt-10 col-lg-6 form_group">
-                    <input type="text" name="second_name" placeholder="Second Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Second Name'" required="" class="single-input">
-                  </div>
-                  <div class="mt-10 col-lg-6 form_group">
-                    <input type="text" name="third_name" placeholder="Third Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Third Name'" required="" class="single-input">
-                  </div>
-                  <div class="mt-10 col-lg-6 form_group">
-                    <input type="text" name="last_name" placeholder="Last Name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Last Name'" required="" class="single-input">
-                  </div>
-                  <div class="mt-10 col-lg-12 form_group">
-                    <input type="email" name="EMAIL" placeholder="Email address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email address'" required="" class="single-input">
-                    <i class=" input-icon js-btn-calendar"></i>
-                  </div>
-
-                  <div class="mt-10 col-lg-12 form_group">
-                    <input placeholder="Birth Date" class="single-input-secondary" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" id="date">
-
-                  </div>
-
-                  <div class="input-group-icon mt-10 col-lg-6 form_group">
-                    <div class="form-select" id="default-select3">
-                      <select style="display: none;">
-                        <option value="1">Gender</option>
-                        <option value="1">Male</option>
-                        <option value="1">Female</option>
-                      </select><div class="nice-select" tabindex="0" style="
-    padding-left: 12px;
-    padding-right: 0px;
-"><span class="current">Gender</span><ul class="list"><li data-value="1" class="option selected focus">Gender</li><li data-value="1" class="option">Male</li><li data-value="1" class="option">Female</li></ul></div>
-
-                    </div>
-                  </div>
-                  <div class="input-group-icon mt-10 mb-15 col-lg-6 form_group" style="
-    padding-left: 15px;
-    padding-right: 15px;
-">
-                    <div class="form-select" id="default-select4">
-                      <select style="display: none;">
-                        <option value="1">Register as</option>
-                        <option value="1">Student</option>
-                        <option value="1">Instructor</option>
-                      </select><div class="nice-select" tabindex="0" style="
-    padding-left: 12px;
-    padding-right: 0px;
-"><span class="current">Register as</span><ul class="list"><li data-value="1" class="option selected focus">Register as</li><li data-value="1" class="option">Student</li><li data-value="1" class="option">Instructor</li></ul></div>
-
-                    </div>
-                  </div>
-                  <div class="input-group-icon mt-10 mb-15 col-lg-12 form_group">
-                    <div class="form-select" id="default-select5">
-                      <select style="display: none;">
-                        <option value="1">University</option>
-                        <option value="1">An-Najah National University</option>
-                        <option value="1"></option>
-                        <option value="1"></option>
-                        <option value="1"></option>
-                      </select><div class="nice-select" tabindex="0" style="
-    padding-left: 12px;
-"><span class="current">An-Najah National University</span><ul class="list"><li data-value="1" class="option">University</li><li data-value="1" class="option focus selected">An-Najah National University</li><li data-value="1" class="option"></li><li data-value="1" class="option"></li><li data-value="1" class="option"></li></ul></div>
-
-                    </div>
-                  </div>
-
-
-                  <p>Upload a file verifying your university's membership: </p>
-                  <div class="custom-file mb-3">
-                    <input type="file" class="custom-file-input" id="customFile" name="filename">
-                    <label class="custom-file-label selected" for="customFile"></label>
-                  </div>
-                  <script>
-                    // Add the following code if you want the name of the file appear on select
-                    $(".custom-file-input").on("change", function() {
-                      var fileName = $(this).val().split("\\").pop();
-                      $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
-                    });
-                  </script>
-
-
-
-
-
-
-
-                  <div class="col-lg-12 text-center">
-                    <button class="primary-btn">sign up</button>
-                  </div>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-      <!--================ End Registration Area =================-->
 
     <!--================ Start Feature Area =================-->
     <section class="feature_area section_gap_top">
