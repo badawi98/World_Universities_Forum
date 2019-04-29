@@ -21,6 +21,7 @@ var UserName="";
 var setCourseName=function (cre,User) {
   CourseName=cre;
   UserName=User;
+
 }
 
 var signIn =function (email,password) {
@@ -32,7 +33,7 @@ var signIn =function (email,password) {
     // Handle Errors here.
     var errorCode = error.code;
     var errorMessage = error.message;
-    swal("You are not signed in");
+
     // ...
   });
 
@@ -87,7 +88,6 @@ function saveMessage(messageText) {
   // Add a new message entry to the Firebase database.
 
 
-
   return firebase.firestore().collection(CourseName).add({
     name: UserName,
     text: messageText,
@@ -101,7 +101,6 @@ function saveMessage(messageText) {
 function loadMessages (course) {
   // Create the query to load the last 12 messages and listen for new ones.
   var s=course;
-  swal("s");
   var query = firebase.firestore()
       .collection(CourseName)
       .orderBy('timestamp', 'desc')

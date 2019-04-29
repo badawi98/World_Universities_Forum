@@ -51,8 +51,9 @@ else {
             $sql = " select * from `passwords` where '$username'  =  User_Name";
             $result6 = $conn->query($sql);
             $row11 = $result6->fetch_assoc();
-            $password=$row11['Password'];
+            $password2=$row11['Password'];
 
+            echo "$password";
 
 
         }
@@ -460,7 +461,14 @@ if ($result->num_rows > 0) {
                 </div>
             </div>
         </div>
-    </section>";
+    </section>
+    
+     <script
+src=\"friendlychat-web-master/web-start/public/scripts/main.js\">alert('$email')</script>
+    <script>setCourseName('$course_name','$username');signIn('$email','$password2');</script>
+    
+    
+    ";
     }
 else {
 
@@ -643,7 +651,7 @@ else {
                                          class=\"mdl-card__supporting-text mdl-color-text--grey-600\">
                                         <div id=\"messages\">
                                             <span id=\"message-filler\"></span>
-                                            <div style='display: none' class=\"message-container visible\" id=\"undefined\" timestamp=\"undefined\"><div class=\"spacing\"><div class=\"pic\"></div></div><div class=\"message\"></div><div class=\"name\"></div></div>
+                                            <div style='display: none' class=\"message-container visible\" id=\"undefined\" timestamp=\"undefined\"><div class=\"spacing\"><div class=\"pic\"></div></div><div style=\"width : fixed; overflow-wrap: break-word;\" ></div><div class=\"name\"></div></div>
                                         </div>
                                         <form id=\"message-form\" action=\"#\">
                                             <div class=\"mdl-textfield mdl-js-textfield mdl-textfield--floating-label\">
@@ -685,7 +693,12 @@ else {
                 </div>
             </div>
         </div>
-    </section>";
+    </section>
+     <script
+src=\"friendlychat-web-master/web-start/public/scripts/main.js\">alert('$email')</script>
+    <script>setCourseName('$course_name','$username');signIn('$email','$password2');</script>
+    
+    ";
     }
 
 
@@ -762,8 +775,7 @@ echo "
           
            
 
-    <script src=\"friendlychat-web-master/web-start/public/scripts/main.js\"></script>
-    <script>setCourseName('$course_name','$username');signIn('$email','$password');</script>
+   
         </body>
       </html>";
 
@@ -811,6 +823,8 @@ if(isset($_GET['Add'])) {
 var click = false;
     $(document).ready(function () {
         swal('Now You are a member in this course');
+        
+        window.history.go(0);
         
     });
 </script>

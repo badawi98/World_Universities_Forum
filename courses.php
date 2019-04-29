@@ -178,11 +178,13 @@ session_start();
             </div>
             <div class="row row-eq-height">
     <?php
-    $server_name = "localhost";
-    $user_name = "root";
-    $password = "";
-    $database = "web_project";
-    $conn = new mysqli($server_name, $user_name, $password, $database);
+    $server_name = "192.168.1.23";
+    $user_name = "tamer";
+    $password = "tamer";
+    $dbname = "web_project";
+    $i = 0;
+    $conn = new mysqli($server_name, $user_name, $password, $dbname);
+
     if ($conn->connect_error) {
         die("Connection Failed: " . $conn->connect_error);
     }
@@ -443,5 +445,5 @@ session_start();
   </body>
 </html>
 <?php
-
+echo $CoursePic;
 ?>
