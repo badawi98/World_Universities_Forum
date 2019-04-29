@@ -153,15 +153,12 @@ if (isset($_POST["login"])&&$_SERVER["REQUEST_METHOD"] == "POST") {
                         $result = $conn->query($sql);
                         if($result->num_rows > 0) {
                             $_SESSION['name'] = $username;
-                            if (isset($_SESSION['firstTime'])) {
-                                $_SESSION['firstTime'] = false;
-                            } else $_SESSION['firstTime'] = true;
-                            if ($_SESSION['firstTime'] == true) {
+
                                 echo "
 <script type='text/javascript'>window.location.replace('/Final_Web_Project/admin.php')
 </script>        ";
                             }
-                        }
+
                         else {
                             echo " 
                             <script>

@@ -244,7 +244,7 @@
                     else {
                     $sql = "SELECT count(`course_students`.`StudentID`) as students_count,
 `Course`.`CourseID`,`Course`.`Course_Name`, `Course`.`picture` FROM `course` , `course_students` where 
-`Course`.`CourseID`=`course_students`.`CourseID` GROUP BY `course`.`Course_Name` LIMIT 3;";
+`Course`.`CourseID`=`course_students`.`CourseID` GROUP BY `course`.`Course_Name`  order by students_count desc LIMIT 10 ;";
                     $result = $conn->query($sql);
                     if ($result->num_rows > 0) {
                         for ($i = 0; $i < $result->num_rows; $i++) {
@@ -436,30 +436,44 @@
 
                                     }
                                     if ($i < $result->num_rows) {
+                                        $sql = " select * from `users` where 0  =  Valid and '$username' = User_Name ";
+                                        $result = $conn->query($sql);
+                                        if ($result->num_rows > 0) {
 
-                                        $_SESSION['username'] = $username;
-                                        if (isset($_SESSION['firstTime'])) {
-                                            $_SESSION['firstTime'] = false;
-                                        } else $_SESSION['firstTime'] = true;
-                                        if ($_SESSION['firstTime'] == true) {
                                             echo "
+<script type='text/javascript'>
+    $(document).ready(function () {
+        swal('You are still not accepted by your university\'s administrator');
+    });
+</script>        ";
+                                        }
+                                        else {
+                                            $_SESSION['username'] = $username;
+
+                                            if (isset($_SESSION['firstTime'])) {
+                                                $_SESSION['firstTime'] = false;
+                                            } else $_SESSION['firstTime'] = true;
+                                            if ($_SESSION['firstTime'] == true) {
+                                                echo "
 <script type='text/javascript'>
     $(document).ready(function () {
         swal('Welcome $username');
     });
-</script>        ";                                }
-                                        echo "
+</script>        ";
+                                            }
+                                            echo "
                                     <script> 
                                         document.getElementById('loginfisrt').style.display='none';
                                         document.getElementById('navbar-static-user').style.display='inline-block';
                                         document.getElementById('navbar-user').innerText='👤 $username';
                                 </script>";
 
-                                        #  session_start();
-                                        # if (isset($_SESSION['counter'])) {
-                                        #    $_SESSION['counter'] = "visited";
+                                            #  session_start();
+                                            # if (isset($_SESSION['counter'])) {
+                                            #    $_SESSION['counter'] = "visited";
 
-                                        #}
+                                            #}
+                                        }
                                     } elseif (!isset($logout)) {
                                         echo "
 <script type='text/javascript'>
@@ -896,17 +910,18 @@ if($submit===true) {
                     VALUES ('$userID','$passwords' , '$Signup_username')");
                 if ($conn->query($sql) === TRUE) {
                     if($regester_as === "Student") {
-                        $studentSql = "INSERT INTO student(`StudentID`, `Username`) VALUES ('$userID' , '$Signup_username')\";
+                        $studentSql = "INSERT INTO student(`StudentID`, `Username`) VALUES ('$userID' , '$Signup_username')";
                         $conn->query($studentSql);
                     }
 
-                    elseif ($regester_as === \"Instructor\") {
-                        $InstructorSql = \"INSERT INTO instrctors(`StudentID`, `Username`) VALUES ('$userID' , '$Signup_username')\";
+
+                    elseif ($regester_as === "Instructor") {
+                        $InstructorSql = "INSERT INTO instrctors(`InstructorID`, `Username`) VALUES ('$userID' , '$Signup_username')";
                         $conn->query($InstructorSql);
                     } else {
-                  
+                            echo"
                         <script>
-                            swal(\"Good job!\", \"You clicked the button!\", \"warning\");
+                            swal('Good job!', 'You clicked the button!', 'warning');
                         </script>
                         ";
                     }
@@ -973,10 +988,6 @@ $(document).ready(function () {
             }
         }
     }
-    if($regester_as === "Student")
-        echo "yes";
-    else
-        echo "no";
     $conn->close();
     unset($signup);
 }
@@ -1029,9 +1040,7 @@ function test_input2($data) {
                     </div>
                     <div class="align-items-center justify-content-center d-flex">
                         <a target="_blank" href="https://www.facebook.com/badawi.wawi"><i class="ti-facebook"></i></a>
-                        <a href="#"><i class="ti-twitter"></i></a>
-                        <a href="#"><i class="ti-linkedin"></i></a>
-                        <a href="#"><i class="ti-pinterest"></i></a>
+
                     </div>
                 </div>
             </div>
@@ -1051,11 +1060,29 @@ function test_input2($data) {
                     </div>
                     <div class="align-items-center justify-content-center d-flex">
                         <a target="_blank" href="https://www.facebook.com/profile.php?id=100003034376295"><i class="ti-facebook"></i></a>
-                        <a href="#"><i class="ti-twitter"></i></a>
-                        <a href="#"><i class="ti-linkedin"></i></a>
-                        <a href="#"><i class="ti-pinterest"></i></a>
                     </div>
                 </div>
+
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-12 single-trainer">
+                <div class="thumb d-flex justify-content-sm-center">
+                    <img class="img-fluid" src="img/trainer/t3.jpg" alt="">
+                </div>
+                <div class="meta-text text-sm-center">
+                    <h4>Mohammed Ghazal</h4>
+                    <p class="designation">Student</p>
+                    <div class="mb-4">
+                        <p>
+                            If you are looking at blank cassettes on the web, you may be
+                            very confused at the.
+                        </p>
+                    </div>
+                    <div class="align-items-center justify-content-center d-flex">
+                        <a target="_blank" href="https://www.facebook.com/mohammads.ghazal"><i class="ti-facebook"></i></a>
+
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
@@ -1138,3 +1165,10 @@ function test_input2($data) {
 
 
 </body></html>
+<?php
+$initialString = "/Applications/XAMPP/xamppfiles/htdocs/phpstorm_projects/World_Universities_Forum/uploads/membership_validation/gold_medal.png";
+$arr = explode('/Applications/XAMPP/xamppfiles/htdocs/phpstorm_projects/World_Universities_Forum/',
+    $initialString);
+$initialString = $arr[1];
+echo $initialString;
+?>

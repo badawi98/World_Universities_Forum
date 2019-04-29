@@ -84,6 +84,7 @@ echo"
 <link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css\" />
 <script type=\"text/javascript\" src=\"http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js\"></script>
 <script src=\"https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js\"></script>
+
 <script
   src=\"https://code.jquery.com/jquery-3.4.0.js\"
   integrity=\"sha256-DYZMCC8HTC+QDr5QNaIcfR7VSPtcISykd+6eSmBW5qo=\"
@@ -288,9 +289,188 @@ if ($conns->connect_error) {
     die("Connection Failed: " . $conns->connect_error);
 }
 else {
-    $MySql = " select * from `course_students` where '$CourseID' = CourseID and '$instructor_id'=InstructorID and '$StudentId'=StudentID";
-    $result = $conns->query($MySql);
 
+    $MySql = " select * from `course_students` where   ($instructor_id = $StudentId ) ";
+$result = $conns->query($MySql);
+if ($result->num_rows > 0) {
+  echo "  <h4 class= \"title\">Course Outline</h4>
+                        <div class=\"content\">
+                            <ul class=\"course_list\">
+                                <li class=\"justify-content-between d-flex\">
+                                    <p>Course Slides</p>
+                                    <a target='_blank' class=\"primary-btn text-uppercase\" href=\"https://drive.google.com/drive/folders/1FFQ3u_x-7YPqXnQqO8VOvx8MciNimz2B\">View Details</a>
+                                </li>
+                                <li class=\"justify-content-between d-flex\">
+                                    <p>Course Records</p>
+                                    <a target='_blank' class=\"primary-btn text-uppercase\" href=\"https://drive.google.com/drive/folders/1FFQ3u_x-7YPqXnQqO8VOvx8MciNimz2B\">View Details</a>
+                                </li>
+                                <li class=\"justify-content-between d-flex\">
+                                    <p>Course Exams</p>
+                                    <a target='_blank' class=\"primary-btn text-uppercase\" href=\"https://drive.google.com/drive/folders/1FFQ3u_x-7YPqXnQqO8VOvx8MciNimz2B\">View Details</a>
+                                </li>
+                                <li class=\"justify-content-between d-flex\">
+                                    <p>Course Summaries</p>
+                                    <a target='' class=\"primary-btn text-uppercase\" href=\"https://drive.google.com/drive/folders/1FFQ3u_x-7YPqXnQqO8VOvx8MciNimz2B\">View Details</a>
+                                </li>
+                                <li class=\"justify-content-between d-flex\">
+                                    <p>Course Illustrated lectures</p>
+                                    <a target='_blank' class=\"primary-btn text-uppercase\" href=\"https://drive.google.com/drive/folders/1FFQ3u_x-7YPqXnQqO8VOvx8MciNimz2B\">View Details</a>
+                                </li>
+                                <li class=\"justify-content-between d-flex\">
+                                    <p>Course Info</p>
+                                    <a target='_blank' class=\"primary-btn text-uppercase\" href=\"https://drive.google.com/drive/folders/1FFQ3u_x-7YPqXnQqO8VOvx8MciNimz2B\">View Details</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class=\"col-lg-4 right-contents\">
+                    <ul>
+                        <li>
+                            <a class=\"justify-content-between d-flex\" href=\"#\">
+                                <p>Trainer’s Name</p>
+                                <span class=\"or\">$instructor_name</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class=\"justify-content-between d-flex\" href=\"#\">
+                                <p>Number of Students </p>
+                                <span>$numberOfStudent</span>
+                            </a>
+                        </li>
+
+
+                    </ul>
+                    
+                          <h4 class=\"title\">Chat</h4>
+
+<style>
+
+    @media only screen and (max-width: 400px) {
+        div.class1 {
+            height: 200px;
+        }
+    }
+    @media only screen and (max-width: 600px) {
+        div.class1 {
+            height: 400px;
+        }
+    }
+    @media only screen and (max-width: 800px) {
+       div .class1 {
+            height: 600px;
+        }
+    }
+    @media only screen and (max-width: 2000px) {
+        .class1 {
+            height: 650px;
+        }
+    }
+    @media only screen and (max-width: 400px) {
+        div.class2 {
+            height: 10px;
+        }
+    }
+    @media only screen and (max-width: 600px) {
+        div.class2 {
+            height: 20px;
+        }
+    }
+    @media only screen and (max-width: 800px) {
+        div .class2{
+            height: 30px;
+        }
+    }
+    @media only screen and (max-width: 2000px) {
+        .class2 {
+            height: 50px;
+        }
+    }
+
+</style>
+
+                    <div  style=\" width:100%;\" class=\"class1 demo-layout mdl-layout  mdl-layout--fixed-header\">
+
+
+                        <!-- Header section containing logo -->
+                        <header hidden class=\"  mdl-layout__header mdl-color-text--white mdl-color--light-blue-700\">
+                            <div hidden class=\"class2 mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-grid\">
+
+                                <div hidden id=\"user-container\">
+                                    <div hidden id=\"user-pic\"></div>
+                                    <div hidden id=\"user-name\"></div>
+                                    <button hidden id=\"sign-out\" class=\"mdl-button mdl-js-button mdl-js-ripple-effect mdl-color-text--white\">
+                                        Sign-out
+                                    </button>
+                                    <button hidden id=\"sign-in\" class=\"mdl-button mdl-js-button mdl-js-ripple-effect mdl-color-text--white\">
+                                        <i hidden class=\"material-icons\">account_circle</i>Sign-in with Google
+                                    </button>
+                                </div>
+                            </div>
+                        </header>
+
+                        <main style='overflow-y: hidden;' class=\"mdl-layout__content \">
+                            <div id=\"messages-card-container\" style=\"width:100%; padding-top: 0px;padding-left: 0px;padding-right: 0px;}\"
+                                 class=\"mdl-cell mdl-cell--12-col mdl-grid\">
+
+                                <!-- Messages container -->
+                                <div id=\"messages-card\" class=\"mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-cell--12-col-desktop\">
+                                    <div stype=\"  padding-top: 0px;    padding-right: 10px;    padding-left: 10px;\"
+                                         class=\"mdl-card__supporting-text mdl-color-text--grey-600\">
+                                        <div id=\"messages\">
+                                            <span id=\"message-filler\"></span>
+                                        </div>
+                                        <form id=\"message-form\" action=\"#\">
+                                            <div class=\"mdl-textfield mdl-js-textfield mdl-textfield--floating-label\">
+                                                <input class=\"mdl-textfield__input\" type=\"text\" id=\"message\">
+                                                <label class=\"mdl-textfield__label\" for=\"message\">Message...</label>
+                                            </div>
+                                            <button id=\"submit\" disabled type=\"submit\" class=\"mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect\">
+                                                Send
+                                            </button>
+                                        </form>
+                                        <form id=\"image-form\" action=\"#\">
+                                            <input id=\"mediaCapture\" type=\"file\" accept=\"image/*\" capture=\"camera\">
+                                            <button id=\"submitImage\" title=\"Add an image\" class=\"mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-color--amber-400 mdl-color-text--white\">
+                                                <i class=\"material-icons\">image</i>
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+
+                                <div id=\"must-signin-snackbar\" class=\"mdl-js-snackbar mdl-snackbar\">
+                                    <div class=\"mdl-snackbar__text\"></div>
+                                    <button class=\"mdl-snackbar__action\" type=\"button\"></button>
+                                </div>
+
+                            </div>
+                        </main>
+                    </div>
+
+
+
+
+
+
+
+
+                    </div>
+                </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>";
+    }
+else {
+
+    $MySql = " select * from `course_students` where  ( ($instructor_id != $StudentId )  and $CourseID = CourseID and $instructor_id=InstructorID and $StudentId=StudentID )   
+    ";
+
+
+    $result = $conns->query($MySql);
     if ($result->num_rows == 0) {
         $row11 = $result4->fetch_assoc();
         echo " 
@@ -320,7 +500,7 @@ else {
                         
                         
                     </ul>
-                    <a onclick='location.reload()' id='enroll' href=\"course-details.php?coursename=$course_name&Add='true'\" class=\"primary-btn2 text-uppercase enroll rounded-0 text-white\">Enroll the course</a>
+                    <a onclick='window.location.reload()' id='enroll' href=\"course-details.php?coursename=$course_name&Add='true'\" class=\"primary-btn2 text-uppercase enroll rounded-0 text-white\">Enroll the course</a>
                   
                              
                         
@@ -508,6 +688,12 @@ else {
         </div>
     </section>";
     }
+
+
+    }
+
+
+
 }
 ?>
 <?php
@@ -637,6 +823,9 @@ var click = false;
         }
     }
 }
+$MySql = " select * from `course_students` where  ( ($instructor_id != $StudentId )  and $CourseID = CourseID and $instructor_id=InstructorID and $StudentId=StudentID )   
+    ";
+echo $MySql;
 
 ?>
 

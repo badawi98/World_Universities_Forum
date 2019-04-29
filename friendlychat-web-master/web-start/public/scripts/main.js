@@ -213,6 +213,7 @@ function onMessageFormSubmit(e) {
       resetMaterialTextfield(messageInputElement);
       toggleButton();
       displayMessage()
+
     });
   }
 }
