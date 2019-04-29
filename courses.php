@@ -178,9 +178,9 @@ session_start();
             </div>
             <div class="row row-eq-height">
     <?php
-    $server_name = "192.168.1.23";
-    $user_name = "tamer";
-    $password = "tamer";
+    $server_name = "localhost";
+    $user_name = "root";
+    $password = "";
     $dbname = "web_project";
     $i = 0;
     $conn = new mysqli($server_name, $user_name, $password, $dbname);

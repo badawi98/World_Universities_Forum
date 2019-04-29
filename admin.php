@@ -8,11 +8,12 @@ if(!isset($_SESSION["name"])) {
 
 }
 else {
-    $server_name = "172.19.107.159";
-    $user_name = "tamer";
-    $password = "tamer";
+    $server_name = "localhost";
+    $user_name = "root";
+    $password = "";
     $database = "web_project";
     $conn = new mysqli($server_name, $user_name, $password, $database);
+    $username=$_SESSION["name"];
     $sql = "select * from `users` where '$username' = User_Name";
     $result = $conn->query($sql);
     if($result->num_rows > 0) {
@@ -227,19 +228,19 @@ else {
                 $submit = false;
             } else {
                 $link = test_input2($_POST["link"]);
-             //   if (!preg_match("/^[a-zA-Z]*$/", $first_name)) {
-               //     echo $_POST["link"];
-                 //   $submit = false;
-               // }
+                //   if (!preg_match("/^[a-zA-Z]*$/", $first_name)) {
+                //     echo $_POST["link"];
+                //   $submit = false;
+                // }
             }
             if (empty($_POST["Startdate"])) {
                 echo $_POST["Startdate"];
                 $submit = false;
             } else {
                 $Startdate = test_input2($_POST["Startdate"]);
-              //  if (!preg_match("/^[a-zA-Z]*$/", $first_name)) {
+                //  if (!preg_match("/^[a-zA-Z]*$/", $first_name)) {
                 //    echo $_POST["Startdate"];
-                  //  $submit = false;
+                //  $submit = false;
                 //}
             }
             if (empty($_POST["scholimg"])) {
@@ -267,10 +268,10 @@ else {
                 }
             }
 // Check if file already exists
-        /*    if (file_exists($target_file)) {
-                echo "Sorry, file already exists.";
-                $submit = false;
-            }*/
+            /*    if (file_exists($target_file)) {
+                    echo "Sorry, file already exists.";
+                    $submit = false;
+                }*/
 // Check file size
             if ($_FILES["scholimg"]["size"] > 5000000) {
                 echo "Sorry, your file is too large.";
@@ -292,9 +293,9 @@ else {
 
 
             if ($submit === true) {
-                $server_name = "172.19.107.159";
-                $user_name = "tamer";
-                $password = "tamer";
+                $server_name = "localhost";
+                $user_name = "root";
+                $password = "";
                 $database = "web_project";
                 $conn = new mysqli($server_name, $user_name, $password, $database);
                 if ($conn->connect_error) {
@@ -329,19 +330,19 @@ else {
                 }
 
                 $conn->close();
-            }} else {
-            echo "no";
-            unset($signup);
+            } else {
+                echo "no";
+                unset($signup);
 
-            echo "
+                echo "
 <script type='text/javascript'>
     $(document).ready(function () {
       //  swal('Invalid inputs formats');
     });
 </script>";
 
+            }
         }
-
         ?>
 
         <!--end scholarship processing-->
@@ -495,9 +496,9 @@ else {
 
 
             if ($submit === true) {
-                $server_name = "172.19.107.159";
-                $user_name = "tamer";
-                $password = "tamer";
+                $server_name = "localhost";
+                $user_name = "root";
+                $password = "";
                 $database = "web_project";
                 $conn = new mysqli($server_name, $user_name, $password, $database);
                 if ($conn->connect_error) {
@@ -595,9 +596,9 @@ $sql="select `instrctors`.InstructorID from `instrctors`,instructors_courses whe
             </div>
 
             <?php
-            $server_name = "172.19.107.159";
-            $user_name = "tamer";
-            $password = "tamer";
+            $server_name = "localhost";
+            $user_name = "root";
+            $password = "";
             $database = "web_project";
             $conn = new mysqli($server_name, $user_name, $password, $database);
             if ($conn->connect_error) {
