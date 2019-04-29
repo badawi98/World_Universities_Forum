@@ -835,7 +835,12 @@ if (isset($_POST["signup"])&&$_SERVER["REQUEST_METHOD"] == "POST") {
     }
 // Check if file already exists
     if (file_exists($target_file)) {
-        echo "Sorry, file already exists.";
+        echo "
+        <script type='text/javascript'>
+    $(document).ready(function () {
+        swal('Sorry, file already exists.');
+    });
+</script>";
         $submit=false;
     }
 // Check file size

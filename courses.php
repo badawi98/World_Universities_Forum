@@ -309,7 +309,7 @@ session_start();
             if(isset($_GET['member'])) {
                 echo "
                     <script>  $(document).ready(function () {
-                                swal('Please Sign up first');
+                                swal('Please Login or Sign up first');
                                 });</script>";
             }
             }
