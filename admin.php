@@ -8,9 +8,9 @@ if(!isset($_SESSION["name"])) {
 
 }
 else {
-    $server_name = "localhost";
-    $user_name = "root";
-    $password = "";
+    $server_name = "172.19.107.159";
+    $user_name = "tamer";
+    $password = "tamer";
     $database = "web_project";
     $conn = new mysqli($server_name, $user_name, $password, $database);
     $sql = "select * from `users` where '$username' = User_Name";
@@ -292,9 +292,9 @@ else {
 
 
             if ($submit === true) {
-                $server_name = "localhost";
-                $user_name = "root";
-                $password = "";
+                $server_name = "172.19.107.159";
+                $user_name = "tamer";
+                $password = "tamer";
                 $database = "web_project";
                 $conn = new mysqli($server_name, $user_name, $password, $database);
                 if ($conn->connect_error) {
@@ -495,9 +495,9 @@ else {
 
 
             if ($submit === true) {
-                $server_name = "localhost";
-                $user_name = "root";
-                $password = "";
+                $server_name = "172.19.107.159";
+                $user_name = "tamer";
+                $password = "tamer";
                 $database = "web_project";
                 $conn = new mysqli($server_name, $user_name, $password, $database);
                 if ($conn->connect_error) {
@@ -595,9 +595,9 @@ $sql="select `instrctors`.InstructorID from `instrctors`,instructors_courses whe
             </div>
 
             <?php
-            $server_name = "localhost";
-            $user_name = "root";
-            $password = "";
+            $server_name = "172.19.107.159";
+            $user_name = "tamer";
+            $password = "tamer";
             $database = "web_project";
             $conn = new mysqli($server_name, $user_name, $password, $database);
             if ($conn->connect_error) {

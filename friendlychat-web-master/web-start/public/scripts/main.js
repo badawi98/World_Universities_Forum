@@ -104,7 +104,7 @@ function loadMessages (course) {
   var query = firebase.firestore()
       .collection(CourseName)
       .orderBy('timestamp', 'desc')
-      .limit(12);
+      .limit(24);
 
 
 

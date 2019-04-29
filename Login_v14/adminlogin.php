@@ -119,14 +119,14 @@ if (isset($_POST["login"])&& $_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($_POST["pass"])) {
         $submit = false;
     } else {
-        $Password = htmlspecialchars($_POST["pass"]);
+        $Passwords = htmlspecialchars($_POST["pass"]);
     }
 
     if ($submit == true) {
         $server_name = "localhost";
         $user_name = "root";
         $password = "";
-        $database = "web_project";
+        $dbname = "web_project";
         $conn = new mysqli($server_name, $user_name, $password, $dbname);
         if ($conn->connect_error) {
             $die = die("Connection Failed: " . $conn->connect_error);
@@ -136,19 +136,20 @@ if (isset($_POST["login"])&& $_SERVER["REQUEST_METHOD"] == "POST") {
 </script> ";
         }
         else {
-            if (isset($login)) {
                 $sql = "select * from `Passwords`";
                 $result = $conn->query($sql);
                 if ($result->num_rows > 0) {
                     for ($i = 0; $i < $result->num_rows; $i++) {
                         $row = $result->fetch_assoc();
-                        if ($row["User_Name"] == $username && $row["Password"] == sha1($Password)) {
+                        if ($row["User_Name"] == $username && $row["Password"] == sha1($Passwords)) {
                             break;
                         }
 
                     }
                     if($i < $result->num_rows ){
+                        echo $i;
                         $sql = "select * from `admin` where '$username' = Username";
+                        echo $sql;
                         $result = $conn->query($sql);
                         if($result->num_rows > 0) {
                             $_SESSION['name'] = $username;
@@ -162,13 +163,12 @@ if (isset($_POST["login"])&& $_SERVER["REQUEST_METHOD"] == "POST") {
                         else {
                             echo " 
                             <script>
-                                alert('Invalid');
+                                alert('Invalid username or password');
                             </script>
                             ";
                         }
                     }
                 }
-            }
 
         }
     }
