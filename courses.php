@@ -178,13 +178,11 @@ session_start();
             </div>
             <div class="row row-eq-height">
     <?php
-    $server_name = "192.168.1.23";
-    $user_name = "tamer";
-    $password = "tamer";
-    $dbname = "web_project";
-    $i = 0;
-    $conn = new mysqli($server_name, $user_name, $password, $dbname);
-
+    $server_name = "localhost";
+    $user_name = "root";
+    $password = "";
+    $database = "web_project";
+    $conn = new mysqli($server_name, $user_name, $password, $database);
     if ($conn->connect_error) {
         die("Connection Failed: " . $conn->connect_error);
     }
@@ -212,11 +210,10 @@ session_start();
                     $row3 = $result3->fetch_assoc();
                     $UnivID = $row3['UnivID'];
                     $Inst_User = $row3['User_Name'];
-                    $sql4 ="select `Univ_Name` from `university` where $UnivID = UnivID ";
+                    $sql4 ="select * from `university` where $UnivID = UnivID ";
                     $result4 = $conn->query($sql4);
                     $row4 = $result4->fetch_assoc();
                     $UnivName = $row4['Univ_Name'];
-
 
                     echo"
                     <div class=\"col-lg-4 d-flex align-items-stretch h-auto\" style='display: flex'>
@@ -270,6 +267,7 @@ session_start();
                 $sql4 ="select `Univ_Name` from `university` where $UnivID = UnivID ";
                 $result4 = $conn->query($sql4);
                 $row4 = $result4->fetch_assoc();
+                $UnivName = $row4['Univ_Name'];
 
 
                 echo "
@@ -445,5 +443,5 @@ session_start();
   </body>
 </html>
 <?php
-echo $CoursePic;
+
 ?>

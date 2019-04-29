@@ -171,12 +171,12 @@ if(isset($_SESSION['username'])) {
                             </div>
                         </div>
                         <?php
-                        $server_name = "192.168.1.23";
-                        $user_name = "tamer";
-                        $password = "tamer";
+                        $server_name = "localhost";
+                        $user_name = "root";
+                        $password = "";
                         $dbname = "web_project";
                         $i = 0;
-                        $conn = new mysqli($servername, $user, $pass, $dbname);
+                        $conn = new mysqli($server_name, $user_name, $password, $dbname);
                         if ($conn->connect_error) {
                             die("Connection Failed: " . $conn->connect_error);
                         }
@@ -219,29 +219,7 @@ if(isset($_SESSION['username'])) {
 
                         ?>
 
-                    <nav class="blog-pagination justify-content-center d-flex">
-                        <ul class="pagination">
-                            <li class="page-item">
-                                <a href="#" class="page-link" aria-label="Previous">
-                                        <span aria-hidden="true">
-                                            <i class="ti-angle-left"></i>
-                                        </span>
-                                </a>
-                            </li>
-                            <li class="page-item"><a href="#" class="page-link">01</a></li>
-                            <li class="page-item active"><a href="#" class="page-link">02</a></li>
-                            <li class="page-item"><a href="#" class="page-link">03</a></li>
-                            <li class="page-item"><a href="#" class="page-link">04</a></li>
-                            <li class="page-item"><a href="#" class="page-link">09</a></li>
-                            <li class="page-item">
-                                <a href="#" class="page-link" aria-label="Next">
-                                        <span aria-hidden="true">
-                                            <i class="ti-angle-right"></i>
-                                        </span>
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
+
                 </div>
             </div>
         </div>
@@ -324,12 +302,12 @@ if(isset($_SESSION['username'])) {
  } else {
      $second_univ = test_input($_POST["second_univ"]);
  }
-$server_name = "192.168.1.23";
-$user_name = "tamer";
-$password = "tamer";
+$server_name = "localhost";
+$user_name = "root";
+$password = "";
  $dbname = "web_project";
  $i = 0;
- $conn = new mysqli($servername, $user, $pass, $dbname);
+ $conn = new mysqli($server_name, $user_name, $password, $dbname);
  if ($conn->connect_error) {
      die("Connection Failed: " . $conn->connect_error);
  }

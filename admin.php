@@ -8,12 +8,11 @@ if(!isset($_SESSION["name"])) {
 
 }
 else {
-    $username = $_SESSION['name'];
-    $server_name = "192.168.1.23";
-    $user_name = "tamer";
-    $password = "tamer";
-    $dbname = "web_project";
-    $conn = new mysqli($server_name, $user_name, $password, $dbname);
+    $server_name = "localhost";
+    $user_name = "root";
+    $password = "";
+    $database = "web_project";
+    $conn = new mysqli($server_name, $user_name, $password, $database);
     $sql = "select * from `users` where '$username' = User_Name";
     $result = $conn->query($sql);
     if($result->num_rows > 0) {
@@ -293,12 +292,11 @@ else {
 
 
             if ($submit === true) {
-                $server_name = "192.168.1.23";
-                $user_name = "tamer";
-                $password = "tamer";
-                $dbname = "web_project";
-                $i = 0;
-                $conn = new mysqli($server_name, $user_name, $password, $dbname);
+                $server_name = "localhost";
+                $user_name = "root";
+                $password = "";
+                $database = "web_project";
+                $conn = new mysqli($server_name, $user_name, $password, $database);
                 if ($conn->connect_error) {
                     $die = die("Connection Failed: " . $conn->connect_error);
 
@@ -497,12 +495,11 @@ else {
 
 
             if ($submit === true) {
-                $server_name = "192.168.1.23";
-                $user_name = "tamer";
-                $password = "tamer";
-                $dbname = "web_project";
-                $i = 0;
-                $conn = new mysqli($server_name, $user_name, $password, $dbname);
+                $server_name = "localhost";
+                $user_name = "root";
+                $password = "";
+                $database = "web_project";
+                $conn = new mysqli($server_name, $user_name, $password, $database);
                 if ($conn->connect_error) {
                     $die = die("Connection Failed: " . $conn->connect_error);
 
@@ -598,12 +595,11 @@ $sql="select `instrctors`.InstructorID from `instrctors`,instructors_courses whe
             </div>
 
             <?php
-            $server_name = "192.168.1.23";
-            $user_name = "tamer";
-            $password = "tamer";
-            $dbname = "web_project";
-            $numberOfUsers = 0;
-            $conn = new mysqli($server_name, $user_name, $password, $dbname);
+            $server_name = "localhost";
+            $user_name = "root";
+            $password = "";
+            $database = "web_project";
+            $conn = new mysqli($server_name, $user_name, $password, $database);
             if ($conn->connect_error) {
                 die("Connection Failed: " . $conn->connect_error);
             }
@@ -645,3 +641,6 @@ $sql="select `instrctors`.InstructorID from `instrctors`,instructors_courses whe
 
 </body>
 </html>
+<?php
+session_destroy();
+?>

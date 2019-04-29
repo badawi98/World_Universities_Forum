@@ -535,11 +535,10 @@ if (isset($_POST["update"])&&$_SERVER["REQUEST_METHOD"] == "POST") {
         $Date = test_input($_POST["Date"]);
     }
 
-    $servername = "locahhsot";
+    $servername = "localhost";
     $user = "root";
     $pass = "";
     $dbname = "web_project";
-    $i = 0;
     $conn2 = new mysqli($servername, $user, $pass, $dbname);
     if ($conn2->connect_error) {
        $die= die("Connection Failed: " . $conn2->connect_error);

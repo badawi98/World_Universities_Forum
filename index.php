@@ -232,12 +232,12 @@
             <div class="col-lg-12">
                 <div class="owl-carousel active_course">
                     <?php
-                    $servername = "192.168.1.23";
-                    $user = "tamer";
-                    $pass = "tamer";
+                    $server_name = "localhost";
+                    $user_name = "root";
+                    $password = "";
                     $dbname = "web_project";
                     $i = 0;
-                    $conn = new mysqli($servername, $user, $pass, $dbname);
+                    $conn = new mysqli($server_name, $user_name, $password, $dbname);
                     if ($conn->connect_error) {
                         die("Connection Failed: " . $conn->connect_error);
                     }
@@ -410,9 +410,9 @@
                         $login = $_POST["login"];
                     }
                     if($submit===true) {
-                        $servername = "192.168.1.23";
-                        $user = "tamer";
-                        $pass = "tamer";
+                        $servername = "localhost";
+                        $user = "root";
+                        $pass = "";
                         $dbname = "web_project";
                         $conn = new mysqli($servername, $user, $pass, $dbname);
                         if ($conn->connect_error) {
@@ -591,9 +591,9 @@
                                     <select name="Univ_Name" style="display: none;" >
 
                                         <?php
-                                        $server_name = "192.168.1.23";
-                                        $user_name = "tamer";
-                                        $password = "tamer";
+                                        $server_name = "localhost";
+                                        $user_name = "root";
+                                        $password = "";
                                         $database = "web_project";
                                         $mycon = new mysqli($server_name , $user_name , $password , $database);
                                         if ($mycon->connect_error) {
@@ -621,9 +621,9 @@
                                         <span class="current">University</span>
                                         <ul  class="list">
                                             <?php
-                                            $server_name = "192.168.1.23";
-                                            $user_name = "tamer";
-                                            $password = "tamer";
+                                            $server_name = "localhost";
+                                            $user_name = "root";
+                                            $password = "";
                                             $database = "web_project";
                                             $mycon = new mysqli($server_name , $user_name , $password , $database);
                                             if ($mycon->connect_error) {
@@ -866,10 +866,10 @@ if (isset($_POST["signup"])&&$_SERVER["REQUEST_METHOD"] == "POST") {
 
 if($submit===true) {
     $userID = 0000000000000000;
-    $server_name = "192.168.1.23";
-    $user_name = "tamer";
-    $password = "tamer";
-    $dbname = "web_project";
+    $server_name = "localhost";
+    $user_name = "root";
+    $password = "";
+    $database = "web_project";
     $i = 0;
     $conn = new mysqli($servername, $user, $pass, $dbname);
     if ($conn->connect_error) {

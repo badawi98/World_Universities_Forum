@@ -11,12 +11,11 @@ window.location.replace('courses.php');</script>;
 ";
 }
 $course_name = $_GET['coursename'];
-$server_name = "192.168.1.23";
-$user_name = "tamer";
-$password = "tamer";
-$dbname = "web_project";
-$i = 0;
-$conn = new mysqli($server_name, $user_name, $password, $dbname);
+$server_name = "localhost";
+$user_name = "root";
+$password = "";
+$database = "web_project";
+$conn = new mysqli($server_name, $user_name, $password, $database);
 if ($conn->connect_error) {
     die("Connection Failed: " . $conn->connect_error);
 }
@@ -279,11 +278,11 @@ echo"
 ?>
 
 <?php
-$server_name = "192.168.1.23";
-$user_name = "tamer";
-$password = "tamer";
-$dbname = "web_project";
-$conns = new mysqli($server_name, $user_name, $password, $dbname);
+$server_name = "localhost";
+$user_name = "root";
+$password = "";
+$database = "web_project";
+$conns = new mysqli($server_name, $user_name, $password, $database);
 if ($conns->connect_error) {
     die("Connection Failed: " . $conns->connect_error);
 }
@@ -792,12 +791,11 @@ if(isset($_SESSION['username'])) {
                                 </script>";
 }
 if(isset($_GET['Add'])) {
-    $server_name = "192.168.1.23";
-    $user_name = "tamer";
-    $password = "tamer";
-    $dbname = "web_project";
-    $conns = new mysqli($server_name, $user_name, $password, $dbname);
-
+    $server_name = "localhost";
+    $user_name = "root";
+    $password = "";
+    $database = "web_project";
+    $conns = new mysqli($server_name, $user_name, $password, $database);
     if ($conns->connect_error) {
         die("Connection Failed: " . $conns->connect_error);
     } else {

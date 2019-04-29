@@ -123,10 +123,10 @@ if (isset($_POST["login"])&& $_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     if ($submit == true) {
-        $server_name = "192.168.1.23";
-        $user_name = "tamer";
-        $password = "tamer";
-        $dbname = "web_project";
+        $server_name = "localhost";
+        $user_name = "root";
+        $password = "";
+        $database = "web_project";
         $conn = new mysqli($server_name, $user_name, $password, $dbname);
         if ($conn->connect_error) {
             $die = die("Connection Failed: " . $conn->connect_error);
