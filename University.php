@@ -26,24 +26,7 @@ session_start()?>
 <!--================ Start Header Menu Area =================-->
 <header class="header_area">
     <div class="main_menu">
-        <div class="search_input" id="search_input_box">
-            <div class="container">
-                <form class="d-flex justify-content-between" method="" action="">
-                    <input
-                            type="text"
-                            class="form-control"
-                            id="search_input"
-                            placeholder="Search Here"
-                    />
-                    <button type="submit" class="btn"></button>
-                    <span
-                            class="ti-close"
-                            id="close_search"
-                            title="Close Search"
-                    ></span>
-                </form>
-            </div>
-        </div>
+
 
         <nav class="navbar navbar-expand-lg navbar-light">
             <div class="container">
@@ -188,9 +171,9 @@ if(isset($_SESSION['username'])) {
                             </div>
                         </div>
                         <?php
-                        $servername = "localhost";
-                        $user = "root";
-                        $pass = "";
+                        $server_name = "192.168.1.23";
+                        $user_name = "tamer";
+                        $password = "tamer";
                         $dbname = "web_project";
                         $i = 0;
                         $conn = new mysqli($servername, $user, $pass, $dbname);
@@ -341,9 +324,9 @@ if(isset($_SESSION['username'])) {
  } else {
      $second_univ = test_input($_POST["second_univ"]);
  }
- $servername = "localhost";
- $user = "root";
- $pass = "";
+$server_name = "192.168.1.23";
+$user_name = "tamer";
+$password = "tamer";
  $dbname = "web_project";
  $i = 0;
  $conn = new mysqli($servername, $user, $pass, $dbname);

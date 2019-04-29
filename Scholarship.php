@@ -164,12 +164,12 @@ session_start();?>
                     <div class="blog_left_sidebar">
 
                         <?php
-                        $servername = "localhost";
-                        $user = "root";
-                        $pass = "";
+                        $server_name = "192.168.1.23";
+                        $user_name = "tamer";
+                        $password = "tamer";
                         $dbname = "web_project";
                         $i = 0;
-                        $conn = new mysqli($servername, $user, $pass, $dbname);
+                        $conn = new mysqli($server_name, $user_name, $password, $dbname);
                         if ($conn->connect_error) {
                             die("Connection Failed: " . $conn->connect_error);
                         }

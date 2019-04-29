@@ -107,10 +107,10 @@
 
 </body>
 </html>
-<?php
+<?
 $username = $Password = $login = "";
 $submit=true;
-if (isset($_POST["login"])&&$_SERVER["REQUEST_METHOD"] == "POST") {
+if (isset($_POST["login"])&& $_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($_POST["name"])) {
         $submit = false;
     } else {
@@ -123,11 +123,11 @@ if (isset($_POST["login"])&&$_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     if ($submit == true) {
-        $servername = "localhost";
-        $user = "root";
-        $pass = "";
+        $server_name = "192.168.1.23";
+        $user_name = "tamer";
+        $password = "tamer";
         $dbname = "web_project";
-        $conn = new mysqli($servername, $user, $pass, $dbname);
+        $conn = new mysqli($server_name, $user_name, $password, $dbname);
         if ($conn->connect_error) {
             $die = die("Connection Failed: " . $conn->connect_error);
             echo "
@@ -149,16 +149,16 @@ if (isset($_POST["login"])&&$_SERVER["REQUEST_METHOD"] == "POST") {
                     }
                     if($i < $result->num_rows ){
                         $sql = "select * from `admin` where '$username' = Username";
-                        echo $sql;
                         $result = $conn->query($sql);
                         if($result->num_rows > 0) {
                             $_SESSION['name'] = $username;
 
                                 echo "
-<script type='text/javascript'>window.location.replace('/Final_Web_Project/admin.php')
-</script>        ";
+                                    <script type='text/javascript'>
+                                    window.location.replace('/phpstorm_projects/World_Universities_Forum/admin.php');
+                                    </script>
+                                ";
                             }
-
                         else {
                             echo " 
                             <script>

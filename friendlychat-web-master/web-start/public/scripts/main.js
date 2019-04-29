@@ -92,12 +92,11 @@ function saveMessage(messageText) {
     name: UserName,
     text: messageText,
     profilePicUrl: getProfilePicUrl(),
-    timestamp: firebase.firestore.FieldValue.serverTimestamp()
+    timestamp:  Date(),
   }).catch(function(error) {
     console.error('Error writing new message to Firebase Database', error);
   });
 }
-
 // Loads chat messages history and listens for upcoming ones.
 function loadMessages (course) {
   // Create the query to load the last 12 messages and listen for new ones.
@@ -117,8 +116,8 @@ function loadMessages (course) {
         deleteMessage(change.doc.id);
       } else {
         var message = change.doc.data();
-        displayMessage(change.doc.id, message.timestamp, message.name,
-            message.text, getProfilePicUrl(), message.imageUrl);
+        displayMessage(change.doc.id,message.timestamp , message.name,
+            message.text, getProfilePicUrl(), message.imageUrl,);
       }
     });
   });
@@ -132,7 +131,7 @@ function saveImageMessage(file) {
     name: UserName,
     imageUrl: LOADING_IMAGE_URL,
     profilePicUrl: getProfilePicUrl(),
-    timestamp: firebase.firestore.FieldValue.serverTimestamp()
+    timestamp: Date()
   }).then(function(messageRef) {
     // 2 - Upload the image to Cloud Storage.
     var filePath = firebase.auth().currentUser.uid + '/' + messageRef.id + '/' + file.name;
@@ -212,8 +211,7 @@ function onMessageFormSubmit(e) {
       // Clear message text field and re-enable the SEND button.
       resetMaterialTextfield(messageInputElement);
       toggleButton();
-      displayMessage()
-
+      displayMessage();
     });
   }
 }

@@ -7,9 +7,9 @@ function test_input($data) {
     return $data;
 }
 $username = $_SESSION['username'];
-$servername = "localhost";
-$user = "root";
-$pass = "";
+$server_name = "192.168.1.23";
+$user_name = "tamer";
+$password = "tamer";
 $dbname = "web_project";
 $conn = new mysqli($servername, $user, $pass, $dbname);
 if ($conn->connect_error) {

@@ -178,12 +178,12 @@ session_start();
             </div>
             <div class="row row-eq-height">
     <?php
-    $servername = "localhost";
-    $user = "root";
-    $pass = "";
+    $server_name = "192.168.1.23";
+    $user_name = "tamer";
+    $password = "tamer";
     $dbname = "web_project";
     $i = 0;
-    $conn = new mysqli($servername, $user, $pass, $dbname);
+    $conn = new mysqli($server_name, $user_name, $password, $dbname);
 
     if ($conn->connect_error) {
         die("Connection Failed: " . $conn->connect_error);
@@ -216,6 +216,8 @@ session_start();
                     $result4 = $conn->query($sql4);
                     $row4 = $result4->fetch_assoc();
                     $UnivName = $row4['Univ_Name'];
+
+
                     echo"
                     <div class=\"col-lg-4 d-flex align-items-stretch h-auto\" style='display: flex'>
                 <div class=\" \">
@@ -268,7 +270,7 @@ session_start();
                 $sql4 ="select `Univ_Name` from `university` where $UnivID = UnivID ";
                 $result4 = $conn->query($sql4);
                 $row4 = $result4->fetch_assoc();
-                $UnivName = $row4['Univ_Name'];
+
 
                 echo "
                 <div class=\"col-lg-4 d-flex align-items-stretch h-auto\" style='display: flex'>
@@ -354,7 +356,7 @@ session_start();
               <div class="desc">
                 <h4 class="mt-3 mb-2">search Online Course</h4>
                 <p>
-                  now you can see your course online and you can add items to it.
+                    now you can see your course online and open it all over the world.
                 </p>
               </div>
             </div>
@@ -442,3 +444,6 @@ session_start();
     <script src="js/theme.js"></script>
   </body>
 </html>
+<?php
+echo $CoursePic;
+?>

@@ -217,7 +217,7 @@ session_start();?>
               <div class="desc">
                 <h4 class="mt-3 mb-2">Search Online Course</h4>
                 <p>
-                  now you can see your course online and you can add items to it.
+                    now you can see your course online and open it all over the world.
                 </p>
               </div>
             </div>

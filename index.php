@@ -193,7 +193,7 @@
                     <div class="desc">
                         <h4 class="mt-3 mb-2">search Online Course</h4>
                         <p>
-                            now you can see your course online and you can add items to it.
+                            now you can see your course online and open it all over the world.
                         </p>
                     </div>
                 </div>
@@ -232,9 +232,9 @@
             <div class="col-lg-12">
                 <div class="owl-carousel active_course">
                     <?php
-                    $servername = "localhost";
-                    $user = "root";
-                    $pass = "";
+                    $servername = "192.168.1.23";
+                    $user = "tamer";
+                    $pass = "tamer";
                     $dbname = "web_project";
                     $i = 0;
                     $conn = new mysqli($servername, $user, $pass, $dbname);
@@ -410,9 +410,9 @@
                         $login = $_POST["login"];
                     }
                     if($submit===true) {
-                        $servername = "localhost";
-                        $user = "root";
-                        $pass = "";
+                        $servername = "192.168.1.23";
+                        $user = "tamer";
+                        $pass = "tamer";
                         $dbname = "web_project";
                         $conn = new mysqli($servername, $user, $pass, $dbname);
                         if ($conn->connect_error) {
@@ -591,9 +591,9 @@
                                     <select name="Univ_Name" style="display: none;" >
 
                                         <?php
-                                        $server_name = "localhost";
-                                        $user_name = "root";
-                                        $password = "";
+                                        $server_name = "192.168.1.23";
+                                        $user_name = "tamer";
+                                        $password = "tamer";
                                         $database = "web_project";
                                         $mycon = new mysqli($server_name , $user_name , $password , $database);
                                         if ($mycon->connect_error) {
@@ -621,9 +621,9 @@
                                         <span class="current">University</span>
                                         <ul  class="list">
                                             <?php
-                                            $server_name = "localhost";
-                                            $user_name = "root";
-                                            $password = "";
+                                            $server_name = "192.168.1.23";
+                                            $user_name = "tamer";
+                                            $password = "tamer";
                                             $database = "web_project";
                                             $mycon = new mysqli($server_name , $user_name , $password , $database);
                                             if ($mycon->connect_error) {
@@ -866,9 +866,9 @@ if (isset($_POST["signup"])&&$_SERVER["REQUEST_METHOD"] == "POST") {
 
 if($submit===true) {
     $userID = 0000000000000000;
-    $servername = "localhost";
-    $user = "root";
-    $pass = "";
+    $server_name = "192.168.1.23";
+    $user_name = "tamer";
+    $password = "tamer";
     $dbname = "web_project";
     $i = 0;
     $conn = new mysqli($servername, $user, $pass, $dbname);
@@ -1165,10 +1165,3 @@ function test_input2($data) {
 
 
 </body></html>
-<?php
-$initialString = "/Applications/XAMPP/xamppfiles/htdocs/phpstorm_projects/World_Universities_Forum/uploads/membership_validation/gold_medal.png";
-$arr = explode('/Applications/XAMPP/xamppfiles/htdocs/phpstorm_projects/World_Universities_Forum/',
-    $initialString);
-$initialString = $arr[1];
-echo $initialString;
-?>

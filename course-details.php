@@ -11,12 +11,12 @@ window.location.replace('courses.php');</script>;
 ";
 }
 $course_name = $_GET['coursename'];
-$servername = "localhost";
-$user = "root";
-$pass = "";
+$server_name = "192.168.1.23";
+$user_name = "tamer";
+$password = "tamer";
 $dbname = "web_project";
 $i = 0;
-$conn = new mysqli($servername, $user, $pass, $dbname);
+$conn = new mysqli($server_name, $user_name, $password, $dbname);
 if ($conn->connect_error) {
     die("Connection Failed: " . $conn->connect_error);
 }
@@ -93,7 +93,7 @@ echo"
       <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">
 
 
-      <script src=\"https://www.gstatic.com/firebasejs/5.10.0/firebase.js\"></script>
+     <script src=\"https://www.gstatic.com/firebasejs/5.10.1/firebase.js\"></script>
       <script>
           // Initialize Firebase
           var config = {
@@ -186,8 +186,7 @@ echo"
                       </li>
                       </li>
                       <li class=\"nav-item submenu dropdown\">
-                          <a class=\"nav-link\" href=\"courses.php\">Courses</a
-                          >
+                          <a class=\"nav-link\" href=\"courses.php\">Courses</a>
                       </li>
                       <li class=\"nav-item\">
                           <a class=\"nav-link\" href=\"contact.php\">Contact</a>
@@ -280,11 +279,11 @@ echo"
 ?>
 
 <?php
-$servername = "localhost";
-$user = "root";
-$pass = "";
+$server_name = "192.168.1.23";
+$user_name = "tamer";
+$password = "tamer";
 $dbname = "web_project";
-$conns = new mysqli($servername, $user, $pass, $dbname);
+$conns = new mysqli($server_name, $user_name, $password, $dbname);
 if ($conns->connect_error) {
     die("Connection Failed: " . $conns->connect_error);
 }
@@ -645,6 +644,7 @@ else {
                                          class=\"mdl-card__supporting-text mdl-color-text--grey-600\">
                                         <div id=\"messages\">
                                             <span id=\"message-filler\"></span>
+                                            <div style='display: none' class=\"message-container visible\" id=\"undefined\" timestamp=\"undefined\"><div class=\"spacing\"><div class=\"pic\"></div></div><div class=\"message\"></div><div class=\"name\"></div></div>
                                         </div>
                                         <form id=\"message-form\" action=\"#\">
                                             <div class=\"mdl-textfield mdl-js-textfield mdl-textfield--floating-label\">
@@ -764,7 +764,6 @@ echo "
            
 
     <script src=\"friendlychat-web-master/web-start/public/scripts/main.js\"></script>
-   
     <script>setCourseName('$course_name','$username');signIn('$email','$password');</script>
         </body>
       </html>";
@@ -793,11 +792,11 @@ if(isset($_SESSION['username'])) {
                                 </script>";
 }
 if(isset($_GET['Add'])) {
-    $servername = "localhost";
-    $user = "root";
-    $pass = "";
+    $server_name = "192.168.1.23";
+    $user_name = "tamer";
+    $password = "tamer";
     $dbname = "web_project";
-    $conns = new mysqli($servername, $user, $pass, $dbname);
+    $conns = new mysqli($server_name, $user_name, $password, $dbname);
 
     if ($conns->connect_error) {
         die("Connection Failed: " . $conns->connect_error);

@@ -173,7 +173,7 @@ session_start();?>
               </div>
               <div class="info_item">
                 <i class="ti-email"></i>
-                <h6><a href="#">world.universities.forum<br>@gmail.com</a></h6>
+                <h6><a href="#">world.universities.forum@gmail.com</a></h6>
                 <p>Send us your query anytime!</p>
               </div>
             </div>
@@ -185,63 +185,12 @@ session_start();?>
               id="contactForm"
               novalidate="novalidate"
             >
-              <div class="col-md-6">
-                <div class="form-group">
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="name"
-                    name="name"
-                    placeholder="Enter your name"
-                    onfocus="this.placeholder = ''"
-                    onblur="this.placeholder = 'Enter your name'"
-                    required=""
-                  />
-                </div>
-                <div class="form-group">
-                  <input
-                    type="email"
-                    class="form-control"
-                    id="email"
-                    name="email"
-                    placeholder="Enter email address"
-                    onfocus="this.placeholder = ''"
-                    onblur="this.placeholder = 'Enter email address'"
-                    required=""
-                  />
-                </div>
-                <div class="form-group">
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="subject"
-                    name="subject"
-                    placeholder="Enter Subject"
-                    onfocus="this.placeholder = ''"
-                    onblur="this.placeholder = 'Enter Subject'"
-                    required=""
-                  />
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="form-group">
-                  <textarea
-                    class="form-control"
-                    name="message"
-                    id="message"
-                    rows="1"
-                    placeholder="Enter Message"
-                    onfocus="this.placeholder = ''"
-                    onblur="this.placeholder = 'Enter Message'"
-                    required=""
-                  ></textarea>
-                </div>
-              </div>
+
+
+
               <div class="col-md-12 text-right">
-                  <a href="mailto: world.universities.forum@gmail.com">
-                <button type="submit" value="submit" class="btn primary-btn">
+                  <a href="mailto: world.universities.forum@gmail.com" class="btn primary-btn">
                   Send Message
-                </button>
                   </a>
               </div>
             </form>
