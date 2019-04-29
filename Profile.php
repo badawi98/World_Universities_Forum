@@ -7,11 +7,11 @@ function test_input($data) {
     return $data;
 }
 $username = $_SESSION['username'];
-$server_name = "192.168.1.23";
-$user_name = "tamer";
-$password = "tamer";
+$server_name = "localhost";
+$user_name = "root";
+$password = "";
 $dbname = "web_project";
-$conn = new mysqli($servername, $user, $pass, $dbname);
+$conn = new mysqli($server_name, $user_name, $password, $dbname);
 if ($conn->connect_error) {
     die("Connection Failed: " . $conn->connect_error);
 }

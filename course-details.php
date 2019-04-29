@@ -506,7 +506,7 @@ else {
                         
                         
                     </ul>
-                    <a onclick='window.location.reload()' id='enroll' href=\"course-details.php?coursename=$course_name&Add='true'\" class=\"primary-btn2 text-uppercase enroll rounded-0 text-white\">Enroll the course</a>
+                    <a onclick='location.reload();' id='enroll' href=\"course-details.php?coursename=$course_name&Add='true'\" class=\"primary-btn2 text-uppercase enroll rounded-0 text-white\">Enroll the course</a>
                   
                              
                         

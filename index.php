@@ -871,7 +871,7 @@ if($submit===true) {
     $password = "";
     $database = "web_project";
     $i = 0;
-    $conn = new mysqli($servername, $user, $pass, $dbname);
+    $conn = new mysqli($server_name, $user_name, $password, $database);
     if ($conn->connect_error) {
         $die = die("Connection Failed: " . $conn->connect_error);
 

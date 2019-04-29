@@ -181,10 +181,8 @@ session_start();
     $server_name = "localhost";
     $user_name = "root";
     $password = "";
-    $dbname = "web_project";
-    $i = 0;
-    $conn = new mysqli($server_name, $user_name, $password, $dbname);
-
+    $database = "web_project";
+    $conn = new mysqli($server_name, $user_name, $password, $database);
     if ($conn->connect_error) {
         die("Connection Failed: " . $conn->connect_error);
     }
@@ -444,6 +442,3 @@ session_start();
     <script src="js/theme.js"></script>
   </body>
 </html>
-<?php
-echo $CoursePic;
-?>
