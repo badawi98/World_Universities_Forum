@@ -894,7 +894,6 @@ if($submit===true) {
                     if ($row["Univ_Name"] == $Univ_Name) {
                         break;
                     }
-
                 }
             }
             $sql2 = " select UnivID from `university` where '$Univ_Name'  =  Univ_Name ";
