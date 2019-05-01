@@ -1,4 +1,5 @@
 <?php session_start();
+
 ?>
     <!DOCTYPE html>
     <html lang="en">
@@ -156,7 +157,7 @@ if (isset($_POST["login"])&& $_SERVER["REQUEST_METHOD"] == "POST") {
 
                             echo "
                                     <script type='text/javascript'>
-                                    window.location.replace('/Final_Web_Project/admin.php');
+                                    window.location.replace('/phpstorm_projects/World_Universities_Forum/admin.php');
                                     </script>
                                 ";
                         }

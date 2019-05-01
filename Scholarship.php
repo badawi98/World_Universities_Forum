@@ -200,7 +200,7 @@ session_start();?>
     </div>
     <div class=\"col-md-9\">
         <div class=\"blog_post\">
-            <img  width=\"100%\" src=$ScPic alt=\"\">
+            <img  width=\"100%\" src=uploads/scholarships/$ScPic alt=\"\">
             <div class=\"blog_details\">
                 <a target='_blank' href=$Sclink>
                     <h2>$ScTitle</h2>

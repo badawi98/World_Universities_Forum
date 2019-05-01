@@ -221,7 +221,7 @@ session_start();
                     <div class=\"single_course\" >
                         <div class=\"course_head\">
                             <img style='width:100%;
-    height: 200px;' width='100%' class=\"img-fluid\" src=$CoursePic alt=\"\" />
+    height: 200px;' width='100%' class=\"img-fluid\" src=uploads/courses/$CoursePic alt=\"\" />
                         </div>
                         <div class=\"course_content\">
                             <span class=\"tag mb-4 d-inline-block\">$UnivName</span>
@@ -276,7 +276,7 @@ session_start();
                     <div class=\"single_course\" >
                         <div class=\"course_head\">
                             <img style='width:100%;
-    height: 200px;' width='100%' class=\"img-fluid\" src=$CoursePic alt=\"\" />
+    height: 200px;' width='100%' class=\"img-fluid\" src=uploads/courses/$CoursePic alt=\"\" />
                         </div>
                         <div class=\"course_content\">
                             <span class=\"tag mb-4 d-inline-block\">$UnivName</span>

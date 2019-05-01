@@ -271,7 +271,7 @@
               <div class=\"single_course\">
                 <div class=\"course_head\">
                  <img style='width:100%;
-    height: 200px;' width='100%' class=\"img - fluid\" src=$CoursePic alt=\"\" />
+    height: 200px;' width='100%' class=\"img - fluid\" src=uploads/courses/$CoursePic alt=\"\" />
                 </div>
                 <div class=\"course_content\">
                   <span class=\"tag mb-4 d-inline-block\">$UnivName</span>
@@ -789,7 +789,8 @@ if (isset($_POST["signup"])&&$_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($_POST["filename"])) {
      //   $submit=false;
     } else {
-        $filename = test_input($_POST["filename"]);
+        $filename = $_POST["filename"];
+        echo $filename;
     }
     if (empty($_POST["signup"])) {
         echo   $_POST["signup"];
@@ -819,7 +820,7 @@ if (isset($_POST["signup"])&&$_SERVER["REQUEST_METHOD"] == "POST") {
 
     //start
 
-
+    $filename=basename($_FILES["filename"]["name"]);
     $target_dir = dirname(__FILE__) ."/uploads/membership_validation/";
     $target_file = $target_dir . basename($_FILES["filename"]["name"]);
     $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
@@ -841,7 +842,7 @@ if (isset($_POST["signup"])&&$_SERVER["REQUEST_METHOD"] == "POST") {
         swal('Sorry, file already exists.');
     });
 </script>";
-        $submit=false;
+       // $submit=false;
     }
 // Check file size
     if ($_FILES["filename"]["size"] > 2000000) {
@@ -910,7 +911,7 @@ if($submit===true) {
                 $userID = $userID + rand(0, 9999999999);
                 $passwords = sha1($Signup_Password);
                 $sql = "INSERT INTO users (UserID,User_Name,UnivID, First_Name, Second_Name,Third_Name,Family_Name,Date,Email,Gender,picture,Valid)
-                    VALUES ($userID, '$Signup_username',$univID ,'$first_name','$second_name','$third_name','$last_name','$Date','$EMAIL','$gender','$target_file',false)";
+                    VALUES ($userID, '$Signup_username',$univID ,'$first_name','$second_name','$third_name','$last_name','$Date','$EMAIL','$gender','$filename',false)";
                 $sql5 = ("INSERT INTO passwords (UserID,Password,User_Name)
                     VALUES ('$userID','$passwords' , '$Signup_username')");
                 if ($conn->query($sql) === TRUE) {

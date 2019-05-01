@@ -1,34 +1,89 @@
 <?php
 session_start();
-if(!isset($_SESSION["name"])) {
+
+echo "<script type=\"text/javascript\">
+setTimeout(function() { window.location.href = \"adminlogin.php\"; }, 60*15*1000);
+
+</script>";
+
+if((!isset($_SESSION["name"])&&!isset($_GET['admin'])&&!isset($_GET['acceptance'])&&!isset($_GET['usr']))) {
     echo "
         <script>
-            window.location.replace('Login_v14/adminlogin.php');
+            window.location.replace('/phpstorm_projects/World_Universities_Forum/Login_v14/adminlogin.php');
         </script>";
 
 }
-else {
+
+
     $server_name = "localhost";
     $user_name = "root";
     $password = "";
     $database = "web_project";
     $conn = new mysqli($server_name, $user_name, $password, $database);
-    $username=$_SESSION["name"];
-    $sql = "select * from `users` where '$username' = User_Name";
-    $result = $conn->query($sql);
-    if($result->num_rows > 0) {
-        $row = $result->fetch_assoc();
-        $univID = $row['UnivID'];
-        $sql = "select * from `university` where $univID = UnivID";
+    if(isset($_SESSION["name"])||isset($_GET["admin"])){
+        if(isset($_SESSION["name"])){
+        $username=$_SESSION["name"];
+        $admin=$_SESSION["name"];}
+
+        if(isset($_GET["admin"])){
+            $username=$_GET['admin'];
+        $admin=$_GET['admin'];}
+
+
+
+        $sql = "select * from `users` where '$username' = User_Name";
         $result = $conn->query($sql);
         if($result->num_rows > 0) {
             $row = $result->fetch_assoc();
-            $UnivName = $row['Univ_Name'];
+            $univID = $row['UnivID'];
+            $sql = "select * from `university` where $univID = UnivID";
+            $result = $conn->query($sql);
+            if($result->num_rows > 0) {
+                $row = $result->fetch_assoc();
+                $UnivName = $row['Univ_Name'];
+            }
         }
     }
-    $sql = "select * from `users` where '$username' = User_Name";
 
-}
+
+
+    if(isset($_GET['acceptance'])&&isset($_GET['admin'])){
+        $usr=$_GET['usr'];
+        $_SESSION["name"]=$_GET['admin'];
+        $acceptanceGet=$_GET['acceptance'];
+        $sql_acc="UPDATE `users` SET Valid = $acceptanceGet WHERE '$usr'=User_Name";
+        $result = $conn->query($sql_acc);
+
+        if( $result===TRUE&&$acceptanceGet=='0') {
+            $sql_del="delete from `users` where '$usr'=User_Name";
+            $result = $conn->query($sql_del);
+            echo "<script> alert('Request Has been Rejected Successfully');
+            window.location.replace('admin.php');
+
+</script>";
+
+        }
+        elseif ($result===TRUE&&$acceptanceGet=='1'){
+            $sql="select * from `users` where '$usr'=User_Name";
+            $result = $conn->query($sql);
+            if($result->num_rows > 0) {
+                $row = $result->fetch_assoc();
+                $StudentID = $row['UserID'];
+                $studentname=$row['User_Name'];
+            }
+            $sql_insrt="insert into `student` values('$StudentID','$studentname')";
+            $result = $conn->query($sql_insrt);
+            echo "<script>alert('Request Has been Accepted Successfully');
+            window.location.replace('admin.php');
+</script>";
+
+        }
+    }
+
+
+
+
+
 ?>
 <html lang="en"><head>
     <!-- Required meta tags -->
@@ -68,6 +123,8 @@ else {
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
 <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
 
 <style>
     .fakeimg {
@@ -159,7 +216,7 @@ else {
                 </script>
                 <button name="addschol" value="addschol" class="primary-btn"
                     <?php
-                    echo " onclick='make_rqd1()'";
+                    echo " onclick='make_rqd1() '";
                     ?>>Add</button>
                 <?php
                 echo "
@@ -252,12 +309,12 @@ else {
 
             //start
 
-
-            $target_dir = dirname(__FILE__) . "/uploads/membership_validation/";
+$filename=basename($_FILES["scholimg"]["name"]);
+            $target_dir = dirname(__FILE__) . "/uploads/scholarships/";
             $target_file = $target_dir . basename($_FILES["scholimg"]["name"]);
             $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 // Check if image file is a actual image or fake image
-            if (isset($_POST["submit"])) {
+            if (isset($_POST["addschol"])) {
                 $check = getimagesize($_FILES["scholimg"]["tmp_name"]);
                 if ($check !== false) {
                     echo "File is an image - " . $check["mime"] . ".";
@@ -307,7 +364,7 @@ else {
 
 
                     $sql = "INSERT INTO scholarship (UnivID,Desciption,Title,Link,picture,start_Date,Level,Department)
-                    VALUES ('$univID','$Dec' ,'$title','$link','$target_file','$Startdate','$Level','$Dep_Name')";
+                    VALUES ('$univID','$Dec' ,'$title','$link','$filename','$Startdate','$Level','$Dep_Name')";
                     echo $sql;
                     if (move_uploaded_file($_FILES["scholimg"]["tmp_name"], $target_file)) {
                         echo "The file " . basename($_FILES["scholimg"]["name"]) . " has been uploaded.";
@@ -364,7 +421,7 @@ else {
                 <div class="mt-10 col-lg-12 form_group">
                     <?php
                     echo " 
-                      i <input disabled value='$UnivName' id=\"Univ_Name\" type=\"text\" name=\"UnivName\" placeholder=\"University name\" onfocus=\"this.placeholder = ''\" onblur=\"this.placeholder = 'University name'\"  class=\"single-input\">
+                      <input disabled value='$UnivName' id=\"Univ_Name\" type=\"text\" name=\"UnivName\" placeholder=\"University name\" onfocus=\"this.placeholder = ''\" onblur=\"this.placeholder = 'University name'\"  class=\"single-input\">
 
                     ";
                     ?>                    <i class=" input-icon js-btn-calendar"></i>
@@ -420,13 +477,12 @@ else {
         $Course_name  = $Decription = $Courseimg = $Instructor  = $Addcourse ="";
         $submit=true;
         if (isset($_POST["Addcourse"])&&$_SERVER["REQUEST_METHOD"] == "POST") {
-            echo "entered";
             if (empty($_POST["Course_name"])) {
                 echo $_POST["Course_name"];
                 $submit = false;
             } else {
                 $Course_name = test_input2($_POST["Course_name"]);
-                if (!preg_match("/^[a-zA-Z]*$/", $Course_name)) {
+                if (!preg_match("/^[a-z A-Z 0-9]*$/", $Course_name)) {
                     echo $_POST["Course_name"];
                     $submit = false;
                 }
@@ -436,7 +492,7 @@ else {
                 $submit = false;
             } else {
                 $Decription = test_input2($_POST["Decription"]);
-                if (!preg_match("/^[a-zA-Z]*$/", $Decription)) {
+                if (!preg_match("/^[a-z A-Z 0-9]*$/", $Decription)) {
                     echo $_POST["Decription"];
                     $submit = false;
                 }
@@ -454,13 +510,13 @@ else {
 
             //start
 
-
-            $target_dir = dirname(__FILE__) . "/uploads/membership_validation/";
+            $filename=basename($_FILES["Courseimg"]["name"]);
+            $target_dir = dirname(__FILE__) . "/uploads/courses/";
             $target_file = $target_dir . basename($_FILES["Courseimg"]["name"]);
             echo "$target_file";
             $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 // Check if image file is a actual image or fake image
-            if (isset($_POST["submit"])) {
+            if (isset($_POST["Addcourse"])) {
                 $check = getimagesize($_FILES["Courseimg"]["tmp_name"]);
                 if ($check !== false) {
                     echo "File is an image - " . $check["mime"] . ".";
@@ -494,7 +550,6 @@ else {
 
             //end
 
-
             if ($submit === true) {
                 $server_name = "localhost";
                 $user_name = "root";
@@ -508,27 +563,27 @@ else {
 #alert('$first_name');
 #</script>";
 
-$sql="select `instrctors`.InstructorID from `instrctors`,instructors_courses where `instrctors`.InstructorID=`instructors_courses`.InstructorID and 'tamer'=`instrctors`.Username";
+                    $sql = "select `instrctors`.InstructorID from `instrctors`,instructors_courses where `instrctors`.InstructorID=`instructors_courses`.InstructorID and 'tamer'=`instrctors`.Username";
 
                     $result = $conn->query($sql);
                     if ($result->num_rows > 0) {
                         for ($i = 0; $i < $result->num_rows; $i++) {
                             $row = $result->fetch_assoc();
-                            $InstructorID=   $row["InstructorID"];
+                            $InstructorID = $row["InstructorID"];
 
 
                         }
                     }
 
                     $sql1 = "INSERT INTO course (Course_Name,picture)
-                    VALUES ('$Course_name','$target_file')";
-                    $sql2="INSERT INTO instructors_courses (InstructorID,Decription)
+                    VALUES ('$Course_name','$filename')";
+                    $sql2 = "INSERT INTO instructors_courses (InstructorID,Decription)
                     VALUES ('$InstructorID','$Decription')";
                     echo $sql2;
                     echo $sql;
                     if (move_uploaded_file($_FILES["Courseimg"]["tmp_name"], $target_file)) {
                         echo "The file " . basename($_FILES["Courseimg"]["name"]) . " has been uploaded.";
-                        if ($conn->query($sql1) === TRUE&&$conn->query($sql2) === TRUE) {
+                        if ($conn->query($sql1) === TRUE && $conn->query($sql2) === TRUE) {
                             echo "<script type='text/javascript'>
     $(document).ready(function () {
         swal('Added Successfully');
@@ -547,17 +602,18 @@ $sql="select `instrctors`.InstructorID from `instrctors`,instructors_courses whe
                 }
 
                 $conn->close();
-            }} else {
-            echo "no";
+            } else {
+                echo "no";
 
-            unset($signup);
-            echo "
+                unset($signup);
+                echo "
 <script type='text/javascript'>
     $(document).ready(function () {
         swal('Invalid inputs formats');
     });
 </script>";
 
+            }
         }
         function test_input2($data) {
             $data = trim($data);
@@ -588,14 +644,15 @@ $sql="select `instrctors`.InstructorID from `instrctors`,instructors_courses whe
     <div class="col-lg-6  progress-table-wrap">
 
         <div class="progress-table">
-            <div class="table-head">
-                <div class="serial">#</div>
-                <div class="visit">Name </div>
-                <div class="country">Image</div>
-                <div class="percentage">Decision</div>
+            <div style="background-color: #012245;" class="table-head">
+                <div style='color: white' class="serial">#</div>
+                <div style='color: white' class="visit">Name </div>
+                <div style='color: white' class="country">Image</div>
+                <div style='color: white' class="percentage">Decision</div>
             </div>
 
             <?php
+            $numberOfUsers=0;
             $server_name = "localhost";
             $user_name = "root";
             $password = "";
@@ -605,27 +662,38 @@ $sql="select `instrctors`.InstructorID from `instrctors`,instructors_courses whe
                 die("Connection Failed: " . $conn->connect_error);
             }
             else {
+                if(isset($_GET['admin'])){
+                    $admin=$_GET['admin'];
+                }
+                elseif (isset($_SESSION["name"]))
+                $admin=$_SESSION["name"];
                 $sql = " select * from `users` where 0  =  Valid";
                 $result = $conn->query($sql);
                 if ($result->num_rows > 0) {
                     for ($i = 0; $i < $result->num_rows ; $i++) {
                         $row = $result->fetch_assoc();
                         $numberOfUsers = $numberOfUsers + 1 ;
-                        $User_Name = $row['First_Name'] . " "  . $row['Family_Name'];
+                        $Full_Name = $row['First_Name'] . " "  . $row['Family_Name'];
+                        $usr_name=$row['User_Name'];
                         echo " 
                 <div class=\"table-row\" >
-                <div class=\"serial\" > $numberOfUsers</div >
-                <div class=\"country\" > $User_Name</div >
-                <div class=\"visit\" >
+                <div style='color: blue'  class=\"serial\" > $numberOfUsers</div >
+                <div style='font-weight: bold; color: #1b1e21' class=\"visit\" >$Full_Name</div >
+                <div  class=\"country\" ><img width='70' height='50' src='img/idCard2.jpg' onclick=\"document.getElementById('modal01').style.display='block'\"
+                style=\"cursor:zoom-in\">
+                </div>
+
+  <div id=\"modal01\" class=\"w3-modal\" onclick=\"this.style.display='none'\">
+    <span class=\"w3-button w3-hover-red w3-xlarge w3-display-topright\">&times;</span>
+    <div class=\"w3-modal-content w3-animate-zoom\">
+      <img src=\"img/idCard2.jpg\" style=\"width:100%\">
+    </div>
+  </div>
                 
-		<div class=\"lightbox-caption\"><button type = \"submit\" class=\"btn\" style = \"margin-right: 5px\" >View</button></div>
-</div>
                 
-                
-              
                 <div class=\"percentage\" >
-                    <button type = \"submit\" class=\"btn\" style = \"margin-right: 5px\" > Accept </button >
-                    <button type = \"submit\" class=\"btn\" > Reject</button >
+                    <a href='admin.php?admin=$admin&acceptance=1&usr=$usr_name'  class=\"btn\" style = \"background-color: greenyellow; margin-right: 5px\" > Accept </a >
+                    <a href='admin.php?admin=$admin&acceptance=0&usr=$usr_name' class=\"btn\" style='background-color: red' > Reject</a >
                 </div >
             </div >";
                     }
@@ -638,10 +706,7 @@ $sql="select `instrctors`.InstructorID from `instrctors`,instructors_courses whe
 </div>
 
 
-    <hr>
 
 </body>
 </html>
-<?php
-session_destroy();
-?>
+

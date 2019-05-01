@@ -823,7 +823,6 @@ if(isset($_GET['Add'])) {
 var click = false;
     $(document).ready(function () {
         swal('Now You are a member in this course');
-        
         window.history.go(0);
         
     });
