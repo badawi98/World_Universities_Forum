@@ -57,7 +57,10 @@ if((!isset($_SESSION["name"])&&!isset($_GET['admin'])&&!isset($_GET['acceptance'
         if( $result===TRUE&&$acceptanceGet=='0') {
             $sql_del="delete from `users` where '$usr'=User_Name";
             $result = $conn->query($sql_del);
-            echo "<script> alert('Request Has been Rejected Successfully');
+            echo "<script type='text/javascript'>
+    $(document).ready(function () {
+        swal('$die');
+    });
             window.location.replace('admin.php');
 
 </script>";
@@ -73,7 +76,10 @@ if((!isset($_SESSION["name"])&&!isset($_GET['admin'])&&!isset($_GET['acceptance'
             }
             $sql_insrt="insert into `student` values('$StudentID','$studentname')";
             $result = $conn->query($sql_insrt);
-            echo "<script>alert('Request Has been Accepted Successfully');
+            echo "<script><script type='text/javascript'>
+    $(document).ready(function () {
+        swal('$die');
+    });
             window.location.replace('admin.php');
 </script>";
 
